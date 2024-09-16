@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+    <test name="Test Cases Execution">
+    <parameter name="os" value="windows"/>
+  <parameter name="browser" value="chrome"/>
+        <classes>
+            <!-- TC001_LogInPage class with its tests -->
+            <class name="tesrCases.TC001_LogInPage">
+                <methods>
+                    <include name="validLoginTest"/>
+                </methods>
+            </class>
+            
+            <!-- TC002_BrandInfoTest class with its tests -->
+            <class name="tesrCases.TC002_BrandInfoTest">
+                <methods>
+                    <include name="addBrandInfo"/>
+                </methods>
+            </class>
+
+          
+        </classes>
+    </test>
+</suite>
+
+
+
+

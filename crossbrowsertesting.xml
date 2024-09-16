@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" >
+
+<listeners>
+<listener class-name="utilities.ExtentReportManager"></listener>
+</listeners>
+
+<test thread-count="5" name="chrometest">
+  <parameter name="os" value="Windows"/>
+  <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+     <!-- <class name="tesrCases.Gen"/> -->
+    </classes>
+  </test> <!-- Test -->
+  
+
+
+
+ <test thread-count="5" name="firefoxtest">
+  <parameter name="os" value="Windows"/>
+  <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+      <!-- <class name="tesrCases.Gen"/> -->
+    </classes>
+  </test> <!-- Test -->
+  
+  
+  
+  <!-- 
+  <test name="chrometest">
+  <parameter name="os" value="Windows"/>
+  <parameter name="browser" value="brave"/>
+    <classes>
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+      <class name="tesrCases.Gen"/>
+    </classes>
+  </test> 
+  -->
+</suite> <!-- Suite -->

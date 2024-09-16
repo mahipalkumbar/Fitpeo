@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-09-16T11:06:00 IST" name="Suite" finished-at="2024-09-16T11:09:14 IST" duration-ms="194019">
+    <groups>
+    </groups>
+    <test started-at="2024-09-16T11:06:00 IST" name="Gen Test" finished-at="2024-09-16T11:09:14 IST" duration-ms="194019">
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
+        <test-method is-config="true" signature="launchingapplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@5669c5fb]" started-at="2024-09-16T11:06:01 IST" name="launchingapplication" finished-at="2024-09-16T11:06:25 IST" duration-ms="24283" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[windows]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchingapplication -->
+        <test-method signature="ImageGanerationtext(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@5669c5fb]" started-at="2024-09-16T11:06:27 IST" name="ImageGanerationtext" data-provider="imageGenerationData" finished-at="2024-09-16T11:09:14 IST" duration-ms="167043" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[EcoBlend]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Fashion and Apparel]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[We specialize in eco-friendly home products that combine style with sustainability.]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Eco-Conscious]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Female]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[All Ages]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[All India]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[EcoBlend Bamboo]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[Green Living Revolution]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[Increase brand awareness and highlight eco-friendly features.]]>
+              </value>
+            </param>
+            <param index="13">
+              <value>
+                <![CDATA[facebook]]>
+              </value>
+            </param>
+            <param index="14">
+              <value>
+                <![CDATA[(1080*1080)]]>
+              </value>
+            </param>
+            <param index="15">
+              <value>
+                <![CDATA[Indian]]>
+              </value>
+            </param>
+            <param index="16">
+              <value>
+                <![CDATA[Object]]>
+              </value>
+            </param>
+            <param index="17">
+              <value>
+                <![CDATA[3D Model]]>
+              </value>
+            </param>
+            <param index="18">
+              <value>
+                <![CDATA[A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ImageGanerationtext -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@5669c5fb]" started-at="2024-09-16T11:09:14 IST" name="teardown" finished-at="2024-09-16T11:09:14 IST" duration-ms="392" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
+    </test> <!-- Gen Test -->
+  </suite> <!-- Suite -->
+</testng-results>
