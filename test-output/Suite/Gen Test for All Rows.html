@@ -1,0 +1,360 @@
+<html>
+<head>
+<title>TestNG:  Gen Test for All Rows</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Gen Test for All Rows</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/7/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Sep 30 12:07:13 IST 2024</td>
+</tr>
+<tr><td>Total time:</td><td>155 seconds (155592 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration.DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration()'><b>DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration.DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1097397209", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1097397209'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration.DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>1</td>
+<td>tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration@bff34c6</td></tr>
+<tr>
+<td title='tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration.DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration()'><b>DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration.DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace913796146", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace913796146'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration.DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>1</td>
+<td>tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration@2a7686a7</td></tr>
+<tr>
+<td title='tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration.DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration()'><b>DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration.DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace378227888", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace378227888'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration.DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>3</td>
+<td>tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration@13f17eb4</td></tr>
+<tr>
+<td title='tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration.DataDrivenTestingBrandSelectionPageInTextToImageGeneration()'><b>DataDrivenTestingBrandSelectionPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration.DataDrivenTestingBrandSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingBrandSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace716896919", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace716896919'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration.DataDrivenTestingBrandSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingBrandSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>1</td>
+<td>tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration@7ec3394b</td></tr>
+<tr>
+<td title='tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration.DataDrivenTestingFillProductDetailsPageInTextToImageGeneration()'><b>DataDrivenTestingFillProductDetailsPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration.DataDrivenTestingFillProductDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillProductDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1146626470", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1146626470'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration.DataDrivenTestingFillProductDetailsPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingFillProductDetailsPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>1</td>
+<td>tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration@758a34ce</td></tr>
+<tr>
+<td title='tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration.DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration()'><b>DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration.DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2077462509", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2077462509'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration.DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>0</td>
+<td>tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration@1522d8a0</td></tr>
+<tr>
+<td title='tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration.DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration()'><b>DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration</b><br>Test class: tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration</td>
+<td><div><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration.DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace904351240", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace904351240'><pre>org.testng.internal.reflect.MethodMatcherException: 
+[public void tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration.DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
+Data provider mismatch
+Method: DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration([java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.String arg9, java.lang.String arg10, java.lang.String arg11, java.lang.String arg12, java.lang.String arg13, java.lang.String arg14, java.lang.String arg15, java.lang.String arg16, java.lang.String arg17, java.lang.String arg18])
+Arguments: [(java.lang.String) EcoBlend,(java.lang.String) Fashion and Apparel,(java.lang.String) We specialize in eco-friendly home products that combine style with sustainability.,(java.lang.String) Eco-Conscious,(java.lang.String) Female,(java.lang.String) All Ages,(java.lang.String) All India,(java.lang.String) D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,(java.lang.String) EcoBlend Bamboo,(java.lang.String) Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,(java.lang.String) D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,(java.lang.String) Green Living Revolution,(java.lang.String) Increase brand awareness and highlight eco-friendly features.,(java.lang.String) facebook,(java.lang.String) (1080*1080),(java.lang.String) Indian,(java.lang.String) Object,(java.lang.String) 3D Model,(java.lang.String) A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.,null]
+	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:46)
+	at org.testng.internal.Parameters.injectParameters(Parameters.java:915)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>1</td>
+<td>tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration@312ab28e</td></tr>
+</table><p>
+</body>
+</html>

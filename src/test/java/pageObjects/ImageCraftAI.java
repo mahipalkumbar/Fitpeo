@@ -3,10 +3,13 @@ package pageObjects;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,28 +18,56 @@ public class ImageCraftAI extends Basepage{
 	public ImageCraftAI(WebDriver driver) {
 		super(driver);
 	}
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+	Actions act=new Actions(driver);
 		@FindBy(xpath="//a[@href='/apphome/vingupta3/image-craft-ai/text-to-image']/div[1]")
 		WebElement ImageCraftAI;
-		//div//div//div[1]//div[2]//div[2]//a[1]//span[1]
-@FindBy(xpath="//div//div//div[1]//div[2]//div[2]//a[1]//span[1]") 
-WebElement tryItOut;
 		
-		public void Tryitouttexttoimage() {
-			try {
-		    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // 10 seconds timeout
-		         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(tryItOut));
-		         button.click();
+		
+		/*@FindBy(xpath="//a[@href='/apphome/vingupta3/image-craft-ai/image-to-image']//span[text()='Try It Out']")
+		WebElement TryItOutImagetoImagebutton;*/
+		
+
+		@FindBy(xpath="//body//div//div//div//div[2]//div[2]//div[2]//a[1]//span[1]")
+		WebElement TryItOutImagetoImagebutton;
+		
+		@FindBy(xpath="//div//div//div[1]//div[2]//div[2]//a[1]//span[1]") 
+		WebElement tryItOut;
+
+
+		public void clickOnTryItOutImagetoImagebutton() {
+		    try {
+		        // Click the Try It Out Image to Image button
+		        TryItOutImagetoImagebutton.click(); // Implicit wait will handle visibility and clickability
+		        System.out.println("Clicked on Try It Out Image to Image button successfully.");
 		    } catch (NoSuchElementException e) {
-		        System.out.println("tryItOut button not displayed in ImageCraftAI page because of NoSuchElementException");
-		        throw new RuntimeException("tryItOut button not displayed in ImageCraftAI page because of NoSuchElementException", e);
-		    } catch (TimeoutException e) {
-		        System.out.println("tryItOut button not displayed in ImageCraftAI page because of TimeoutException");
-		        throw new RuntimeException("tryItOut button not displayed in ImageCraftAI page because of TimeoutException", e);
+		        System.out.println("Try It Out Image to Image button not found.");
+		        throw new RuntimeException("TryItOutImagetoImagebutton not displayed in ImageCraftAI page.", e);
+		    } catch (ElementNotInteractableException e) {
+		        System.out.println("Try It Out Image to Image button is not interactable.");
+		        throw new RuntimeException("TryItOutImagetoImagebutton is not interactable in ImageCraftAI page.", e);
 		    } catch (Exception e) {
-		        System.out.println("An unexpected error occurred while trying to load the ImageCraftAI page");
-		        throw new RuntimeException("An unexpected error occurred while loading ImageCraftAI page", e);
+		        System.out.println("An unexpected error occurred while clicking the Try It Out Image to Image button.");
+		        throw new RuntimeException("An unexpected error occurred while loading ImageCraftAI page.", e);
 		    }
-			// WebElement element = new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/div[contains(@class,'justify-center items-center gap-3 font-semibold rounded-[30px] border-2 text-[#FFC01D] border-[#FFC01D] h-12 hover:bg-[#FFC01D] hover:text-black py-5 px-8 border-solid cursor-pointer')]")));
-			//tryItOut.click();
-	}}
+		}
+
+		public void Tryitouttexttoimage() {
+		    try {
+		        // Click the tryItOut button directly
+		        tryItOut.click(); // Implicit wait will handle visibility and clickability
+		        System.out.println("Clicked on tryItOut button successfully.");
+		    } catch (NoSuchElementException e) {
+		        System.out.println("tryItOut button not found.");
+		        throw new RuntimeException("tryItOut button not displayed in ImageCraftAI page.", e);
+		    } catch (ElementNotInteractableException e) {
+		        System.out.println("tryItOut button is not interactable.");
+		        throw new RuntimeException("tryItOut button is not interactable in ImageCraftAI page.", e);
+		    } catch (Exception e) {
+		        System.out.println("An unexpected error occurred while clicking the tryItOut button.");
+		        throw new RuntimeException("An unexpected error occurred while loading ImageCraftAI page.", e);
+		    }
+		}
+
+	}
 

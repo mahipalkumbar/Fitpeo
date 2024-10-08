@@ -1,194 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="0" skipped="1">
+<testng-results ignored="2" total="5" passed="2" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-09-16T10:26:59 IST" name="Default suite" finished-at="2024-09-16T10:27:01 IST" duration-ms="1857">
+  <suite started-at="2024-10-08T16:31:38 IST" name="Suite" finished-at="2024-10-08T16:35:17 IST" duration-ms="219504">
     <groups>
     </groups>
-    <test started-at="2024-09-16T10:26:59 IST" name="Default test" finished-at="2024-09-16T10:27:01 IST" duration-ms="1857">
-      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
-        <test-method is-config="true" signature="launchingapplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@4351c8c3]" started-at="2024-09-16T10:26:59 IST" name="launchingapplication" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1726462619822" status="FAIL">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Parameter 'os' is required by BeforeClass on method launchingapplication but has not been marked @Optional or defined
-in C:\Users\HP\AppData\Local\Temp\testng-eclipse--1432817994\testng-customsuite.xml]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Parameter 'os' is required by BeforeClass on method launchingapplication but has not been marked @Optional or defined
-in C:\Users\HP\AppData\Local\Temp\testng-eclipse--1432817994\testng-customsuite.xml
-at org.testng.internal.Parameters.createParams(Parameters.java:264)
-at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:352)
-at org.testng.internal.Parameters.createParameters(Parameters.java:690)
-at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:163)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:313)
-at org.testng.internal.invokers.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:188)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchingapplication -->
-        <test-method signature="ImageGanerationtext(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@4351c8c3]" started-at="2024-09-16T10:27:01 IST" name="ImageGanerationtext" data-provider="imageGenerationData" finished-at="2024-09-16T10:27:01 IST" duration-ms="0" status="SKIP">
+    <test started-at="2024-10-08T16:31:38 IST" name="Gen Test - Row 1" finished-at="2024-10-08T16:35:17 IST" duration-ms="219504">
+      <class name="tesrCases.TC_10_DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration">
+        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_10_DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration@71c5b236]" started-at="2024-10-08T16:30:40 IST" name="launchingApplication" finished-at="2024-10-08T16:31:38 IST" duration-ms="57722" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[EcoBlend]]>
+                <![CDATA[windows]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Fashion and Apparel]]>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchingApplication -->
+        <test-method signature="DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_10_DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration@71c5b236]" started-at="2024-10-08T16:31:40 IST" name="DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration" data-provider="ImageToImageGenerationData" finished-at="2024-10-08T16:31:46 IST" duration-ms="6042" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Solar Water Heater]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Use an Asset]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[We specialize in eco-friendly home products that combine style with sustainability.]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[Eco-Conscious]]>
+                <![CDATA[Auto Generate]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[Female]]>
+                <![CDATA[Modern rooftop solar water heater with sleek design, sunlit environment]]>
               </value>
             </param>
             <param index="5">
               <value>
-                <![CDATA[All Ages]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="6">
               <value>
-                <![CDATA[All India]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[EcoBlend Bamboo]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Green Living Revolution]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Increase brand awareness and highlight eco-friendly features.]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[facebook]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[(1080*1080)]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Indian]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[Object]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[3D Model]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.]]>
+                <![CDATA[]]>
               </value>
             </param>
           </params>
-          <exception class="org.testng.TestNGException">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration -->
+      </class> <!-- tesrCases.TC_10_DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration -->
+      <class name="tesrCases.TC_11_DataDrivenTesting_ProductImagePageInImageToImageGeneration">
+        <test-method signature="DataDrivenTesting_ProductImagePageInImageToImageGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_11_DataDrivenTesting_ProductImagePageInImageToImageGeneration@314b8f2d]" started-at="2024-10-08T16:31:46 IST" name="DataDrivenTesting_ProductImagePageInImageToImageGeneration" data-provider="ImageToImageGenerationData" finished-at="2024-10-08T16:31:51 IST" duration-ms="4881" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Solar Water Heater]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Use an Asset]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Auto Generate]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Modern rooftop solar water heater with sleek design, sunlit environment]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DataDrivenTesting_ProductImagePageInImageToImageGeneration -->
+      </class> <!-- tesrCases.TC_11_DataDrivenTesting_ProductImagePageInImageToImageGeneration -->
+      <class name="tesrCases.TC_12_DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage">
+        <test-method signature="DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_12_DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage@664a9613]" started-at="2024-10-08T16:31:52 IST" name="DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage" data-provider="ImageToImageGenerationData" finished-at="2024-10-08T16:35:17 IST" duration-ms="205083" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Solar Water Heater]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Use an Asset]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Auto Generate]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Modern rooftop solar water heater with sleek design, sunlit environment]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[
-Parameter 'os' is required by BeforeClass on method launchingapplication but has not been marked @Optional or defined
-in C:\Users\HP\AppData\Local\Temp\testng-eclipse--1432817994\testng-customsuite.xml]]>
+              <![CDATA[Timeout: Image generation status not displayed within 3 minutes.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Parameter 'os' is required by BeforeClass on method launchingapplication but has not been marked @Optional or defined
-in C:\Users\HP\AppData\Local\Temp\testng-eclipse--1432817994\testng-customsuite.xml
-at org.testng.internal.Parameters.createParams(Parameters.java:264)
-at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:352)
-at org.testng.internal.Parameters.createParameters(Parameters.java:690)
-at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:163)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:313)
-at org.testng.internal.invokers.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:188)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
+              <![CDATA[java.lang.RuntimeException: Timeout: Image generation status not displayed within 3 minutes.
+at pageObjects.Creativedesign.ImageGenerationStatus(Creativedesign.java:223)
+at tesrCases.TC_12_DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage.DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage(TC_12_DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage.java:25)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //div[@class='slick-list']//img' (tried for 180 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at pageObjects.Creativedesign.ImageGenerationStatus(Creativedesign.java:208)
+... 27 more
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='slick-list']//img"}
+  (Session info: chrome=129.0.6668.90)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.24.0', revision: '748ffc9bc3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.4'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5866b55f96cfb39f474adc67baedf417, findElement {using=xpath, value=//div[@class='slick-list']//img}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 129.0.6668.90, chrome: {chromedriverVersion: 129.0.6668.89 (951c0b97221f..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51579}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51579/devtoo..., se:cdpVersion: 129.0.6668.90, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5866b55f96cfb39f474adc67baedf417
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy29.isDisplayed(Unknown Source)
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:304)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:287)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 28 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ImageGanerationtext -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@4351c8c3]" started-at="2024-09-16T10:27:01 IST" name="teardown" finished-at="2024-09-16T10:27:01 IST" duration-ms="0" status="SKIP">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage -->
+      </class> <!-- tesrCases.TC_12_DataDrivenTesting_ImageBackdropsFillDataPagInImageToImagePage -->
+    </test> <!-- Gen Test - Row 1 -->
+  </suite> <!-- Suite -->
 </testng-results>

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,57 +24,80 @@ public class MediaChannels extends Basepage{
 	@FindBy(xpath="//div[@class='flex w-full items-end gap-2'][1]//button[1]")
 	List<WebElement> size;
 	
+	@FindBy(xpath="//div[text()='Color Composition']") 
+	WebElement creativedesignpage;
+	
 	@FindBy(xpath="//div[@class='w-full flex justify-center items-center gap-3 my-5']//button[@class='nyx-button border border-amber-400 text-white hover:text-black hover:bg-amber-300 hover:shadow-glow text-base px-5 text-center rounded-full w-[109px] hover:shadow-none font-semibold py-1.5'][normalize-space()='Next']") 
 	WebElement nexts;
 	
-	public void socialmedia(String social) {
-		 for (WebElement element : socialmedia) {
-	            try {
-	                wait.until(ExpectedConditions.visibilityOf(element));
-	                wait.until(ExpectedConditions.elementToBeClickable(element));
-	                if (element.getAttribute("alt").equals(social)) {
-	                    element.click();
-	                    break; 
-	                }
-	            } catch (Exception e) {
-	                System.out.println("Exception occurred: " + e.getMessage());
-	            }
-	        }}
-		
-		
-		
-	/*	for (WebElement w : socialmedia) {
-	        if(w.getAttribute("alt").equals(social)) {
-	        wait.until(ExpectedConditions.elementToBeClickable(w));
-	            break;
-	        }
-	}}*/
-			//if(w.getAttribute("alt").equals(social)){
-			//	w.click();
-			//}}}
+	 JavascriptExecutor js = (JavascriptExecutor) driver;
 	
-		public void size(String siz) {
-			String xpathexp="//div[@class='flex w-full items-end gap-2']//div[text()='"+siz+"']/..//button";
-			WebElement el1=driver.findElement(By.xpath(xpathexp));
-			wait.until(ExpectedConditions.visibilityOf(el1));
-            wait.until(ExpectedConditions.elementToBeClickable(el1));
-            el1.click();
-			// wait.until(ExpectedConditions.visibilityOfElementLocated(el1));
-			// JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-			// jsExecutor.executeScript("arguments[0].click();", button);
-			/*WebElement el=driver.findElement(By.xpath(xpathexp));
-			System.out.println(el);
-			el.click();*/
+	 public void socialmedia(String social) {
+		    for (WebElement element : socialmedia) {
+		        try {
+		            // Check if the element is displayed and clickable using implicit waits
+		            if (element.isDisplayed() && element.isEnabled()) {
+		                // Check if the element's alt attribute matches the provided social media name
+		                if (social.equals(element.getAttribute("alt"))) {
+		                    element.click(); // Click the element if it matches
+		                    System.out.println(social + " button clicked.");
+		                    break; // Exit loop after clicking
+		                }
+		            }
+		        } catch (NoSuchElementException e) {
+		            System.out.println("Element not found: " + e.getMessage());
+		        } catch (StaleElementReferenceException e) {
+		            System.out.println("Element is no longer attached to the DOM: " + e.getMessage());
+		            // Optionally, you can refresh the list of social media elements here if needed
+		        } catch (Exception e) {
+		            System.out.println("An unexpected error occurred: " + e.getMessage());
+		        }
+		    }
 		}
 	
-	public void nexts() {
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ReactModal__Overlay")));
-		WebElement elementnextab1= wait.until(ExpectedConditions.elementToBeClickable(nexts));
-		elementnextab1.click();
-		
-	}
+	 public void selectSize(String siz) {
+		    String xPathExpression = "//div[@class='flex w-full items-end gap-2']//div[text()='" + siz + "']/..//button";
+
+		    try {
+		        // Find the button element using the provided XPath expression
+		        WebElement sizeButton = driver.findElement(By.xpath(xPathExpression));
+
+		        // Check if the button is displayed and enabled
+		        if (sizeButton.isDisplayed() && sizeButton.isEnabled()) {
+		            sizeButton.click(); // Click the size button
+		            System.out.println("Clicked on size button: " + siz);
+		        } else {
+		            System.out.println("Size button is not clickable or not displayed: " + siz);
+		        }
+		    } catch (NoSuchElementException e) {
+		        System.out.println("Size button not found: " + e.getMessage());
+		    } catch (StaleElementReferenceException e) {
+		        System.out.println("The size button element is no longer attached to the DOM: " + e.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("An unexpected error occurred while selecting size: " + e.getMessage());
+		    }
+		}
+
+	
+	 public boolean goToNext() {
+		    try {
+		        // Click the next button using JavaScript to ensure it works even if the element is obscured
+		        js.executeScript("arguments[0].click();", nexts);
+		        
+		        // Wait for the creative design page to be visible and return its display status
+		        return wait.until(ExpectedConditions.visibilityOf(creativedesignpage)).isDisplayed();
+		    } catch (NoSuchElementException e) {
+		        System.out.println("Next button or creative design page not found: " + e.getMessage());
+		        return false;
+		    } catch (StaleElementReferenceException e) {
+		        System.out.println("The next button or creative design page is no longer attached to the DOM: " + e.getMessage());
+		        return false;
+		    } catch (Exception e) {
+		        System.out.println("An unexpected error occurred while navigating to the next page: " + e.getMessage());
+		        return false;
+		    }
+		}
+
 	
 	
 }

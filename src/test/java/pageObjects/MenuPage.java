@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,8 +17,9 @@ public class MenuPage extends Basepage{
 		public MenuPage(WebDriver driver) {
 			super(driver);
 		}
-	 //WebDriver driver = getDriver();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		Actions act=new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		//POM Menu options full view button
 		
@@ -83,97 +85,168 @@ public class MenuPage extends Basepage{
 		@FindBy(xpath="//div[@class='inline-flex flex-col w-full p-5 pb-0 relative group z-10 transition-all ease-in duration-1000 is-opened']") 
 		WebElement clickoncurrentplan;
 		
-		
-		Actions act=new Actions(driver);
-		
-		public void FullviewMenuButton() {
-			FullviewMenuButton.click();
-		}
-		
-		public void MoreButton(){
-			MoreButton.click();
-		}
-		
-		public void ProfileButtonMenu(){
-			ProfileButtonMenu.click();
-		}
-		
-		public void Inviteuserbutton(){
-			Inviteuserbutton.click();
-		}
-		
-		public void HomeButton(){
-			act.moveToElement(HomeButton).click().perform();
-		//	HomeButton.click();
-		}
-		
-		public void AssetsButton(){
-			AssetsButton.click();
-		}
-		
-		public void IntegrationsButton(){
-			IntegrationsButton.click();
-		}
-		
-		public void ImageCraftAIButton(){
-			ImageCraftAIButton.click();
-		}
-		
-		public void VideoVistaAIButton(){
-			VideoVistaAIButton.click();
-		}
-		
-		public void CampulseAIButton(){
-			CampulseAIButton.click();
-		}
-		
-		public void LyricGeniusAIButton(){
-			LyricGeniusAIButton.click();
-		}
-		
-		public void SettingsButton(){
-			SettingsButton.click();
-		}
-		
-		public void UpgradeButton(){
-			UpgradeButton.click();
-		}
-		
-		public boolean SlideBar() {
-			wait.until(ExpectedConditions.visibilityOf(FullviewMenuButton));
-		    FullviewMenuButton.click();
-
+		public void clickFullviewMenuButton() throws NoSuchElementException {
 		    try {
-		        // Scroll down the page to ensure the element is visible
+		        js.executeScript("arguments[0].click();", FullviewMenuButton);
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Fullview Menu Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking Fullview Menu Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickMoreButton() throws NoSuchElementException {
+		    try {
+		        MoreButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("More Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking More Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickProfileButtonMenu() throws NoSuchElementException {
+		    try {
+		        ProfileButtonMenu.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Profile Button Menu not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking Profile Button Menu: " + e.getMessage());
+		    }
+		}
+
+		public void clickInviteUserButton() throws NoSuchElementException {
+		    try {
+		        Inviteuserbutton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Invite User Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking Invite User Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickHomeButton() throws NoSuchElementException {
+		    try {
+		        act.moveToElement(HomeButton).click().perform();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Home Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking Home Button: " + e.getMessage());
+		    }
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		public void clickAssetsButton() {
+		    try {
+		        AssetsButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Assets Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Assets Button: " + e.getMessage());
+		    }
+		}		
+		
+		public void clickIntegrationsButton() {
+		    try {
+		        IntegrationsButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Integrations Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Integrations Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickImageCraftAIButton() {
+		    try {
+		        js.executeScript("arguments[0].click();", ImageCraftAIButton);
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Image Craft AI Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Image Craft AI Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickVideoVistaAIButton() {
+		    try {
+		        VideoVistaAIButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Video Vista AI Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Video Vista AI Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickCampulseAIButton() {
+		    try {
+		        CampulseAIButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Campulse AI Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Campulse AI Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickLyricGeniusAIButton() {
+		    try {
+		        LyricGeniusAIButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Lyric Genius AI Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Lyric Genius AI Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickSettingsButton() {
+		    try {
+		        SettingsButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Settings Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Settings Button: " + e.getMessage());
+		    }
+		}
+
+		public void clickUpgradeButton() {
+		    try {
+		        UpgradeButton.click();
+		    } catch (NoSuchElementException e) {
+		        throw new NoSuchElementException("Upgrade Button not found: " + e.getMessage());
+		    } catch (Exception e) {
+		        throw new RuntimeException("An unexpected error occurred while clicking the Upgrade Button: " + e.getMessage());
+		    }
+		}
+		
+		public boolean SlideBar() throws Exception {
+		    try {
+		        // Click the FullviewMenuButton without waiting
+		        FullviewMenuButton.click();
+
+		        // Scroll down to ensure the element is visible
 		        JavascriptExecutor js = (JavascriptExecutor) driver;
 		        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-		        Thread.sleep(2000);
 
-		        // Define the WebDriverWait and the custom condition
-		       // WebDriverWait wait = new WebDriverWait(driver, 10); // Adjust the timeout as needed
+		        // Define the custom ExpectedCondition to check the slider's left percentage
+		        ExpectedCondition<Boolean> sliderCondition = driver -> {
+		            WebElement element = driver.findElement(By.xpath("//*[contains(@style,'will-change: auto; left:')]"));
+		            String styleValue = element.getAttribute("style");
 
-		        // Custom ExpectedCondition to wait until 'left' is greater than 0%
-		        ExpectedCondition<Boolean> sliderCondition = new ExpectedCondition<Boolean>() {
-		            @Override
-		            public Boolean apply(WebDriver driver) {
-		                WebElement element = driver.findElement(By.xpath("//*[contains(@style,'will-change: auto; left:')]"));
-		                String styleValue = element.getAttribute("style");
-
-		                if (styleValue != null && styleValue.contains("left:")) {
-		                    String percentageString = styleValue.split("left:")[1].split("%")[0].trim();
-
-		                    try {
-		                        // Parse the percentage value and compare it
-		                        double percentage = Double.parseDouble(percentageString);
-		                        // Check if the percentage is greater than 0%
-		                        return percentage > 0;
-		                    } catch (NumberFormatException e) {
-		                        System.out.println("Error parsing percentage value: " + e.getMessage());
-		                        return false;
-		                    }
+		            if (styleValue != null && styleValue.contains("left:")) {
+		                String percentageString = styleValue.split("left:")[1].split("%")[0].trim();
+		                try {
+		                    double percentage = Double.parseDouble(percentageString);
+		                    return percentage > 0;
+		                } catch (NumberFormatException e) {
+		                    // Throwing a custom exception with a more specific message
+		                    throw new IllegalArgumentException("Error parsing percentage value: " + e.getMessage(), e);
 		                }
-		                return false;
 		            }
+		            return false;
 		        };
 
 		        // Wait until the slider's left percentage is greater than 0%
@@ -188,13 +261,7 @@ public class MenuPage extends Basepage{
 		        }
 
 		    } catch (Exception e) {
-		        System.out.println("Error while checking the slider bar: " + e.getMessage());
-		        return false;
+		        throw new Exception("Error while checking the slider bar: " + e.getMessage(), e);
 		    }
-		}
-
-
-
-		
-		        
+		}        
 		}
