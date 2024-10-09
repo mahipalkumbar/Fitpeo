@@ -10,8 +10,8 @@ public class CommonBrandSelectionPageTextToImageGeneration extends BaseClass{
             String socialmedia, String size, String imagecontext, String focuselements,
             String imagestyle, String imageprompt) throws InterruptedException {
 		Addbrandinfo a = new Addbrandinfo(driver);
-		Thread.sleep(3000);
-		 a.brandnameselected(brandname);
+		Thread.sleep(5000);
+		 a.brandNameSelected();
          //a.clicknextbuttoninbrandselection();
 		
 	}

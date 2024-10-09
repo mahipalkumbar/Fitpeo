@@ -15,7 +15,7 @@ public class CommonBrandingDetailsPageTextToImageGeneration extends BaseClass{
 		menu.clickFullviewMenuButton();
 		menu.clickImageCraftAIButton();
 		im.Tryitouttexttoimage();
-		a.AddNewBrandButton();
+		a.addNewBrandButton();
         a.sendAddBrand(brandname);
         a.selectCategory(category);
         a.aboutYourBrand(abouturbrand);

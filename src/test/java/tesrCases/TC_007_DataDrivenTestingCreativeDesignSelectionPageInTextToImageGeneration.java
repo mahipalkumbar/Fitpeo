@@ -19,11 +19,11 @@ public class TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGen
 		CommonCreativeDesignSelectionPageInTextToImageGeneration ccdsp=new CommonCreativeDesignSelectionPageInTextToImageGeneration();
 		ccdsp.CreativeDesignSelectionPageInTextToImage(brandname, category, abouturbrand, tgname, gender, agegruop, region, brandlogo, productname, productdescription, productlogo, campaignname, objective, socialmedia, size, imagecontext, focuselements, imagestyle, imageprompt);
 		Creativedesign cr = new Creativedesign(driver);
-		MenuPage menu = new MenuPage(driver);
+		//MenuPage menu = new MenuPage(driver);
 		boolean isDisplayed=cr.ImageGenerationStatus();
 		try {
 			Assert.assertTrue(isDisplayed, "Image is not Generated!");
-			menu.clickHomeButton();
+			//menu.clickHomeButton();
 		}catch (AssertionError e) {
 			 String screenshotPath = captureScreen("DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration" + brandname);
 			 logger.error("Failed TC details saved at: " + screenshotPath);

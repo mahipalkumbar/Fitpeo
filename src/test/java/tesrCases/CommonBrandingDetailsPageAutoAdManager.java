@@ -29,7 +29,7 @@ public class CommonBrandingDetailsPageAutoAdManager extends BaseClass{
          a.productDescription(productdescription);
          a.ProdctpageNextButton();
          brpgamanagr.ClickOnNextButtonInBrandingDetailsPageOfAutoAdManager();
-         a.brandnameselected(brandname);
+        // a.brandnameselected(brandname);
          brpgamanagr.chooseproductinautoadmanagerselected(productname);
          brpgamanagr.ClickOnNextButtonInBrandingDetailsPageOfAutoAdManager();
 

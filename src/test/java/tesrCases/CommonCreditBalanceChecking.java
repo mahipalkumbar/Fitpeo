@@ -14,6 +14,7 @@ public class CommonCreditBalanceChecking extends BaseClass{
 		        if (!isCreditSufficient) {
 		        	logger.error("Insufficient credit balance. Please upgrade plan");
 		            Assert.fail("Insufficient credit balance. Please upgrade plan");
+		            System.out.println("Insufficient credit balance. Please upgrade plan");
 		            return; // Exit the test if balance is insufficient
 		        }
 		    } catch (Exception e) {

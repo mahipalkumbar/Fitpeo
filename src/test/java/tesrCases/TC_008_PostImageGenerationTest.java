@@ -4,12 +4,13 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.ImageGeneratedPage;
+import pageObjects.MenuPage;
 import testBase.BaseClass;
 
 public class TC_008_PostImageGenerationTest extends BaseClass {
    // ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
 
-    @Test
+    @Test(priority=1)
     public void likeGeneratedImageFunctionalityTest() throws IOException {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("*************** Starting LikeGeneratedImageFunctionalityTest ***************");
@@ -25,7 +26,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Ending LikeGeneratedImageFunctionalityTest ***************");
     }
 
-    @Test
+    @Test(priority=2)
     public void dislikeGeneratedImageFunctionalityTest() throws IOException {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("*************** Starting DisLikeGeneratedImageFunctionalityTest ***************");
@@ -41,7 +42,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Ending DisLikeGeneratedImageFunctionalityTest ***************");
     }
 
-    @Test
+    @Test(priority=3)
     public void saveGeneratedImageFunctionalityTest() throws Exception {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("*************** Starting saveGeneratedImageFunctionalityTest ***************");
@@ -57,7 +58,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Ending saveGeneratedImageFunctionalityTest ***************");
     }
 
-    @Test
+    @Test(priority=4)
     public void verifyImageRegeneration() throws Exception {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("*************** Starting verifyImageRegeneration Method ***************");
@@ -73,7 +74,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Ending verifyImageRegeneration Method ***************");
     }
     
-    @Test
+    @Test(priority=5)
     public void testRevealPromptButtonFunctionality() throws IOException {
         ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("**********Starting testRevealPromptButtonFunctionality Method**********");
@@ -82,11 +83,12 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         String[] concatenatedValues = postImagePage.clickOnRevealPromptButton();
         String popupText = concatenatedValues[0];
         String textString1 = concatenatedValues[1];
-
+        MenuPage menu = new MenuPage(driver);
         // Validate the expected message
         logger.info("Validating expected message..");
         try {
             Assert.assertEquals(popupText, textString1, "Strings are not equal!");
+            menu.clickHomeButton();
         } catch (AssertionError e) {
             handleErrorWithScreenshot(e, "testRevealPromptButtonFunctionality");
         }

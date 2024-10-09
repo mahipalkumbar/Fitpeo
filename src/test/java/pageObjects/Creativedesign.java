@@ -47,6 +47,11 @@ WebElement generate;
 WebElement imagegenerationstatus;
 
 
+
+@FindBy(xpath="//body/div/div/div/div/div/div[4]/h2[1]/div[1]")  
+WebElement creativeDesign;
+
+
 JavascriptExecutor js = (JavascriptExecutor) driver;
 
 public void contextofimage(String img) {
@@ -152,6 +157,7 @@ public void submit() {
 
 public void generate(String prompt) {
     try {
+    	wait.until(ExpectedConditions.invisibilityOf(submit));
         if (generate.isDisplayed() && generate.isEnabled()) { // Check if the element is displayed and enabled
             generate.sendKeys(prompt); // Enter the prompt into the input field
             System.out.println("Prompt entered: " + prompt);
@@ -174,12 +180,15 @@ public void generate(String prompt) {
 
 public void generatef() {
     try {
-    	Actions act=new Actions(driver);
-    	act.moveToElement(generate).perform();
-    	wait.until(ExpectedConditions.visibilityOf(generate));
-    	WebElement generatebutton=wait.until(ExpectedConditions.elementToBeClickable(generatef));
-    	js.executeScript("arguments[0].click();", generatebutton);
-    
+        // Wait until the generate button is both visible and clickable in one line
+        wait.until(ExpectedConditions.and(
+            ExpectedConditions.visibilityOf(generatef),
+            ExpectedConditions.elementToBeClickable(generatef)
+        ));
+
+        // Use JavaScript to click the button as a fallback
+        js.executeScript("arguments[0].click();", generatef);
+        
         System.out.println("Clicked on the generate button successfully.");
         
     } catch (TimeoutException e) {
@@ -196,6 +205,7 @@ public void generatef() {
         throw new RuntimeException("An unexpected error occurred while trying to click the generate button.", e);
     }
 }
+
 
 
 
