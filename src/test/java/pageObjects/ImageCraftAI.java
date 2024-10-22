@@ -18,7 +18,7 @@ public class ImageCraftAI extends Basepage{
 	public ImageCraftAI(WebDriver driver) {
 		super(driver);
 	}
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	Actions act=new Actions(driver);
 		@FindBy(xpath="//a[@href='/apphome/vingupta3/image-craft-ai/text-to-image']/div[1]")
 		WebElement ImageCraftAI;

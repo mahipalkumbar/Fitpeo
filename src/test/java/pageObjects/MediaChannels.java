@@ -33,7 +33,31 @@ public class MediaChannels extends Basepage{
 	 JavascriptExecutor js = (JavascriptExecutor) driver;
 	
 	 public void socialmedia(String social) {
-		    for (WebElement element : socialmedia) {
+		 String xPathExpression = "//img[@alt='" + social + "']";
+		    
+		    try {
+		        // Find the social media button
+		        WebElement socialMediaButton = driver.findElement(By.xpath(xPathExpression));
+		        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Social Media Creatives']")));
+		        // Check if the element is displayed before interacting
+		        if (socialMediaButton.isDisplayed()) {
+		            socialMediaButton.click();
+		            System.out.println("In Social Media Creatives page: " + social + " clicked.");
+		        } else {
+		            System.out.println("In Social Media Creatives page: " + social + " not displayed.");
+		        }
+
+		    } catch (NoSuchElementException e) {
+		        System.out.println("Element not found: " + social + " - " + e.getMessage());
+		    } catch (StaleElementReferenceException e) {
+		        System.out.println("Element is no longer attached to the DOM: " + social + ". Retrying...");
+		        
+		    } catch (Exception e) {
+		        System.out.println("An unexpected error occurred: " + e.getMessage());
+		    }
+		
+		 
+		    /*for (WebElement element : socialmedia) {
 		        try {
 		            // Check if the element is displayed and clickable using implicit waits
 		            if (element.isDisplayed() && element.isEnabled()) {
@@ -52,7 +76,7 @@ public class MediaChannels extends Basepage{
 		        } catch (Exception e) {
 		            System.out.println("An unexpected error occurred: " + e.getMessage());
 		        }
-		    }
+		    }*/
 		}
 	
 	 public void selectSize(String siz) {
@@ -61,7 +85,7 @@ public class MediaChannels extends Basepage{
 		    try {
 		        // Find the button element using the provided XPath expression
 		        WebElement sizeButton = driver.findElement(By.xpath(xPathExpression));
-
+		        wait.until(ExpectedConditions.and(ExpectedConditions.visibilityOf(sizeButton),ExpectedConditions.elementToBeClickable(sizeButton)));
 		        // Check if the button is displayed and enabled
 		        if (sizeButton.isDisplayed() && sizeButton.isEnabled()) {
 		            sizeButton.click(); // Click the size button

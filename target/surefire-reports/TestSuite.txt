@@ -1,8 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 135.209 s <<< FAILURE! - in TestSuite
-tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGanerationtext[EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.](1)  Time elapsed: 69.208 s  <<< FAILURE!
-java.lang.AssertionError: Test failed during brand: EcoBlend. Error details saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\Error_Iteration_EcoBlend_20240919122351.png
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGanerationtext(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:114)
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 156.105 s <<< FAILURE! - in TestSuite
+tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest[EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.](1)  Time elapsed: 42.711 s  <<< FAILURE!
+java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241022072935.png
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:117)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
 

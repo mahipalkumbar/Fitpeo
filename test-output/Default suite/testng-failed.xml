@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tesrCases.TC_003_DataDrivenTesting_AutoAdManager">
+      <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration">
         <methods>
-          <include name="AutoAdManager"/>
-          <include name="launchingapplication"/>
+          <include name="launchingApplication"/>
+          <include name="TextToVideoGeneration"/>
         </methods>
-      </class> <!-- tesrCases.TC_003_DataDrivenTesting_AutoAdManager -->
+      </class> <!-- tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

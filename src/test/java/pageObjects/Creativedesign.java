@@ -36,7 +36,7 @@ List<WebElement> imagestyle;
 @FindBy(xpath="//button[normalize-space()='Submit']")   
 WebElement submit;
 
-@FindBy(xpath="/html/body/div[1]/div[2]/div/div/div[2]/div[2]/div/div/button")
+@FindBy(xpath="//button[text()='Generate']")
 WebElement generatef;
 
 @FindBy(xpath="//textarea[@class='w-full h-[100px] bg-transparent border placeholder:italic border-x-nyx-gray-1 rounded-lg p-5 text-white outline-none']")  

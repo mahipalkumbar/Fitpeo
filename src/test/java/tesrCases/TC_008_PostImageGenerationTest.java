@@ -88,12 +88,44 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("Validating expected message..");
         try {
             Assert.assertEquals(popupText, textString1, "Strings are not equal!");
-            menu.clickHomeButton();
+           // menu.clickHomeButton();
         } catch (AssertionError e) {
             handleErrorWithScreenshot(e, "testRevealPromptButtonFunctionality");
         }
 
         logger.info("Ending testRevealPromptButtonFunctionality Method");
+    }
+    
+    @Test(priority=6)
+    public void testOpenWithBrandCanvasFunctionality() throws IOException {
+        ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
+        logger.info("*************** Starting testOpenWithBrandCanvasFunctionality Method ***************");
+
+        try {
+            boolean isDisplayed = postImagePage.clickOnOpenWithBrandCanvas();
+            Assert.assertTrue(isDisplayed, "Brnad Canvas Page not displalyed");
+            logger.info("Test Passed: Brand Canvas Page Displayed.");
+        } catch (AssertionError e) {
+            handleErrorWithScreenshot(e, "verifyImageRegeneration");
+        }
+
+        logger.info("*************** Ending testOpenWithBrandCanvasFunctionality Method ***************");
+    }
+    
+    @Test(priority=7)
+    public void ImageDownloading() throws IOException {
+    	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
+        logger.info("*************** Starting LikeGeneratedImageFunctionalityTest ***************");
+
+        try {
+            boolean isLikeButtonClicked = postImagePage.DownloadCheckWithBrowserCondition("png", 30);
+            Assert.assertTrue(isLikeButtonClicked, "Like button action failed to perform.");
+            logger.info("Test Passed: Like button action performed successfully.");
+        } catch (AssertionError e) {
+            handleErrorWithScreenshot(e, "likeGeneratedImageFunctionalityTest");
+        }
+
+        logger.info("*************** Ending LikeGeneratedImageFunctionalityTest ***************");
     }
 
 

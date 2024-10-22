@@ -3,6 +3,7 @@ package pageObjects;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -27,19 +28,20 @@ WebElement Objective;
 @FindBy(xpath="//div[text()='Social Media Creatives']") 
 WebElement mediachannelspage;
 
-@FindBy(xpath="/html/body/div[1]/div[2]/div/div/div[1]/div[2]/div/div/div/div/div[4]/div[3]//button") 
+@FindBy(xpath="//div[text()='Add Target Group']/following::button[2]") 
 WebElement nextc;
 
-@FindBy(xpath="//div[@class='w-full flex flex-col']//div[@class='w-full flex flex-wrap gap-2']//span[@class='text-sm font-medium w-full']")
-List<WebElement> Chooseproduct;
-@FindBy(xpath="//div[@class='flex flex-col gap-5 w-full']//div[@class='w-full flex flex-wrap gap-3']//div[@class='truncate text-xs font-semibold']")
-List<WebElement> choosetg;
+//@FindBy(xpath="//div[text()='Choose Product']/following-sibling::div//span[contains(@class,'text')]")
+//List<WebElement> Chooseproduct;
+//@FindBy(xpath="//div[@class='flex flex-col gap-5 w-full']//div[@class='w-full flex flex-wrap gap-3']//div[@class='truncate text-xs font-semibold']")
+//List<WebElement> choosetg;
 
 JavascriptExecutor js = (JavascriptExecutor) driver;
 
 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(30));
 
 public void Campaigname(String cname) {
+	//wait.until(ExpectedConditions.visibilityOf(Campaigname));
     try {
         // Check if the Campaigname element is displayed before sending keys
         if (Campaigname.isDisplayed()) {
@@ -88,7 +90,7 @@ public boolean nextc() {
         js.executeScript("arguments[0].click();", nextc);
         
         // Wait until the media channels page is visible
-        wait.until(ExpectedConditions.visibilityOf(mediachannelspage));
+        //wait.until(ExpectedConditions.visibilityOf(mediachannelspage));
         
         // Log the action performed
         System.out.println("Clicked on the next button and navigated to the media channels page.");
@@ -103,58 +105,73 @@ public boolean nextc() {
     }
 }
 public void Chooseproduct(String chhoseprod) {
-    boolean productFound = false; // Flag to check if the product was found and clicked
-
-    for (WebElement w : Chooseproduct) {
-        if (w.getText().equals(chhoseprod)) {
-            try {
-                w.click(); // Click the product if the text matches
-                productFound = true; // Set the flag to true
-                System.out.println("Product '" + chhoseprod + "' selected.");
-                break; // Exit the loop once the product is clicked
-            } catch (NoSuchElementException e) {
-                System.out.println("Error: Product element not found for '" + chhoseprod + "'.");
-                throw new RuntimeException("Product element not found: " + chhoseprod, e);
-            } catch (ElementNotInteractableException e) {
-                System.out.println("Error: Product '" + chhoseprod + "' is not interactable.");
-                throw new RuntimeException("Product is not interactable: " + chhoseprod, e);
-            } catch (Exception e) {
-                System.out.println("An unexpected error occurred while trying to select product '" + chhoseprod + "'.");
-                throw new RuntimeException("An unexpected error occurred for product: " + chhoseprod, e);
-            }
-        }
+	try {
+        // Log the chosen TG name from Excel
+        System.out.println("From Excel sheet: Chose Product Name: " + chhoseprod);
+        
+        // Construct the XPath for the desired element
+        String expath = "//span[text()='" + chhoseprod + "']";
+        System.out.println("Constructed XPath: " + expath);
+        
+        // Find the WebElement using the constructed XPath
+        WebElement ele = driver.findElement(By.xpath(expath));
+        System.out.println("Element found: " + ele.getText());
+        
+        // Click on the found WebElement
+        ele.click();
+        System.out.println("Clicked on the element: " + chhoseprod);
+        
+    } catch (NoSuchElementException e) {
+        System.out.println("Error: Element not found for Product Name: " + chhoseprod);
+        throw new RuntimeException("Product Name not found: " + chhoseprod, e);
+        
+    } catch (ElementClickInterceptedException e) {
+        System.out.println("Error: Unable to click on the element: " + chhoseprod);
+        throw new RuntimeException("Click intercepted for Product Name: " + chhoseprod, e);
+        
+    } catch (Exception e) {
+        System.out.println("An unexpected error occurred while choosing Product Name: " + chhoseprod);
+        throw new RuntimeException("Error while choosing Product Name: " + chhoseprod, e);
     }
 
-    if (!productFound) {
-        System.out.println("Product '" + chhoseprod + "' not found in the list.");
-    }
+    
 }
 
 
 
 public void choosetg(String chosetg) {
-    System.out.println("From Excel sheet: Chose TG Name: " + chosetg);
-    boolean tgFound = false; // Flag to track if the TG was found
-
-    for (WebElement w : choosetg) {
-        String tgText = w.getText();
-        if (tgText.equals(chosetg)) {
-            try {
-                System.out.println("From page: Chose TG Name: " + tgText);
-                w.click(); // Click the matching TG
-                tgFound = true; // Set the flag to true
-                break; // Exit the loop after clicking the TG
-            } catch (Exception e) {
-                System.out.println("Error clicking on TG Name: " + tgText);
-                throw new RuntimeException("Failed to click on TG Name: " + tgText, e);
-            }
-        }
-    }
-
-    if (!tgFound) {
-        System.out.println("TG Name '" + chosetg + "' not found in the list.");
+    try {
+        // Log the chosen TG name from Excel
+        System.out.println("From Excel sheet: Chose TG Name: " + chosetg);
+        
+        // Construct the XPath for the desired element
+        String expath = "//div[text()='" + chosetg + "']";
+        System.out.println("Constructed XPath: " + expath);
+        
+        // Find the WebElement using the constructed XPath
+        WebElement ele = driver.findElement(By.xpath(expath));
+        System.out.println("Element found: " + ele.getText());
+        
+        // Click on the found WebElement
+        ele.click();
+        System.out.println("Clicked on the element: " + chosetg);
+        
+    } catch (NoSuchElementException e) {
+        System.out.println("Error: Element not found for TG Name: " + chosetg);
+        throw new RuntimeException("TG Name not found: " + chosetg, e);
+        
+    } catch (ElementClickInterceptedException e) {
+        System.out.println("Error: Unable to click on the element: " + chosetg);
+        throw new RuntimeException("Click intercepted for TG Name: " + chosetg, e);
+        
+    } catch (Exception e) {
+        System.out.println("An unexpected error occurred while choosing TG: " + chosetg);
+        throw new RuntimeException("Error while choosing TG Name: " + chosetg, e);
     }
 }
+
+
+
 
 
 }

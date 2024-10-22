@@ -7,6 +7,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -37,7 +38,6 @@ public class BaseClass {
     public Logger logger;
     public Properties properties;
 
-    // Initialize the logger in the constructor
     public BaseClass() {
         logger = LogManager.getLogger(this.getClass());
     }
@@ -62,39 +62,52 @@ public class BaseClass {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
             driver = new RemoteWebDriver(new URL("http://192.168.21.200:4444/wd/hub"), capabilities);
         } else {
-            driver = getLocalDriver(browser);
+            driver = getLocalDriver(browser);  // Call for local browser initialization
         }
     }
 
-    private DesiredCapabilities getDesiredCapabilities(String os, String browser) {
+    public DesiredCapabilities getDesiredCapabilities(String os, String browser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setPlatform(os.equalsIgnoreCase("windows") ? Platform.WIN11 : Platform.MAC);
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
-        
+
         if (browser.equalsIgnoreCase("brave")) {
             ChromeOptions braveOptions = new ChromeOptions();
             braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             braveOptions.addArguments("--disable-blink-features=AutomationControlled");
+            setChromeDownloadPreferences(braveOptions);
             capabilities.setCapability(ChromeOptions.CAPABILITY, braveOptions);
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            setChromeDownloadPreferences(chromeOptions);
+            capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
         return capabilities;
     }
 
-    private WebDriver getLocalDriver(String browser) {
+    public WebDriver getLocalDriver(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
-                return new ChromeDriver();
-            case "edge":
-                return new EdgeDriver();
-            case "firefox":
-                return new FirefoxDriver();
-            case "safari":
-                return new SafariDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                setChromeDownloadPreferences(chromeOptions); // Set download preferences
+                return new ChromeDriver(chromeOptions);
+
             case "brave":
                 ChromeOptions braveOptions = new ChromeOptions();
                 braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
-                braveOptions.addArguments("--disable-blink-features=AutomationControlled", "--disable-popup-blocking");
+                braveOptions.addArguments("--disable-blink-features=AutomationControlled");
+                setChromeDownloadPreferences(braveOptions); // Reuse the method for Brave
                 return new ChromeDriver(braveOptions);
+
+            case "edge":
+                return new EdgeDriver();
+
+            case "firefox":
+                return new FirefoxDriver();
+
+            case "safari":
+                return new SafariDriver();
+
             default:
                 logger.error("Invalid browser name: " + browser);
                 throw new IllegalArgumentException("Invalid browser: " + browser);
@@ -104,7 +117,6 @@ public class BaseClass {
     private void configureDriver() {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        //driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.get(properties.getProperty("appURL"));
         driver.manage().window().maximize();
     }
@@ -115,31 +127,16 @@ public class BaseClass {
         loginPage.sendPhone(properties.getProperty("phone_no"));
         loginPage.sendPassword(properties.getProperty("password"));
         loginPage.clickLogin();
-
-        try {
-            WebElement logoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'ImageCraft AI')]")));
+        if(loginPage.isHomePageDisplayed()) {
             logger.info("Login successful.");
-        } catch (TimeoutException e) {
+            loginPage.ClickonSkipButton();
+        } else  {
             logger.error("Login failed due to timeout.");
-            return;
-        }
-
-        handleSkipPopup();
-    }
-
-    private void handleSkipPopup() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            WebElement skipButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));
-            skipButton.click();
-            logger.info("Popup skipped successfully.");
-        } catch (TimeoutException e) {
-            logger.warn("Popup not found within the specified timeout. Skipping click.");
         }
     }
 
     // Method to capture screenshot
-    public String captureScreen(String testName) throws IOException{
+    public String captureScreen(String testName) throws IOException {
         if (driver == null) {
             logger.error("WebDriver is not initialized. Cannot capture screenshot.");
             return null;
@@ -158,5 +155,13 @@ public class BaseClass {
             logger.error("Failed to capture screenshot: " + e.getMessage());
             return null;
         }
+    }
+
+    // Helper method to set download preferences for Chrome and Brave
+    private void setChromeDownloadPreferences(ChromeOptions options) {
+        HashMap<String, Object> chromePrefs = new HashMap<>();
+        chromePrefs.put("profile.default_content_settings.popups", 0);
+        chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
+        options.setExperimentalOption("prefs", chromePrefs);
     }
 }

@@ -1,20 +1,36 @@
 package pageObjects;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.io.File;
+import java.time.Duration;
 
 public class ImageGeneratedPage extends Basepage {
     public ImageGeneratedPage(WebDriver driver) {
@@ -79,6 +95,14 @@ public class ImageGeneratedPage extends Basepage {
     @FindBy(xpath="//button[normalize-space()='Ok']") 
     private WebElement okforimagesaved;
     
+    @FindBy(xpath="//button[text()='Copy']") 
+    private WebElement copyforimagesaved;
+    
+    @FindBy(xpath="//div[text()='Copied!']") 
+    private WebElement copyforimagesavedconfirm;
+    
+
+    
     
     //POM of Like Button
   
@@ -98,7 +122,7 @@ public class ImageGeneratedPage extends Basepage {
     @FindBy(xpath="//button[@data-testid='dislike']//*[name()='svg']/../..//button[contains(@class, 'bg-nyx-sky')]") 
     WebElement selecteddislikebutton;
     
-    public void ImageDownloadPage() {
+   /* public void ImageDownloadPage() {
         try {
             // Move the cursor to the campaign button and wait for it to become clickable
             act.moveToElement(campaignname).perform();
@@ -116,7 +140,7 @@ public class ImageGeneratedPage extends Basepage {
         } catch (Exception e) {
             throw new RuntimeException("An unexpected error occurred while interacting with the download page.", e);
         }
-    }
+    }*/
 
     
  
@@ -143,6 +167,114 @@ public class ImageGeneratedPage extends Basepage {
         } catch (Exception e) {
             throw new Exception("An unexpected error occurred while clicking on the save button: " + e.getMessage(), e);
         }
+    }
+    
+    
+    
+    
+    public boolean DownloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
+        String projectDownloadDir = "D:\\Mahipal\\NYX.today\\New folder";
+        System.out.println("Download directory set to: " + projectDownloadDir);
+
+        // Ensure the download directory exists
+        File downloadDir = new File(projectDownloadDir);
+        if (!downloadDir.exists()) {
+            downloadDir.mkdirs(); // Create the directory if it doesn't exist
+            System.out.println("Download directory created.");
+        } else {
+            System.out.println("Download directory already exists.");
+        }
+
+        // Delete any existing files with the specified extension in the directory
+        deleteExistingFilesWithExtension(projectDownloadDir, fileExtension);
+
+        // Check the browser type using the WebDriver instance
+        String browserType = ((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
+        System.out.println("Browser detected: " + browserType);
+
+        // Check if the browser type is Chrome
+        if ("chrome".equals(browserType)) {
+            try {
+                System.out.println("Browser is Chrome. Proceeding with download.");
+
+                act.moveToElement(campaignname).perform();
+                System.out.println("Moved to campaign name element.");
+
+                // Click the download button
+                downloadbutton.click();
+                System.out.println("Download button clicked.");
+
+                long startTime = System.currentTimeMillis();
+                System.out.println("Monitoring download directory for file with extension: ." + fileExtension);
+
+                // Monitor the Downloads directory for the new file
+                while (System.currentTimeMillis() - startTime < timeoutSeconds * 1000) {
+                    File latestFile = getLatestFileFromDir(projectDownloadDir, fileExtension);
+                    if (latestFile != null) {
+                        System.out.println("File downloaded successfully: " + latestFile.getName());
+                        return true; // File found, return true
+                    }
+
+                    // Sleep for a short duration before checking again
+                    System.out.println("Waiting for file download...");
+                    Thread.sleep(1000); // Increased sleep time to reduce aggressive checking
+                }
+
+                System.out.println("File download timed out after " + timeoutSeconds + " seconds.");
+                return false; // No file found after the timeout period
+            } catch (Exception e) {
+                System.out.println("An error occurred during the download check: " + e.getMessage());
+                e.printStackTrace(); // Print stack trace for debugging
+                return false; // Return false in case of any exceptions
+            }
+        } else {
+            // Placeholder for other browsers
+            System.out.println("This method currently supports only Chrome browser. Browser detected: " + browserType);
+            return false; // Return false if browser is not Chrome
+        }
+    }
+
+    // Helper method to delete any existing files with the specified extension
+    private void deleteExistingFilesWithExtension(String dirPath, String fileExtension) {
+        System.out.println("Checking and deleting existing files with extension: ." + fileExtension + " in directory: " + dirPath);
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles((d, name) -> name.endsWith("." + fileExtension));
+
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.delete()) {
+                    System.out.println("Deleted file: " + file.getName());
+                } else {
+                    System.out.println("Failed to delete file: " + file.getName());
+                }
+            }
+        } else {
+            System.out.println("No existing files found with the specified extension.");
+        }
+    }
+
+    // Helper method to get the latest file with the specified extension
+    private File getLatestFileFromDir(String dirPath, String fileExtension) {
+        System.out.println("Checking directory: " + dirPath + " for files with extension: ." + fileExtension);
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles((d, name) -> name.endsWith("." + fileExtension));
+
+        if (files == null || files.length == 0) {
+            System.out.println("No files found in directory with the specified extension.");
+            return null; // No files found
+        }
+
+        File latestFile = Arrays.stream(files)
+                .max(Comparator.comparingLong(File::lastModified))
+                .orElse(null);
+
+        if (latestFile != null) {
+            System.out.println("Most recently modified file: " + latestFile.getName());
+        } else {
+            System.out.println("No files found.");
+        }
+
+        return latestFile; // Return the most recently modified file
     }
 
 
@@ -195,43 +327,77 @@ public class ImageGeneratedPage extends Basepage {
     }
 
 
-    public String clickOnOpenWithBrandCanvas() {
-        String actualTitle = "";
+    public boolean clickOnOpenWithBrandCanvas() {
+        String originalTab = driver.getWindowHandle();
+        boolean isBrandCanvasDisplayed = false;
 
-        // Move to the campaign name element
-        act.moveToElement(campaignname).perform();
+        try {
+            // Move to the campaign name element
+            act.moveToElement(campaignname).perform();
+            System.out.println("Moved to the campaign name.");
 
-        // Wait for and click on the 'Open with Brand Canvas' dropdown button
-        wait.until(ExpectedConditions.visibilityOf(openwithbrancanvas));
-        WebElement dropdownButton = wait.until(ExpectedConditions.elementToBeClickable(openwithbrancanvas));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dropdownButton);
-        System.out.println("Clicked on 'Open with Brand Canvas' dropdown button.");
+            // Wait for and select the dropdown option
+            WebElement option = driver.findElement(By.xpath("//*[text()='Open with Brand Canvas']"));
 
-        // Wait for and select the option from the dropdown
-        WebElement dropdownOption = wait.until(ExpectedConditions.visibilityOf(openwithbrancanvasoption));
-        dropdownOption.click();
-        System.out.println("Selected 'Open with Option' from the dropdown.");
+            // Use Actions to move to the element and click
+            new Actions(driver)
+                .moveToElement(option)
+                .click()
+                .sendKeys(Keys.ENTER)   // Simulate pressing the Enter key
+                .perform();             // Execute the action
+            System.out.println("Selected 'Open with Brand Canvas' from the dropdown.");
 
-        // Switch to the new tab
-        String originalTab = driver.getWindowHandle();  // Store the original tab
-        for (String tab : driver.getWindowHandles()) {
-            if (!tab.equals(originalTab)) {
-                driver.switchTo().window(tab);
-                System.out.println("Switched to the new tab.");
-                break; // Exit the loop once we switch to the new tab
+            // Switch to the new tab
+            driver.getWindowHandles()
+                  .stream()
+                  .filter(tab -> !tab.equals(originalTab))
+                  .findFirst()
+                  .ifPresent(tab -> {
+                      driver.switchTo().window(tab);
+                      System.out.println("Switched to the new tab.");
+                  });
+
+            // Wait for the Brand Canvas image to be visible and check if it's displayed
+            WebElement pageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='w-[125px] rounded-lg h-[80px] object-scale-down']")));
+            isBrandCanvasDisplayed = pageTitle.isDisplayed();
+
+            // Print confirmation message if the Brand Canvas image is displayed
+            if (isBrandCanvasDisplayed) {
+                System.out.println("Brand Canvas page successfully loaded, and the image is displayed.");
+            } else {
+                System.out.println("Brand Canvas image is not displayed.");
             }
+
+            // Switch back to the original tab
+            driver.switchTo().window(originalTab);
+            System.out.println("Switched back to the original tab.");
+
+        } catch (NoSuchElementException e) {
+            System.err.println("Element not found: " + e.getMessage());
+            throw new RuntimeException("Required element not found during 'Open with Brand Canvas' operation.");
+        } catch (TimeoutException e) {
+            System.err.println("Timeout waiting for element: " + e.getMessage());
+            throw new RuntimeException("Timeout occurred while waiting for elements during 'Open with Brand Canvas' operation.");
+        } catch (Exception e) {
+            System.err.println("Unexpected error during 'Open with Brand Canvas' operation: " + e.getMessage());
+            e.printStackTrace(); // Log the full stack trace to help with debugging
+            throw new RuntimeException("Unexpected error during 'Open with Brand Canvas' operation.");
         }
 
-        // Wait for the brand canvas element and retrieve the title
-        WebElement pageTitle = wait.until(ExpectedConditions.visibilityOf(brandcanvas));
-        actualTitle = pageTitle.getText();
-
-        return actualTitle;
+        return isBrandCanvasDisplayed;
     }
 
 
+
+    
+   // @FindBy(xpath="//button[text()='Copy']") 
+    //private WebElement copyforimagesaved;
+    
+   // @FindBy(xpath="//div[text()='Copied!']") 
+   // private WebElement copyforimagesavedconfirm;
+    String clipboardText;
     public String[] clickOnRevealPromptButton() {
-        String popupText = "";
+        //String clipboardText;
         String textString1 = "";
 
         System.out.println("Starting clickOnRevealPromptButton method.");
@@ -247,8 +413,18 @@ public class ImageGeneratedPage extends Basepage {
                 System.out.println("Reveal prompt button clicked.");
                 
                 // Retrieve popup text
-                popupText = revealprompttext.getText();
-                System.out.println("Popup text retrieved: " + popupText);
+                copyforimagesaved.click();
+                wait.until(ExpectedConditions.visibilityOf(copyforimagesavedconfirm));
+                if(copyforimagesavedconfirm.isDisplayed()) {
+                	System.out.println("Reveal prompt copied confirmation message displayed");
+                }else {
+                	System.out.println("Reveal prompt copied confirmation message not displaying");
+                	throw new RuntimeException("Confirmation message not displayed after click.");
+                }
+               // popupText = revealprompttext.getText();
+                clipboardText = getClipboardText();
+                
+                System.out.println("Popup text retrieved: " + clipboardText);
                 
                 // Click the cancel button
                 revealpromptcancel.click();
@@ -266,10 +442,16 @@ public class ImageGeneratedPage extends Basepage {
             System.out.println("An error occurred while handling the reveal prompt button: " + e.getMessage());
         }
 
-        return new String[] {popupText, textString1};
+        return new String[] {clipboardText, textString1};
     }
 
+    private String getClipboardText() throws UnsupportedFlavorException, IOException {
+        // Access the system clipboard
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
+        // Check if clipboard content is a string and return it
+        return (String) clipboard.getData(DataFlavor.stringFlavor);
+    }
 
 
     public boolean clickOnRegenerateButton() {
@@ -310,6 +492,14 @@ public class ImageGeneratedPage extends Basepage {
         
         return isRegenerationSuccessful;
     }
+    
+
+    
+    }
+
+    
+    
+    
 
 
-}
+

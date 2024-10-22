@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration" class="method navigator-link" hash-for-method="ImageGanerationtext(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">ImageGanerationtext(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration" class="method navigator-link" hash-for-method="ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -126,12 +126,13 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="ImageGanerationtext(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">
-                  </a> <!-- ImageGanerationtext(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...) -->
-                  <span class="method-name">ImageGanerationtext</span>
+                  <a name="ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">
+                  </a> <!-- ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...) -->
+                  <span class="method-name">ImageGenerationTest</span>
                   <span class="parameters">(EcoBlend,Fashion and Apparel,We specialize in eco-friendly home products that combine style with sustainability.,Eco-Conscious,Female,All Ages,All India,D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,EcoBlend Bamboo,Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,Green Living Revolution,Increase brand awareness and highlight eco-friendly features.,facebook,(1080*1080),Indian,Object,3D Model,A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.)</span>
-                  <div class="stack-trace">java.lang.AssertionError: Test failed during brand: EcoBlend. Error details saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\Error_Iteration_EcoBlend_20240919122351.png
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGanerationtext(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:114)
+                  <div class="stack-trace">java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241022072935.png
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:117)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ... Removed 30 stack frames
 </div> <!-- stack-trace -->
@@ -149,16 +150,17 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;parameter name=&quot;os&quot; value=&quot;windows&quot;/&gt;
+  &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;utilities.ExtentReportManager&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Gen Test&quot; verbose=&quot;0&quot;&gt;
-    &lt;parameter name=&quot;os&quot; value=&quot;windows&quot;/&gt;
-    &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Gen Test - Row 1&quot; verbose=&quot;0&quot;&gt;
+    &lt;parameter name=&quot;index&quot; value=&quot;0&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Gen Test --&gt;
+  &lt;/test&gt; &lt;!-- Gen Test - Row 1 --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -170,7 +172,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Gen Test (1 class)</span>
+                <span class="test-name">Gen Test - Row 1 (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -198,14 +200,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ImageGanerationtext')
+data.setCell(0, 1, 'ImageGenerationTest')
 data.setCell(0, 2, 'tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration')
-data.setCell(0, 3, 68865);
+data.setCell(0, 3, 42015);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 42 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -232,20 +234,16 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</div> <!-- chronological-class-name -->
-              <div class="configuration-class before">
-                <span class="method-name">launchingapplication(windows, chrome)</span>
+              <div class="configuration-suite before">
+                <span class="method-name">launchingApplication(windows, chrome)</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-class before -->
+              </div> <!-- configuration-suite before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">ImageGanerationtext(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</span>
-                <span class="method-start">53767 ms</span>
+                <span class="method-name">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</span>
+                <span class="method-start">84610 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-class after">
-                <span class="method-name">teardown</span>
-                <span class="method-start">122968 ms</span>
-              </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

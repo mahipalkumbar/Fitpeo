@@ -9,7 +9,9 @@
   <!-- Test Block for Running Tests -->
   <test name="Gen Test" thread-count="5">
     <classes>
-      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+      <class name="tesrCases."/>
+      <!-- <class name="tesrCases.TC_10_DataDrivenTesting_ProductNameTextFieldPageInImageToImageGeneration"/>
+      <class name="tesrCases.TC_11_DataDrivenTesting_ProductImagePageInImageToImageGeneration"/>-->
     </classes>
   </test>
 

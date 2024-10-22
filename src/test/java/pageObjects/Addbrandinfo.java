@@ -1,11 +1,6 @@
 package pageObjects;
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,12 +10,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,8 +26,9 @@ public class Addbrandinfo extends Basepage{
 		@FindBy(xpath="//div[@class='flex flex-col']//div[@class='w-full flex flex-wrap gap-2']") 
 		List<WebElement> selct;
 		
-
-		@FindBy(xpath="//div[@class='w-full flex flex-wrap gap-2']//button[@title]") 
+		
+		//div[@class='w-full flex flex-wrap gap-2']//button[@title]
+		@FindBy(xpath="//button[contains(@class,'group relative')]//div[contains(@class,'text')]") 
 		List<WebElement> nyxtest2adBrandABrandAZeptoBr;
 
 		
@@ -43,7 +37,7 @@ public class Addbrandinfo extends Basepage{
 		
 		
 		//POM Next button in Branding details page(Before Going to Next button You must choose one brand mandatory)
-		@FindBy(xpath="//button[contains(@class,'nyx-button border border-amber-400 text-white hover:text-black hover:bg-amber-300 hover:shadow-glow text-base px-5 text-center rounded-full w-[109px] hover:shadow-none font-semibold py-1.5')][normalize-space()='Next']")
+		@FindBy(xpath="//button[text()='+ Add New']/following::button[1]")
 		WebElement nextinbrandselection;
 		
 		
@@ -60,7 +54,7 @@ public class Addbrandinfo extends Basepage{
 		WebElement addBrand;
 		
 		//POM Category Drop-down while while selecting category option
-		@FindBy(xpath="//div[@class=' css-19bb58m']") 
+		@FindBy(xpath="//p[text()='Category']/..//div[@class]") 
 		WebElement selectCategory;
 		
 		
@@ -157,6 +151,9 @@ public class Addbrandinfo extends Basepage{
 		@FindBy(xpath="//button[text()='+ Add New']/preceding-sibling::button[1]")  
 		WebElement besideaddnewbutton;
 		
+		
+		@FindBy(xpath="//div[text()='Choose the Brand ']")  
+		WebElement choosethebrand;
 		//button[text()='+ Add New']/preceding-sibling::button[1]
 		
 		  JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -165,17 +162,36 @@ public class Addbrandinfo extends Basepage{
 		  
 		 // List<WebElement> nyxtest2adBrandABrandAZeptoBr;
 		  
+		
+		  
+		 @FindBy(xpath="//div[text()='Brand Details']")  
+		 WebElement brandingdetailsfullview;
+		  
+		  public void clickonbrandingdetailsfullview() {
+			  try {
+				  wait.until(ExpectedConditions.visibilityOfAllElements(brandingdetailsfullview));
+				  brandingdetailsfullview.click();
+			    } catch (NoSuchElementException e) {
+			        throw new NoSuchElementException("brandingdetailsfullview Button not found: " + e.getMessage());
+			    } catch (Exception e) {
+			        throw new RuntimeException("An unexpected error occurred while clicking the brandingdetailsfullview Button: " + e.getMessage());
+			    }
+		  }
+		  
+		  
 		  private int listSize;
 
 		  public void addNewBrandButton() {
+			  WebDriverWait wait1=new WebDriverWait(driver,Duration.ofSeconds(4));
+			  wait.until(ExpectedConditions.visibilityOfAllElements(AddNewbrandbutton));
 		      try {
 		          // Wait for brand list visibility and handle TimeoutException
 		          try {
-		              wait.until(ExpectedConditions.visibilityOfAllElements(nyxtest2adBrandABrandAZeptoBr));
+		              wait1.until(ExpectedConditions.visibilityOfAllElements(nyxtest2adBrandABrandAZeptoBr));
 		          } catch (TimeoutException e) {
 		              System.out.println("List not displayed. Number of brands: 0");
 		              listSize = 0;
-		              return;
+		              //return;
 		          }
 
 		          // Get the size of the brand list
@@ -214,8 +230,8 @@ public class Addbrandinfo extends Basepage{
 		      try {
 		          // Click to open category dropdown and select the desired category
 		          selectCategory.click();
-		          WebElement option = driver.findElement(By.xpath("//*[text()='" + category + "']"));
-
+		          WebElement option = driver.findElement(By.xpath("//*[text()='"+category+"']"));
+		          //wait.until(ExpectedConditions.visibilityOf(option));
 		          // Scroll and select category using Actions
 		          new Actions(driver).moveToElement(option).click().perform();
 		          System.out.println("Category '" + category + "' selected successfully.");
@@ -234,9 +250,9 @@ public class Addbrandinfo extends Basepage{
 		  public void aboutYourBrand(String abd) {
 			    try {
 			        // Check if the aboutYourBrand element is visible and ready for interaction
-			        WebElement element = wait.until(ExpectedConditions.visibilityOf(aboutYourBrand));
-			        element.clear(); // Optional: Clear any pre-filled text if needed
-			        element.sendKeys(abd);
+			       // WebElement element = wait.until(ExpectedConditions.visibilityOf(aboutYourBrand));
+			        aboutYourBrand.clear(); // Optional: Clear any pre-filled text if needed
+			        aboutYourBrand.sendKeys(abd);
 			    } catch (TimeoutException e) {
 			        System.out.println("The 'About Your Brand' text field is not visible due to a TimeoutException");
 			        throw new RuntimeException("Failed to locate 'About Your Brand' text field", e);
@@ -251,13 +267,13 @@ public class Addbrandinfo extends Basepage{
 
 
 		
-		  public boolean addTargetGroup() {
+		  public void addTargetGroup() {
 			    try {
 			        // Directly click on the "Add Target Group" button (implicit wait will handle the waiting)
 			        addTargetGroup.click();
 
 			        // Check if the target group page is displayed (implicit wait handles element availability)
-			        return targetgrouppage.isDisplayed();
+			       // return targetgrouppage.isDisplayed();
 			    } catch (NoSuchElementException e) {
 			        System.out.println("Target Group page or Add Target Group button not found in the DOM.");
 			        throw new RuntimeException("Element missing in the DOM", e);
@@ -304,7 +320,7 @@ public class Addbrandinfo extends Basepage{
 
 		  public void Gender(String gende) {
 			    try {
-			        boolean found = false; // Flag to check if the gender is found
+			        /*boolean found = false; // Flag to check if the gender is found
 			        for (WebElement w : Gender) {
 			            if (w.getText().equals(gende)) {
 			                w.click();
@@ -314,7 +330,12 @@ public class Addbrandinfo extends Basepage{
 			        }
 			        if (!found) {
 			            throw new NoSuchElementException("Gender option '" + gende + "' not found.");
-			        }
+			        }*/
+			    	String xpathExpression = "//button[text()='" + gende + "']";
+			    	WebElement option = driver.findElement(By.xpath(xpathExpression));
+			    	option.click();
+			    	System.out.println("In New target group page: "+option.getText()+"is selected");
+			    	
 			    } catch (NoSuchElementException e) {
 			        System.out.println(e.getMessage());
 			        throw new RuntimeException("Failed to select gender: " + gende, e);
@@ -348,8 +369,8 @@ public class Addbrandinfo extends Basepage{
 		
 		  public void selectRegiontg(String region) throws InterruptedException {
 			    try {
-			    	wait.until(ExpectedConditions.elementToBeClickable(selectRegiontg)).click();
-			        //selectRegiontg.click(); // Click the region dropdown
+			    	//wait.until(ExpectedConditions.elementToBeClickable(selectRegiontg)).click();
+			        selectRegiontg.click(); // Click the region dropdown
 
 			        // Construct the XPath expression for the desired region option
 			        String xpathExpression = "//*[text()='" + region + "']";
@@ -488,10 +509,10 @@ public class Addbrandinfo extends Basepage{
 			public void ProductNameText(String productname) throws InterruptedException {
 			    try {
 			        // Wait for the Product Name field to be visible
-			        WebElement elementAddProductName = wait.until(ExpectedConditions.visibilityOf(ProductNameText));
+			        //WebElement elementAddProductName = wait.until(ExpectedConditions.visibilityOf(ProductNameText));
 			        
 			        // Interact with the field
-			        elementAddProductName.sendKeys(productname);
+			        ProductNameText.sendKeys(productname);
 
 			    } catch (TimeoutException e) {
 			        System.out.println("Product Name field not displayed due to TimeoutException.");
@@ -557,26 +578,48 @@ public class Addbrandinfo extends Basepage{
 			
 			
 			public void brandNameSelected() throws InterruptedException {
+				WebElement ele=driver.findElement(By.xpath("//button[text()='+ Add New']"));
+				 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ele);
+				
 			    try {
 			        // Wait until the brand list size increases
 			        wait.until(driver -> driver.findElements(By.xpath("//button[text()='+ Add New']/preceding-sibling::button")).size() > listSize);
 
-			        // Get and reverse the updated brand list
+			        // Get the updated brand list
 			        List<WebElement> updatedBrandList = driver.findElements(By.xpath("//button[text()='+ Add New']/preceding-sibling::button"));
-			        Collections.reverse(updatedBrandList);
-
-			        // Click the newest brand if the list is not empty
-			        if (!updatedBrandList.isEmpty()) {
-			            WebElement newestBrand = updatedBrandList.get(0);
-			            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", newestBrand);
-			            newestBrand.click();
-			            System.out.println("Clicked on the newest brand.");
-			        } else {
+			        
+			        // Check if the list is empty
+			        if (updatedBrandList.isEmpty()) {
 			            System.out.println("Brand list is empty.");
+			            return; // Exit early if there are no brands
 			        }
+
+			        // Reverse the brand list to get the newest brand at index 0
+			        Collections.reverse(updatedBrandList);
+			        
+			        // Log all brand names
+			       /* for (WebElement brand : updatedBrandList) {
+			            System.out.println(brand.getText());
+			        }*/
+
+			        // Click the newest brand
+			        WebElement newestBrand = updatedBrandList.get(0);
+			        System.out.println("Newest Brand: " + newestBrand.getText());
+
+			        // Scroll to the newest brand and click it
+			        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", newestBrand);
+			        newestBrand.click();
+			        System.out.println("Clicked on the newest brand.");
+			        
+			    } catch (NoSuchElementException e) {
+			        System.out.println("Error: Brand elements not found - " + e.getMessage());
+			        throw new RuntimeException("Brand elements not found", e);
+			    } catch (TimeoutException e) {
+			        System.out.println("Error: Waiting for brand list timeout - " + e.getMessage());
+			        throw new RuntimeException("Timeout waiting for brand list", e);
 			    } catch (Exception e) {
 			        System.out.println("Error while selecting the brand: " + e.getMessage());
-			        throw new RuntimeException(e);
+			        throw new RuntimeException("Unexpected error while selecting the brand", e);
 			    }
 			}
 

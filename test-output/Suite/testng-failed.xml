@@ -7,60 +7,14 @@
     <listener class-name="utilities.ExtentReportManager"/>
   </listeners>
   <test thread-count="5" name="Gen Test - Row 1(failed)">
-    <parameter name="index" value="1"/>
+    <parameter name="index" value="0"/>
     <classes>
-      <class name="tesrCases.TC_008_PostImageGenerationTest">
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
         <methods>
-          <include name="verifyImageRegeneration"/>
-          <include name="launchingApplication"/>
-          <include name="dislikeGeneratedImageFunctionalityTest"/>
-          <include name="testRevealPromptButtonFunctionality"/>
-          <include name="saveGeneratedImageFunctionalityTest"/>
-          <include name="likeGeneratedImageFunctionalityTest"/>
-        </methods>
-      </class> <!-- tesrCases.TC_008_PostImageGenerationTest -->
-      <class name="tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration">
-        <methods>
-          <include name="DataDrivenTestingBrandSelectionPageInTextToImageGeneration"/>
+          <include name="ImageGenerationTest"/>
           <include name="launchingApplication"/>
         </methods>
-      </class> <!-- tesrCases.TC_004_DataDrivenTestingBrandSelectionPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration">
-        <methods>
-          <include name="DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration"/>
-          <include name="launchingApplication"/>
-        </methods>
-      </class> <!-- tesrCases.TC_006_DataDrivenTestingMediaChannelsSelectionPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration">
-        <methods>
-          <include name="DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration"/>
-          <include name="launchingApplication"/>
-        </methods>
-      </class> <!-- tesrCases.TC_002_DataDrivenTestingFillTargetGroupDetailsPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration">
-        <methods>
-          <include name="launchingApplication"/>
-          <include name="DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration"/>
-        </methods>
-      </class> <!-- tesrCases.TC_005_DataDrivenTestingCampaignOverviewDetailsPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration">
-        <methods>
-          <include name="DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration"/>
-          <include name="launchingApplication"/>
-        </methods>
-      </class> <!-- tesrCases.TC_001_DataDrivenTestingFillBrandingDetailsPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration">
-        <methods>
-          <include name="launchingApplication"/>
-          <include name="DataDrivenTestingFillProductDetailsPageInTextToImageGeneration"/>
-        </methods>
-      </class> <!-- tesrCases.TC_003_DataDrivenTestingFillProductDetailsPageInTextToImageGeneration -->
-      <class name="tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration">
-        <methods>
-          <include name="launchingApplication"/>
-          <include name="DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration"/>
-        </methods>
-      </class> <!-- tesrCases.TC_007_DataDrivenTestingCreativeDesignSelectionPageInTextToImageGeneration -->
+      </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
     </classes>
   </test> <!-- Gen Test - Row 1(failed) -->
 </suite> <!-- Failed suite [Suite] -->

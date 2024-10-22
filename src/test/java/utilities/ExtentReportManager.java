@@ -114,14 +114,14 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         attachment.setName("TestReport.html");
 
         MultiPartEmail email = new MultiPartEmail();
-        email.setHostName("smtp.office365.com");  // Use Microsoft's SMTP server for Office 365
-        email.setSmtpPort(587);                   // Use port 587 for TLS
-        email.setAuthenticator(new DefaultAuthenticator("mahipal.k@nyx.today", "YourOutlookPassword"));  // Update password
-        email.setStartTLSEnabled(true);           // Enable TLS
-        email.setFrom("mahipal.k@nyx.today", "NYX Automation Report");
+        email.setHostName("smtp.gmail.com");         // Use Gmail's SMTP server
+        email.setSmtpPort(587);                      // Port 587 for TLS
+        email.setAuthenticator(new DefaultAuthenticator("nyx.alert@gmail.com", "fkcdbgjywlwnarot"));  // Gmail email and app-specific password
+        email.setStartTLSEnabled(true);              // Enable TLS
+        email.setFrom("nyx.alert@gmail.com", "NYX Automation Report");
         email.setSubject("Test Suite Execution Report");
         email.setMsg("Please find the attached report for the test suite execution.");
-        email.addTo("mahipal.k@nyx.today"); // Receiver's email
+        email.addTo("mahipal.k@nyx.today");          // Receiver's email
 
         // Attach the report
         email.attach(attachment);
@@ -131,4 +131,5 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
 
         System.out.println("Email sent successfully with the report attached.");
     }
+
 }

@@ -43,7 +43,7 @@ public class TC_002_DataDrivenTesting_Image_to_ImageGeneration extends BaseClass
 	 im.clickOnTryItOutImagetoImagebutton();
 	 imgtoimg.SendProductNameTextfieldData(ProductName);
 	 imgtoimg.ClickOnProductNameNextButton();
-	 imgtoimg.ClickOnProductImageUploadButton(selectionofproductimgoption);
+	 //imgtoimg.ClickOnProductImageUploadButton(selectionofproductimgoption);
 	// imgtoimg.SelectImagesWithUseAsset();
 	 imgtoimg.ImgUploadUseAnAssetButton();
 	 imgtoimg.ClickOnuploadimgUseAnAssetNextButton();

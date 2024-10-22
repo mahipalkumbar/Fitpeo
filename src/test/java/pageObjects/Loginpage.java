@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,8 @@ public class Loginpage extends Basepage {
 	public Loginpage(WebDriver driver) {
 		super(driver);
 	}
+	WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+	Actions act=new Actions(driver);
 
 @FindBy(xpath="//input[@id='phone']")
 WebElement phonenoloc;
@@ -34,7 +37,24 @@ WebElement errorMessage;
 
 //div[text()='Skip']
 
-WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+@FindBy(xpath="//*[name()='path' and contains(@d,'M4.516 7.5')]") 
+WebElement countrydropdown;
+
+@FindBy(xpath="//img[@alt='Profile' and @class='rounded-full']") 
+WebElement profileimage;
+
+//div[text()='Skip']")
+
+@FindBy(xpath="//div[text()='Skip']") 
+WebElement skippbutton;
+
+@FindBy(xpath="//p[text()='Logout']") 
+WebElement logoutbutton;
+
+
+public void ClickOnCountryDropdownbutton() {
+	countrydropdown.click();
+}
 
 public void sendPhone(String no) {
     try {
@@ -81,6 +101,22 @@ public void clickLogin() {
     }
 }
 
+public void ClickonSkipButton() {
+	/*WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+	try {
+        WebElement skipButton = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));*/
+        if(skippbutton.isDisplayed()) {
+        	skippbutton.click();
+           System.out.println("Popup skipped successfully.");
+    }else {
+    	System.out.println("Popup not found within the specified timeout. Skipping click.");
+    }
+    	/*catch (TimeoutException e) {
+    }
+    	System.out.println("Popup not found within the specified timeout. Skipping click.");
+    }*/
+}
+
 public boolean isHomePageDisplayed() {
     try {
         return nyxLOGO.isDisplayed(); // Check if the NYX logo is displayed
@@ -91,6 +127,16 @@ public boolean isHomePageDisplayed() {
         System.out.println("An error occurred while checking if the NYX logo is displayed: " + e.getMessage());
         return false;
     }
+}
+
+public void Logout() {
+	act.moveToElement(profileimage).click().perform();
+
+    // Wait until the logout button is visible
+    wait.until(ExpectedConditions.visibilityOf(logoutbutton));
+
+    // Click the logout button
+    logoutbutton.click();	
 }
 
 
