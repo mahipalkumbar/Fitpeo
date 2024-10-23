@@ -39,7 +39,7 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
             // Execute post-image generation tests
             runPostImageGenerationTests();
 
-            menu.clickHomeButton();
+            //menu.clickHomeButton();
             logger.info("**** Finished Image Generation Test for brand: " + brandname + " ****");
 
         } catch (Exception e) {
@@ -98,14 +98,15 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
         logger.error("Image generation failed for brand: " + brandname, e);
 
         // Capture a screenshot
-        String screenshotPath = captureScreen("ImageGenerationFailed_Iteration_" + brandname);
-        logger.info("Screenshot captured: " + screenshotPath);
+       // String screenshotPath = captureScreen("ImageGenerationFailed_Iteration_" + brandname);
+        //logger.info("Screenshot captured: " + screenshotPath);
 
         // Check if credits are available
         try {
             boolean isCreditSufficient = menu.SlideBar();
             if (!isCreditSufficient) {
                 logger.error("Insufficient credit balance for brand: " + brandname);
+                String screenshotPath = captureScreen("ImageGenerationFailed_Iteration_" + brandname);
                 Assert.fail("Insufficient credit balance. Please upgrade the plan. Screenshot saved at: " + screenshotPath);
             } else {
                 logger.info("Sufficient credits are available. Proceeding with the test.");

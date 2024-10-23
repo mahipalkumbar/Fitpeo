@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration">
+      <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration">
         <methods>
+          <include name="ImageGanerationtext"/>
           <include name="launchingApplication"/>
-          <include name="TextToVideoGeneration"/>
         </methods>
-      </class> <!-- tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration -->
+      </class> <!-- tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

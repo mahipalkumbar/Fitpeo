@@ -103,14 +103,14 @@ public class ImageCraftImageToImage extends Basepage{
 
 	
 	
-	public boolean ClickOnProductNameNextButton() {
+	public void ClickOnProductNameNextButton() {
 	    try {
 	    	 js.executeScript("arguments[0].click();", productnamenextbutton);
 	        System.out.println("Clicked on Product Name Next Button.");
 
 	        // Check if the product image upload button is displayed
 	        wait.until(ExpectedConditions.visibilityOf(productimageuploadbutton));
-	        return productimageuploadbutton.isDisplayed();
+	        //return productimageuploadbutton.isDisplayed();
 	    } catch (NoSuchElementException e) {
 	        System.out.println("Product Name Next Button or Product Image Upload Button not found.");
 	        throw new RuntimeException("Product Name Next Button or Product Image Upload Button not found.", e);
@@ -163,7 +163,7 @@ public class ImageCraftImageToImage extends Basepage{
 	            imageIndex++;
 	            System.out.println("Incremented image index to: " + imageIndex);
 	        } else {
-	        	 wait.until(ExpectedConditions.visibilityOfAllElements(selectimgfromasset));
+	        	// wait.until(ExpectedConditions.visibilityOfAllElements(selectimgfromasset));
 	            // Handle file upload logic for "Browse from System" option
 	            System.out.println("Option selected: 'Browse from System'. Initiating file upload...");
 
@@ -174,24 +174,24 @@ public class ImageCraftImageToImage extends Basepage{
 	            // Use Robot class for handling file upload dialog
 	            Robot robot = new Robot();
 	            System.out.println("Robot instance created for handling file dialog.");
-
+	            Thread.sleep(2000);
 	            // Copy the file path to clipboard
 	            StringSelection filePath = new StringSelection(path);
 	            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
 	            System.out.println("File path copied to clipboard: " + path);
-
+	            Thread.sleep(4000);
 	            // Simulate Ctrl+V to paste the file path in the file dialog
 	            System.out.println("Pasting the file path using Robot (Ctrl+V)...");
 	            robot.keyPress(KeyEvent.VK_CONTROL);
 	            robot.keyPress(KeyEvent.VK_V);
 	            robot.keyRelease(KeyEvent.VK_V);
 	            robot.keyRelease(KeyEvent.VK_CONTROL);
-
+	            Thread.sleep(4000);
 	            // Simulate pressing Enter to confirm the file upload
 	            System.out.println("Pressing 'Enter' to confirm file selection.");
 	            robot.keyPress(KeyEvent.VK_ENTER);
 	            robot.keyRelease(KeyEvent.VK_ENTER);
-
+	            Thread.sleep(2000);
 	            System.out.println("File upload process completed.");
 	        }
 	    } catch (NoSuchElementException e) {

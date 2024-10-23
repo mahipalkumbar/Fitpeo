@@ -102,20 +102,20 @@ public void clickLogin() {
 }
 
 public void ClickonSkipButton() {
-	/*WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+	//WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
 	try {
-        WebElement skipButton = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));*/
-        if(skippbutton.isDisplayed()) {
+        //WebElement skipButton = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));*/
+        
         	skippbutton.click();
            System.out.println("Popup skipped successfully.");
-    }else {
+   
+	}
+    
+    	catch (TimeoutException e) {
+    
     	System.out.println("Popup not found within the specified timeout. Skipping click.");
-    }
-    	/*catch (TimeoutException e) {
-    }
-    	System.out.println("Popup not found within the specified timeout. Skipping click.");
-    }*/
-}
+    
+}}
 
 public boolean isHomePageDisplayed() {
     try {
