@@ -281,7 +281,7 @@ public class ImageGeneratedPage extends Basepage {
     
     public boolean clickOnLikeButtonAfterImageGenerated() {
         // Move the cursor to the campaign name
-        act.moveToElement(campaignname).perform();
+       // act.moveToElement(campaignname).perform();
         
         try {
             // Click the like button directly
