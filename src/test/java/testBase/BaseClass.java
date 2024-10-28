@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -16,9 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -62,7 +61,7 @@ public class BaseClass {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
             driver = new RemoteWebDriver(new URL("http://192.168.21.200:4444/wd/hub"), capabilities);
         } else {
-            driver = getLocalDriver(browser);  // Call for local browser initialization
+            driver = getLocalDriver(browser);
         }
     }
 
@@ -70,57 +69,53 @@ public class BaseClass {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
 
-        // Set platform based on input
-        if (os.equalsIgnoreCase("windows")) {
-            capabilities.setPlatform(Platform.WIN11);
-        } else if (os.equalsIgnoreCase("linux")) {
-            capabilities.setPlatform(Platform.LINUX);
-        } else {
-            logger.error("Invalid OS name: " + os);
-            throw new IllegalArgumentException("Invalid OS: " + os);
+        switch (os.toLowerCase()) {
+            case "windows":
+                capabilities.setPlatform(Platform.WIN11);
+                break;
+            case "linux":
+                capabilities.setPlatform(Platform.LINUX);
+                break;
+            default:
+                logger.error("Invalid OS name: " + os);
+                throw new IllegalArgumentException("Invalid OS: " + os);
         }
 
         if (browser.equalsIgnoreCase("brave")) {
-            ChromeOptions braveOptions = new ChromeOptions();
-            braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
-            braveOptions.addArguments("--disable-blink-features=AutomationControlled");
-            braveOptions.addArguments("--headless");  // Run Brave in headless mode
-            setChromeDownloadPreferences(braveOptions);
+            ChromeOptions braveOptions = configureBrowserOptions("brave");
             capabilities.setCapability(ChromeOptions.CAPABILITY, braveOptions);
         } else if (browser.equalsIgnoreCase("chrome")) {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--headless");  // Run Chrome in headless mode
-            setChromeDownloadPreferences(chromeOptions);
+            ChromeOptions chromeOptions = configureBrowserOptions("chrome");
             capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
         return capabilities;
     }
 
+    private ChromeOptions configureBrowserOptions(String browser) {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // Run in headless mode
+
+        if (browser.equalsIgnoreCase("brave")) {
+            options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
+            options.addArguments("--disable-blink-features=AutomationControlled");
+        }
+
+        setChromeDownloadPreferences(options);
+        return options;
+    }
+
     public WebDriver getLocalDriver(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless");  // Run Chrome in headless mode
-                setChromeDownloadPreferences(chromeOptions); // Set download preferences
-                return new ChromeDriver(chromeOptions);
-
             case "brave":
-                ChromeOptions braveOptions = new ChromeOptions();
-                braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
-                braveOptions.addArguments("--disable-blink-features=AutomationControlled");
-                braveOptions.addArguments("--headless");  // Run Brave in headless mode
-                setChromeDownloadPreferences(braveOptions); // Reuse the method for Brave
-                return new ChromeDriver(braveOptions);
-
+                ChromeOptions options = configureBrowserOptions(browser);
+                return new ChromeDriver(options);
             case "edge":
                 return new EdgeDriver();
-
             case "firefox":
                 return new FirefoxDriver();
-
             case "safari":
                 return new SafariDriver();
-
             default:
                 logger.error("Invalid browser name: " + browser);
                 throw new IllegalArgumentException("Invalid browser: " + browser);
@@ -140,10 +135,11 @@ public class BaseClass {
         loginPage.sendPhone(properties.getProperty("phone_no"));
         loginPage.sendPassword(properties.getProperty("password"));
         loginPage.clickLogin();
-        if(loginPage.isHomePageDisplayed()) {
+
+        if (loginPage.isHomePageDisplayed()) {
             logger.info("Login successful.");
             loginPage.ClickonSkipButton();
-        } else  {
+        } else {
             logger.error("Login failed due to timeout.");
         }
     }
@@ -155,9 +151,12 @@ public class BaseClass {
             return null;
         }
 
-        String timestamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
-        String targetFilePath = System.getProperty("user.dir") + "/Screenshots/" + testName + "_" + timestamp + ".png";
+        String targetFilePath = Paths.get(System.getProperty("user.dir"), "Screenshots", testName + "_" + timestamp + ".png").toString();
+
+        // Ensure the screenshots directory exists
+        new File(Paths.get(System.getProperty("user.dir"), "Screenshots").toString()).mkdirs();
 
         try {
             File sourceFile = ts.getScreenshotAs(OutputType.FILE);
