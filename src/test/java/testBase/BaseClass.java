@@ -68,17 +68,28 @@ public class BaseClass {
 
     public DesiredCapabilities getDesiredCapabilities(String os, String browser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setPlatform(os.equalsIgnoreCase("windows") ? Platform.WIN11 : Platform.MAC);
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
+
+        // Set platform based on input
+        if (os.equalsIgnoreCase("windows")) {
+            capabilities.setPlatform(Platform.WIN11);
+        } else if (os.equalsIgnoreCase("linux")) {
+            capabilities.setPlatform(Platform.LINUX);
+        } else {
+            logger.error("Invalid OS name: " + os);
+            throw new IllegalArgumentException("Invalid OS: " + os);
+        }
 
         if (browser.equalsIgnoreCase("brave")) {
             ChromeOptions braveOptions = new ChromeOptions();
             braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             braveOptions.addArguments("--disable-blink-features=AutomationControlled");
+            braveOptions.addArguments("--headless");  // Run Brave in headless mode
             setChromeDownloadPreferences(braveOptions);
             capabilities.setCapability(ChromeOptions.CAPABILITY, braveOptions);
         } else if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");  // Run Chrome in headless mode
             setChromeDownloadPreferences(chromeOptions);
             capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
@@ -89,6 +100,7 @@ public class BaseClass {
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless");  // Run Chrome in headless mode
                 setChromeDownloadPreferences(chromeOptions); // Set download preferences
                 return new ChromeDriver(chromeOptions);
 
@@ -96,6 +108,7 @@ public class BaseClass {
                 ChromeOptions braveOptions = new ChromeOptions();
                 braveOptions.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
                 braveOptions.addArguments("--disable-blink-features=AutomationControlled");
+                braveOptions.addArguments("--headless");  // Run Brave in headless mode
                 setChromeDownloadPreferences(braveOptions); // Reuse the method for Brave
                 return new ChromeDriver(braveOptions);
 
