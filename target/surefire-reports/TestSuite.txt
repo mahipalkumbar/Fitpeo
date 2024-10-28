@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 275.815 s <<< FAILURE! - in TestSuite
-tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest[EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.](1)  Time elapsed: 213.129 s  <<< FAILURE!
-java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241022103255.png
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:118)
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 109.409 s <<< FAILURE! - in TestSuite
+tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest[EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.](1)  Time elapsed: 66.777 s  <<< FAILURE!
+java.lang.AssertionError: Strings are not equal! expected [A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.] but found [null]
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.runPostImageGenerationTests(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:90)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:40)
 

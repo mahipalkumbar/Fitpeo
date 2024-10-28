@@ -25,6 +25,7 @@ import testBase.BaseClass;
 public class ExtentReportManager implements ITestListener, IExecutionListener {
 
     public ExtentSparkReporter sparkReporter;
+    public ExtentSparkReporter fixedNameReporter;  // Add another reporter for the fixed name report
     public static ExtentReports extent;  // Ensure the extent object is static
     public static ExtentTest test;
 
@@ -36,13 +37,21 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         repName = "Test-Report-" + timeStamp + ".html";
 
+        // Reporter for the dynamic name (Test-Report + timestamp)
         sparkReporter = new ExtentSparkReporter(".\\reports\\" + repName);
         sparkReporter.config().setDocumentTitle("NYX Automation Report");
         sparkReporter.config().setReportName("NYX Functional Testing");
         sparkReporter.config().setTheme(Theme.DARK);
 
+        // Reporter for the fixed name (Extent_Test_Report.html)
+        fixedNameReporter = new ExtentSparkReporter(".\\reports\\Extent_Test_Report.html");
+        fixedNameReporter.config().setDocumentTitle("NYX Automation Report");
+        fixedNameReporter.config().setReportName("NYX Functional Testing");
+        fixedNameReporter.config().setTheme(Theme.DARK);
+
+        // Create a new ExtentReports object and attach both reporters
         extent = new ExtentReports();
-        extent.attachReporter(sparkReporter);
+        extent.attachReporter(sparkReporter, fixedNameReporter);  // Attach both reporters
         extent.setSystemInfo("Application", "NYX.today");
         extent.setSystemInfo("Module", "ImageCraft AI");
         extent.setSystemInfo("Sub Module", "ImageCraft Text-to-Image");
@@ -52,7 +61,7 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     }
 
     public void onTestSuccess(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName()); // Logs the test method name
+        test = extent.createTest(result.getMethod().getMethodName());
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS, result.getName() + " executed successfully");
     }
@@ -78,26 +87,32 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         test.log(Status.INFO, result.getThrowable().getMessage());
     }
 
-    // Flush after each test context (optional, in case you want intermediate flushing)
     public void onFinish(ITestContext testContext) {
-        // Optionally, you can comment this out to flush only once after the suite
+        // Optionally flush here if needed per test context
     }
 
-    // Flush the report, send email with the report, and open the HTML file in the browser when the entire suite finishes
     @Override
     public void onExecutionFinish() {
-        extent.flush();  // Ensure everything is written before opening
+        extent.flush();  // Ensure everything is written before opening both reports
 
         String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
         File extentReport = new File(pathOfExtentReport);
 
         try {
-            Desktop.getDesktop().browse(extentReport.toURI()); // Opens the report in the browser
+            Desktop.getDesktop().browse(extentReport.toURI()); // Open the dynamic report in browser
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Send the email with the attached report
+        // Optionally, you can also open the fixed-name report in the browser
+        File fixedReport = new File(System.getProperty("user.dir") + "\\reports\\Extent_Test_Report.html");
+        try {
+            Desktop.getDesktop().browse(fixedReport.toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Send the email with the dynamic report
         try {
             sendEmailWithAttachment(pathOfExtentReport);
         } catch (Exception e) {
@@ -105,7 +120,6 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         }
     }
 
-    // Function to send email with the report as an attachment
     private void sendEmailWithAttachment(String reportPath) throws Exception {
         EmailAttachment attachment = new EmailAttachment();
         attachment.setPath(reportPath);
@@ -114,22 +128,19 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         attachment.setName("TestReport.html");
 
         MultiPartEmail email = new MultiPartEmail();
-        email.setHostName("smtp.gmail.com");         // Use Gmail's SMTP server
-        email.setSmtpPort(587);                      // Port 587 for TLS
-        email.setAuthenticator(new DefaultAuthenticator("nyx.alert@gmail.com", "fkcdbgjywlwnarot"));  // Gmail email and app-specific password
-        email.setStartTLSEnabled(true);              // Enable TLS
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(587);
+        email.setAuthenticator(new DefaultAuthenticator("nyx.alert@gmail.com", "fkcdbgjywlwnarot"));
+        email.setStartTLSEnabled(true);
         email.setFrom("nyx.alert@gmail.com", "NYX Automation Report");
         email.setSubject("Test Suite Execution Report");
         email.setMsg("Please find the attached report for the test suite execution.");
-        email.addTo("mahipal.k@nyx.today");          // Receiver's email
+        email.addTo("mahipal.k@nyx.today");
 
-        // Attach the report
         email.attach(attachment);
 
-        // Send the email
         email.send();
 
         System.out.println("Email sent successfully with the report attached.");
     }
-
 }

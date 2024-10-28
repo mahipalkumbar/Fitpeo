@@ -144,7 +144,7 @@ public class BaseClass {
 
         String timestamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
-        String targetFilePath = System.getProperty("user.dir") + "\\Screenshots\\" + testName + "_" + timestamp + ".png";
+        String targetFilePath = System.getProperty("user.dir") + "/Screenshots/" + testName + "_" + timestamp + ".png";
 
         try {
             File sourceFile = ts.getScreenshotAs(OutputType.FILE);
