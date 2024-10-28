@@ -161,7 +161,7 @@ public class BaseClass {
     private void setChromeDownloadPreferences(ChromeOptions options) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
+        chromePrefs.put("download.default_directory", "/home/abhipatil0692/Automation_Testing/PostImagesDownload");
         options.setExperimentalOption("prefs", chromePrefs);
     }
 }
