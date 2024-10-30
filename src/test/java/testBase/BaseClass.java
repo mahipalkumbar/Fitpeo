@@ -27,6 +27,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
@@ -59,7 +60,7 @@ public class BaseClass {
     private void initializeDriver(String os, String browser) throws IOException {
         if (properties.getProperty("execution_env").equalsIgnoreCase("remote")) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
-            driver = new RemoteWebDriver(new URL("http://192.168.21.200:4444/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("http://34.131.38.165:4444/wd/hub"), capabilities);
         } else {
             driver = getLocalDriver(browser);
         }
@@ -93,7 +94,7 @@ public class BaseClass {
 
     private ChromeOptions configureBrowserOptions(String browser) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Run in headless mode
+       options.addArguments("--headless"); // Run in headless mode
 
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
@@ -124,7 +125,7 @@ public class BaseClass {
 
     private void configureDriver() {
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(properties.getProperty("appURL"));
         driver.manage().window().maximize();
     }
@@ -173,7 +174,15 @@ public class BaseClass {
     private void setChromeDownloadPreferences(ChromeOptions options) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("download.default_directory", "/home/abhipatil0692/Automation_Testing/PostImagesDownload");
+        chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
         options.setExperimentalOption("prefs", chromePrefs);
+    }
+
+    @AfterSuite
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+            logger.info("WebDriver quit successfully.");
+        }
     }
 }
