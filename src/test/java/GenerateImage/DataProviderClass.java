@@ -1,5 +1,6 @@
 package GenerateImage;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -10,7 +11,7 @@ public class DataProviderClass {
 	@DataProvider(name = "imageGenerationData", parallel = false)
     public Object[][] getImageGenerationData(ITestContext context) throws IOException {
         // Get the file path to the Excel file
-        String filePath = System.getProperty("user.dir") + "\\TestDataGenerateImageAI\\GenerateImage AI.xlsx";
+		String filePath = System.getProperty("user.dir") + File.separator + "TestDataGenerateImageAI" + File.separator + "GenerateImage AI.xlsx";
 
         // Get the index parameter from the TestNG XML, if not passed, it will be null
         String indexStr = context.getCurrentXmlTest().getParameter("index");
@@ -63,7 +64,7 @@ public class DataProviderClass {
 
 	@DataProvider(name = "ImageToImageGenerationData")
 	public Object[][] getImageToImageGenerationData() throws IOException {
-	    String filePath = System.getProperty("user.dir") + "\\TestDataGenerateImageAI\\GenerateImage AI.xlsx";
+		String filePath = System.getProperty("user.dir") + File.separator + "TestDataGenerateImageAI" + File.separator + "GenerateImage AI.xlsx";
 
 	    // We need to fetch exactly row 1 (the second row in the sheet)
 	    int rowCount = 1; // We're fetching data only from row 1 (second row of the Excel)
@@ -81,7 +82,7 @@ public class DataProviderClass {
 	
 	@DataProvider(name = "TextToVideoGenerationData")
 	public Object[][] getTextToVideoGenerationData() throws IOException {
-	    String filePath = System.getProperty("user.dir") + "\\TestDataGenerateImageAI\\GenerateImage AI.xlsx";
+		String filePath = System.getProperty("user.dir") + File.separator + "TestDataGenerateImageAI" + File.separator + "GenerateImage AI.xlsx";
 
 	    // We need to fetch exactly row 1 (the second row in the sheet)
 	    int rowCount = 1; // We're fetching data only from row 1 (second row of the Excel)
