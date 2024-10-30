@@ -1,18 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>NYX.today</groupId>
     <artifactId>NYX.today</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
+    
     <build>
         <plugins>
             <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.10.1</version> <!-- Update if necessary -->
                 <configuration>
                     <source>21</source>
                     <target>21</target>
@@ -23,30 +23,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version> <!-- Ensure this version is compatible -->
+                <version>3.0.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>masters.xml</suiteXmlFile> <!-- Adjust the path as needed -->
+                        <suiteXmlFile>masters.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <forkCount>1</forkCount> <!-- Use one forked process -->
-                    <reuseForks>true</reuseForks> <!-- Reuse the forked process -->
-                    <argLine>-Djava.awt.headless=true</argLine> <!-- Enable headless mode -->
-                    <testFailureIgnore>true</testFailureIgnore> <!-- Continue even if tests fail -->
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
     <dependencies>
-        <!-- Selenium Java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.24.0</version>
         </dependency>
-
-        <!-- Apache POI for Excel handling -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -57,55 +49,43 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.3.0</version>
         </dependency>
-
-        <!-- Log4j for logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.23.1</version>
+            <version>2.20.0</version> <!-- Updated version -->
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.23.1</version>
+            <version>2.20.0</version> <!-- Updated version -->
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.23.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Commons Email -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>
             <version>1.6.0</version>
         </dependency>
-
-        <!-- Extent Reports -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.20.0</version> <!-- Updated version -->
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.2</version>
         </dependency>
-
-        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.17.0</version>
         </dependency>
-
-        <!-- Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
