@@ -94,8 +94,10 @@ public class BaseClass {
 
     private ChromeOptions configureBrowserOptions(String browser) {
         ChromeOptions options = new ChromeOptions();
-       options.addArguments("--headless"); // Run in headless mode
-       options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless"); // Enable headless mode
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
 
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
