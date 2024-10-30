@@ -26,7 +26,7 @@
                 <version>3.0.0</version> <!-- Make sure this version is compatible -->
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/masters.xml</suiteXmlFile> <!-- Adjust the path as needed -->
+                        <suiteXmlFile>masters.xml</suiteXmlFile> <!-- Adjust the path as needed -->
                     </suiteXmlFiles>
                     <forkCount>1</forkCount> <!-- Use one forked process -->
                     <reuseForks>true</reuseForks> <!-- Reuse the forked process -->
