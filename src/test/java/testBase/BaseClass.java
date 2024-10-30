@@ -20,11 +20,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
@@ -82,11 +79,8 @@ public class BaseClass {
                 throw new IllegalArgumentException("Invalid OS: " + os);
         }
 
-        if (browser.equalsIgnoreCase("brave")) {
-            ChromeOptions braveOptions = configureBrowserOptions("brave");
-            capabilities.setCapability(ChromeOptions.CAPABILITY, braveOptions);
-        } else if (browser.equalsIgnoreCase("chrome")) {
-            ChromeOptions chromeOptions = configureBrowserOptions("chrome");
+        if (browser.equalsIgnoreCase("chrome") || browser.equalsIgnoreCase("brave")) {
+            ChromeOptions chromeOptions = configureBrowserOptions(browser);
             capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
         return capabilities;
@@ -98,7 +92,9 @@ public class BaseClass {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
 
+        // Specify binary location if using Brave browser
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             options.addArguments("--disable-blink-features=AutomationControlled");
@@ -114,12 +110,7 @@ public class BaseClass {
             case "brave":
                 ChromeOptions options = configureBrowserOptions(browser);
                 return new ChromeDriver(options);
-            case "edge":
-                return new EdgeDriver();
-            case "firefox":
-                return new FirefoxDriver();
-            case "safari":
-                return new SafariDriver();
+            // Implement other browsers if needed
             default:
                 logger.error("Invalid browser name: " + browser);
                 throw new IllegalArgumentException("Invalid browser: " + browser);
@@ -130,7 +121,8 @@ public class BaseClass {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(properties.getProperty("appURL"));
-        driver.manage().window().maximize();
+        // Remove maximize for headless mode; window size is already set
+        // driver.manage().window().maximize(); // Not needed in headless
     }
 
     private void performLogin() {
