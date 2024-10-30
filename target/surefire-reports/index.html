@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-skipped">Suite</span>
+              <span class="suite-name border-failed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,  1 skipped,  </span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title skipped">Skipped methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods skipped suite-Suite"> (hide)</a> <!-- hide-methods skipped suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods skipped suite-Suite"> (show)</a> <!-- show-methods skipped suite-Suite -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
                     </span>
-                    <div class="method-list-content skipped suite-Suite">
+                    <div class="method-list-content failed suite-Suite">
                       <span>
-                        <img src="skipped.png" width="3%"/>
+                        <img src="failed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration" class="method navigator-link" hash-for-method="ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content skipped suite-Suite -->
+                    </div> <!-- method-list-content failed suite-Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,9 +118,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-skipped">
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
+              <img src="failed.png"/>
               <span class="class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -130,37 +130,16 @@
                   </a> <!-- ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...) -->
                   <span class="method-name">ImageGenerationTest</span>
                   <span class="parameters">(EcoBlend,Fashion and Apparel,We specialize in eco-friendly home products that combine style with sustainability.,Eco-Conscious,Female,All Ages,All India,D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png,EcoBlend Bamboo,Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.,D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png,Green Living Revolution,Increase brand awareness and highlight eco-friendly features.,facebook,(1080*1080),Indian,Object,3D Model,A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.)</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: java.util.concurrent.TimeoutException
-Build info: version: &apos;4.24.0&apos;, revision: &apos;748ffc9bc3&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.4&apos;
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [4462647ef555de33a4cc8209e31299b0, deleteAllCookies {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.69, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:44615}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.18.0.3:4444/sessio..., se:cdpVersion: 130.0.6723.69, se:containerName: , se:noVncPort: 7900, se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4462647ef555de33a4cc8209e31299b0
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute0(JdkHttpClient.java:418)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute(JdkHttpClient.java:374)
-	at org.openqa.selenium.remote.tracing.TracedHttpClient.execute(TracedHttpClient.java:54)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:187)
-	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:53)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions.deleteAllCookies(RemoteWebDriver.java:882)
-	at testBase.BaseClass.configureDriver(BaseClass.java:127)
-	at testBase.BaseClass.launchingApplication(BaseClass.java:55)
-Caused by: java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute0(JdkHttpClient.java:401)
-	... 33 more
-... Removed 21 stack frames
+                  <div class="stack-trace">java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241031020505.png
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:118)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 30 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
+          </div> <!-- suite-Suite-class-failed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -171,7 +150,7 @@ Caused by: java.util.concurrent.TimeoutException
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
-  &lt;parameter name=&quot;os&quot; value=&quot;linux&quot;/&gt;
+  &lt;parameter name=&quot;os&quot; value=&quot;windows&quot;/&gt;
   &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;utilities.ExtentReportManager&quot;/&gt;
@@ -223,12 +202,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'ImageGenerationTest')
 data.setCell(0, 2, 'tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration')
-data.setCell(0, 3, 0);
+data.setCell(0, 3, 193376);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 0 ms</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -256,11 +235,19 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">launchingApplication(linux, chrome)</span>
+                <span class="method-name">launchingApplication(windows, chrome)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</span>
+                <span class="method-start">32189 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-suite after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">225995 ms</span>
+              </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

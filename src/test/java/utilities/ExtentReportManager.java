@@ -93,32 +93,32 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
 
     @Override
     public void onExecutionFinish() {
-        extent.flush();  // Ensure everything is written before opening both reports
-
-        String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
-        File extentReport = new File(pathOfExtentReport);
-
         try {
-            Desktop.getDesktop().browse(extentReport.toURI()); // Open the dynamic report in browser
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            extent.flush();  // Ensure everything is written before opening both reports
+            String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
+            File extentReport = new File(pathOfExtentReport);
 
-        // Optionally, you can also open the fixed-name report in the browser
-        File fixedReport = new File(System.getProperty("user.dir") + "\\reports\\Extent_Test_Report.html");
-        try {
-            Desktop.getDesktop().browse(fixedReport.toURI());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            if (extentReport.exists()) {
+                Desktop.getDesktop().browse(extentReport.toURI()); // Open the dynamic report in browser
+            } else {
+                System.err.println("Report file not found: " + pathOfExtentReport);
+            }
 
-        // Send the email with the dynamic report
-        try {
+            // Open the fixed-name report in the browser
+            File fixedReport = new File(System.getProperty("user.dir") + "\\reports\\Extent_Test_Report.html");
+            if (fixedReport.exists()) {
+                Desktop.getDesktop().browse(fixedReport.toURI());
+            } else {
+                System.err.println("Fixed report file not found: " + fixedReport.getPath());
+            }
+
+            // Send the email with the dynamic report
             sendEmailWithAttachment(pathOfExtentReport);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     private void sendEmailWithAttachment(String reportPath) throws Exception {
         EmailAttachment attachment = new EmailAttachment();
