@@ -38,13 +38,14 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         repName = "Test-Report-" + timeStamp + ".html";
 
         // Reporter for the dynamic name (Test-Report + timestamp)
-        sparkReporter = new ExtentSparkReporter(".\\reports\\" + repName);
+        sparkReporter = new ExtentSparkReporter("." + File.separator + "reports" + File.separator + repName);
         sparkReporter.config().setDocumentTitle("NYX Automation Report");
         sparkReporter.config().setReportName("NYX Functional Testing");
         sparkReporter.config().setTheme(Theme.DARK);
 
         // Reporter for the fixed name (Extent_Test_Report.html)
-        fixedNameReporter = new ExtentSparkReporter(".\\reports\\Extent_Test_Report.html");
+        String reportPath = "." + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
+        fixedNameReporter = new ExtentSparkReporter(reportPath);
         fixedNameReporter.config().setDocumentTitle("NYX Automation Report");
         fixedNameReporter.config().setReportName("NYX Functional Testing");
         fixedNameReporter.config().setTheme(Theme.DARK);
@@ -95,7 +96,7 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     public void onExecutionFinish() {
         try {
             extent.flush();  // Ensure everything is written before opening both reports
-            String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
+            String pathOfExtentReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
             File extentReport = new File(pathOfExtentReport);
 
             if (extentReport.exists()) {
@@ -105,7 +106,7 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
             }
 
             // Open the fixed-name report in the browser
-            File fixedReport = new File(System.getProperty("user.dir") + "\\reports\\Extent_Test_Report.html");
+            File fixedReport = new File(System.getProperty("user.dir") + File.separator + "reports" + File.separator + "Extent_Test_Report.html");
             if (fixedReport.exists()) {
                 Desktop.getDesktop().browse(fixedReport.toURI());
             } else {
