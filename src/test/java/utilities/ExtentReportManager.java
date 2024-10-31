@@ -1,6 +1,5 @@
 package utilities;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -95,30 +94,29 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     @Override
     public void onExecutionFinish() {
         try {
-            extent.flush();  // Ensure everything is written before opening both reports
-            String pathOfExtentReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
-            File extentReport = new File(pathOfExtentReport);
-
-            if (extentReport.exists()) {
-                Desktop.getDesktop().browse(extentReport.toURI()); // Open the dynamic report in browser
-            } else {
-                System.err.println("Report file not found: " + pathOfExtentReport);
-            }
-
-            // Open the fixed-name report in the browser
-            File fixedReport = new File(System.getProperty("user.dir") + File.separator + "reports" + File.separator + "Extent_Test_Report.html");
-            if (fixedReport.exists()) {
-                Desktop.getDesktop().browse(fixedReport.toURI());
-            } else {
-                System.err.println("Fixed report file not found: " + fixedReport.getPath());
-            }
-
+            extent.flush();  // Ensure everything is written before proceeding
+            
+            // Path for the dynamic report
+            String pathOfDynamicReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
+            
+            // Path for the fixed report
+            String pathOfFixedReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
+            
+            // Log the report paths
+            System.out.println("Dynamic report generated at: " + pathOfDynamicReport);
+            System.out.println("Fixed report generated at: " + pathOfFixedReport);
+            
             // Send the email with the dynamic report
-            sendEmailWithAttachment(pathOfExtentReport);
+            sendEmailWithAttachment(pathOfDynamicReport);
+            
+            // Send the email with the fixed report
+            sendEmailWithAttachment(pathOfFixedReport);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     private void sendEmailWithAttachment(String reportPath) throws Exception {
