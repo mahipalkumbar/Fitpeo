@@ -88,11 +88,11 @@ public class BaseClass {
 
     private ChromeOptions configureBrowserOptions(String browser) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Enable headless mode
+        //options.addArguments("--headless"); // Enable headless mode
         //options.addArguments("--no-sandbox");//This option is particularly useful in environments where Chrome runs inside a container (like Docker) or in continuous integration (CI) systems (like Jenkins). The sandbox is designed to restrict processes to improve security, but it can sometimes cause issues in these environments. Disabling it can help avoid permission-related errors.
        //options.addArguments("--disable-dev-shm-usage");// On some systems, especially in Docker containers, the /dev/shm (shared memory) may not be large enough to handle the required memory allocation for the browser. By using /tmp, which is often not limited in the same way, you can avoid crashes or failures related to memory limits.
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
+        //options.addArguments("--window-size=1920,1080");
+       // options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
 
         // Specify binary location if using Brave browser
         if (browser.equalsIgnoreCase("brave")) {
@@ -122,7 +122,7 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(properties.getProperty("appURL"));
         // Remove maximize for headless mode; window size is already set
-        //driver.manage().window().maximize(); // Not needed in headless
+        driver.manage().window().maximize(); // Not needed in headless
     }
 
     private void performLogin() {
