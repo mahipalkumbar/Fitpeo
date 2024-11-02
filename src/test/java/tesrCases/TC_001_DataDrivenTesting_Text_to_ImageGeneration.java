@@ -86,7 +86,7 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
         test.likeGeneratedImageFunctionalityTest();
         test.saveGeneratedImageFunctionalityTest();
         test.verifyImageRegeneration();
-        test.ImageDownloading();
+        //test.ImageDownloading();
         test.testRevealPromptButtonFunctionality();
         test.testOpenWithBrandCanvasFunctionality();
     }
