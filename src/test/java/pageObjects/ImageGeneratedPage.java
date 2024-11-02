@@ -1,13 +1,17 @@
 package pageObjects;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +29,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
-import java.time.Duration;
 
 public class ImageGeneratedPage extends Basepage {
     public ImageGeneratedPage(WebDriver driver) {
@@ -172,86 +174,86 @@ public class ImageGeneratedPage extends Basepage {
     
     
     
-    public boolean DownloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
-        String projectDownloadDir = "/home/abhipatil0692/Automation_Testing/PostImagesDownload";
-        System.out.println("Download directory set to: " + projectDownloadDir);
+    public boolean downloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
+    	String projectDownloadDir = Paths.get(System.getProperty("user.dir"), "PostImages").toString();
 
+        System.out.println("Download directory set to: " + projectDownloadDir);
+        
         // Ensure the download directory exists
         File downloadDir = new File(projectDownloadDir);
-        if (!downloadDir.exists()) {
-            downloadDir.mkdirs(); // Create the directory if it doesn't exist
+        if (!downloadDir.exists() && downloadDir.mkdirs()) {
             System.out.println("Download directory created.");
         } else {
             System.out.println("Download directory already exists.");
         }
 
-        // Delete any existing files with the specified extension in the directory
         deleteExistingFilesWithExtension(projectDownloadDir, fileExtension);
 
-        // Check the browser type using the WebDriver instance
         String browserType = ((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
         System.out.println("Browser detected: " + browserType);
 
-        // Check if the browser type is Chrome
         if ("chrome".equals(browserType)) {
             try {
                 System.out.println("Browser is Chrome. Proceeding with download.");
-
                 act.moveToElement(campaignname).perform();
-                System.out.println("Moved to campaign name element.");
-
-                // Click the download button
                 downloadbutton.click();
                 System.out.println("Download button clicked.");
 
                 long startTime = System.currentTimeMillis();
                 System.out.println("Monitoring download directory for file with extension: ." + fileExtension);
 
-                // Monitor the Downloads directory for the new file
                 while (System.currentTimeMillis() - startTime < timeoutSeconds * 1000) {
                     File latestFile = getLatestFileFromDir(projectDownloadDir, fileExtension);
                     if (latestFile != null) {
                         System.out.println("File downloaded successfully: " + latestFile.getName());
-                        return true; // File found, return true
+                        return true;
                     }
-
-                    // Sleep for a short duration before checking again
                     System.out.println("Waiting for file download...");
-                    Thread.sleep(1000); // Increased sleep time to reduce aggressive checking
+                    Thread.sleep(1000); // Sleep for a short duration before checking again
                 }
 
                 System.out.println("File download timed out after " + timeoutSeconds + " seconds.");
-                return false; // No file found after the timeout period
+            } catch (InterruptedException e) {
+                System.err.println("Download check interrupted: " + e.getMessage());
+                Thread.currentThread().interrupt(); // Restore interrupted status
             } catch (Exception e) {
-                System.out.println("An error occurred during the download check: " + e.getMessage());
+                System.err.println("An error occurred during the download check: " + e.getMessage());
                 e.printStackTrace(); // Print stack trace for debugging
-                return false; // Return false in case of any exceptions
             }
         } else {
-            // Placeholder for other browsers
             System.out.println("This method currently supports only Chrome browser. Browser detected: " + browserType);
-            return false; // Return false if browser is not Chrome
         }
+        return false; // Return false if browser is not Chrome or on timeout
     }
 
     // Helper method to delete any existing files with the specified extension
     private void deleteExistingFilesWithExtension(String dirPath, String fileExtension) {
-        System.out.println("Checking and deleting existing files with extension: ." + fileExtension + " in directory: " + dirPath);
+        System.out.println("Checking and deleting existing files with extension: ." + fileExtension);
         File dir = new File(dirPath);
+
+        // Validate the directory
+        if (!dir.isDirectory()) {
+            System.err.println("Provided path is not a valid directory: " + dirPath);
+            return;
+        }
+
+        // List files with the specified extension
         File[] files = dir.listFiles((d, name) -> name.endsWith("." + fileExtension));
 
+        // If files are found, delete them
         if (files != null && files.length > 0) {
-            for (File file : files) {
+            Arrays.stream(files).forEach(file -> {
                 if (file.delete()) {
                     System.out.println("Deleted file: " + file.getName());
                 } else {
-                    System.out.println("Failed to delete file: " + file.getName());
+                    System.err.println("Failed to delete file: " + file.getName());
                 }
-            }
+            });
         } else {
             System.out.println("No existing files found with the specified extension.");
         }
     }
+
 
     // Helper method to get the latest file with the specified extension
     private File getLatestFileFromDir(String dirPath, String fileExtension) {
@@ -261,22 +263,13 @@ public class ImageGeneratedPage extends Basepage {
 
         if (files == null || files.length == 0) {
             System.out.println("No files found in directory with the specified extension.");
-            return null; // No files found
+            return null;
         }
 
-        File latestFile = Arrays.stream(files)
+        return Arrays.stream(files)
                 .max(Comparator.comparingLong(File::lastModified))
                 .orElse(null);
-
-        if (latestFile != null) {
-            System.out.println("Most recently modified file: " + latestFile.getName());
-        } else {
-            System.out.println("No files found.");
-        }
-
-        return latestFile; // Return the most recently modified file
     }
-
 
     
     public boolean clickOnLikeButtonAfterImageGenerated() {
