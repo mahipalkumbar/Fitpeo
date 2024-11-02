@@ -177,7 +177,7 @@ public class ImageGeneratedPage extends Basepage {
     public boolean downloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
     	//String projectDownloadDir = Paths.get(System.getProperty("user.dir"), "PostImages").toString();
     	String projectDownloadDir = "/home/abhipatil0692/Automation_Testing/PostImagesDownload";
-    	
+    	//String projectDownloadDir ="D:\\Mahipal\\NYX.today\\New folder";
         System.out.println("Download directory set to: " + projectDownloadDir);
         
         // Ensure the download directory exists

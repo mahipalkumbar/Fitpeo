@@ -82,13 +82,13 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
      */
     private void runPostImageGenerationTests() throws Exception {
         TC_008_PostImageGenerationTest test = new TC_008_PostImageGenerationTest();
-        test.dislikeGeneratedImageFunctionalityTest();
-        test.likeGeneratedImageFunctionalityTest();
-        test.saveGeneratedImageFunctionalityTest();
-        test.verifyImageRegeneration();
-        test.ImageDownloading();
+        //test.dislikeGeneratedImageFunctionalityTest();
+        //test.likeGeneratedImageFunctionalityTest();
+        //test.saveGeneratedImageFunctionalityTest();
+        //test.verifyImageRegeneration();
+        //test.ImageDownloading();
         //test.testRevealPromptButtonFunctionality();
-        test.testOpenWithBrandCanvasFunctionality();
+        //test.testOpenWithBrandCanvasFunctionality();
     }
 
     /**

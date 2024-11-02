@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-10-31T02:01:45 IST" name="Suite" finished-at="2024-10-31T02:05:05 IST" duration-ms="200423">
+  <suite started-at="2024-11-02T12:02:03 IST" name="Suite" finished-at="2024-11-02T12:02:25 IST" duration-ms="21069">
     <groups>
     </groups>
-    <test started-at="2024-10-31T02:01:45 IST" name="Gen Test - Row 1" finished-at="2024-10-31T02:05:05 IST" duration-ms="200423">
+    <test started-at="2024-11-02T12:02:03 IST" name="Gen Test - Row 1" finished-at="2024-11-02T12:02:25 IST" duration-ms="21069">
       <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
-        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-10-31T02:01:19 IST" name="launchingApplication" finished-at="2024-10-31T02:01:45 IST" duration-ms="25518" status="PASS">
+        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-11-02T12:01:23 IST" name="launchingApplication" finished-at="2024-11-02T12:02:03 IST" duration-ms="40464" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,7 +23,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchingApplication -->
-        <test-method signature="ImageGenerationTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-10-31T02:01:52 IST" name="ImageGenerationTest" data-provider="imageGenerationData" finished-at="2024-10-31T02:05:05 IST" duration-ms="193376" status="FAIL">
+        <test-method signature="ImageGenerationTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-11-02T12:02:21 IST" name="ImageGenerationTest" data-provider="imageGenerationData" finished-at="2024-11-02T12:02:24 IST" duration-ms="2939" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -123,10 +123,10 @@
           </params>
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241031020505.png]]>
+              <![CDATA[Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241102120224.png]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241031020505.png
+              <![CDATA[java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241102120224.png
 at org.testng.Assert.fail(Assert.java:111)
 at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:118)
 at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
@@ -166,7 +166,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ImageGenerationTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-10-31T02:05:05 IST" name="tearDown" finished-at="2024-10-31T02:05:06 IST" duration-ms="742" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@46074492]" started-at="2024-11-02T12:02:25 IST" name="tearDown" finished-at="2024-11-02T12:02:25 IST" duration-ms="665" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

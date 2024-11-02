@@ -1,36 +1,28 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 313.044 s <<< FAILURE! - in TestSuite
-tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.launchingApplication[linux, chrome](0)  Time elapsed: 285.816 s  <<< FAILURE!
-org.openqa.selenium.TimeoutException: 
-java.util.concurrent.TimeoutException
-Build info: version: '4.24.0', revision: '748ffc9bc3'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.4'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [4462647ef555de33a4cc8209e31299b0, deleteAllCookies {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.69, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:44615}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.18.0.3:4444/sessio..., se:cdpVersion: 130.0.6723.69, se:containerName: , se:noVncPort: 7900, se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4462647ef555de33a4cc8209e31299b0
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute0(JdkHttpClient.java:418)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute(JdkHttpClient.java:374)
-	at org.openqa.selenium.remote.tracing.TracedHttpClient.execute(TracedHttpClient.java:54)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:187)
-	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:53)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions.deleteAllCookies(RemoteWebDriver.java:882)
-	at testBase.BaseClass.configureDriver(BaseClass.java:127)
-	at testBase.BaseClass.launchingApplication(BaseClass.java:55)
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 78.403 s <<< FAILURE! - in TestSuite
+tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest[EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.](1)  Time elapsed: 3.156 s  <<< FAILURE!
+java.lang.AssertionError: Error during credit check. Screenshot saved at: C:\Users\HP\eclipse-workspace\qa-automatiom\Screenshots\CreditCheckError_Iteration_EcoBlend_20241102120224.png
+	at org.testng.Assert.fail(Assert.java:111)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.handleImageGenerationFailure(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:118)
+	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:47)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:358)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
 	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
 	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
 	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
@@ -45,9 +37,4 @@ Session ID: 4462647ef555de33a4cc8209e31299b0
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-Caused by: java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute0(JdkHttpClient.java:401)
-	... 33 more
 
