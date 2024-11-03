@@ -46,9 +46,9 @@ public class BaseClass {
         loadProperties();
         if (driver == null) {
             initializeDriver(os, browser);
-            configureDriver();
-            performLogin();
         }
+        configureDriver(); // Ensure driver is configured after initialization
+        performLogin();
     }
 
     // Load properties from config file
@@ -70,7 +70,7 @@ public class BaseClass {
             } catch (MalformedURLException e) {
                 logger.error("Invalid remote WebDriver URL. Check the remote server address.", e);
             } catch (Exception e) {
-                logger.error("Failed to create remote WebDriver session. Possible causes: server down, invalid capabilities, or network issues.", e);
+                logger.error("Failed to create remote WebDriver session.", e);
             }
         } else {
             driver = getLocalDriver(browser);
@@ -106,7 +106,7 @@ public class BaseClass {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Run in headless mode
         options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
+        options.addArguments("--disable-gpu");
 
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
@@ -132,25 +132,32 @@ public class BaseClass {
 
     // Configure driver settings
     private void configureDriver() {
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        driver.get(properties.getProperty("appURL"));
-        // driver.manage().window().maximize(); // Not needed in headless
+        if (driver != null) { // Check if driver is initialized
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+            driver.get(properties.getProperty("appURL"));
+        } else {
+            logger.error("WebDriver is not initialized. Cannot configure driver.");
+        }
     }
 
     // Perform login
     private void performLogin() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        Loginpage loginPage = new Loginpage(driver);
-        loginPage.sendPhone(properties.getProperty("phone_no"));
-        loginPage.sendPassword(properties.getProperty("password"));
-        loginPage.clickLogin();
+        if (driver != null) { // Check if driver is initialized
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            Loginpage loginPage = new Loginpage(driver);
+            loginPage.sendPhone(properties.getProperty("phone_no"));
+            loginPage.sendPassword(properties.getProperty("password"));
+            loginPage.clickLogin();
 
-        if (loginPage.isHomePageDisplayed()) {
-            logger.info("Login successful.");
-            loginPage.ClickonSkipButton();
+            if (loginPage.isHomePageDisplayed()) {
+                logger.info("Login successful.");
+                loginPage.ClickonSkipButton();
+            } else {
+                logger.error("Login failed due to timeout.");
+            }
         } else {
-            logger.error("Login failed due to timeout.");
+            logger.error("WebDriver is not initialized. Cannot perform login.");
         }
     }
 
@@ -183,7 +190,6 @@ public class BaseClass {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
-        //chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         options.setExperimentalOption("prefs", chromePrefs);
     }
 
@@ -191,8 +197,10 @@ public class BaseClass {
     @AfterSuite
     public void tearDown() {
         if (driver != null) {
-           // driver.quit();
+            driver.quit(); // Uncomment this line to quit the driver properly
             logger.info("WebDriver quit successfully.");
+        } else {
+            logger.warn("WebDriver was not initialized. No action taken on quit.");
         }
     }
 }
