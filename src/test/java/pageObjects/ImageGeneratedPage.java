@@ -175,8 +175,8 @@ public class ImageGeneratedPage extends Basepage {
     
     
     public boolean downloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
-    	//String projectDownloadDir = Paths.get(System.getProperty("user.dir"), "PostImages").toString();
-    	String projectDownloadDir = "/home/abhipatil0692/Automation_Testing/PostImagesDownload";
+    	String projectDownloadDir = Paths.get(System.getProperty("user.dir"), "PostImages").toString();
+    	//String projectDownloadDir = "/home/abhipatil0692/Automation_Testing/PostImagesDownload";
     	//String projectDownloadDir ="D:\\Mahipal\\NYX.today\\New folder";
         System.out.println("Download directory set to: " + projectDownloadDir);
         
@@ -187,12 +187,12 @@ public class ImageGeneratedPage extends Basepage {
         } else {
             System.out.println("Download directory already exists.");
         }
-
+        
         deleteExistingFilesWithExtension(projectDownloadDir, fileExtension);
-
+        
         String browserType = ((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
         System.out.println("Browser detected: " + browserType);
-
+        
         if ("chrome".equals(browserType)) {
             try {
                 System.out.println("Browser is Chrome. Proceeding with download.");
@@ -226,7 +226,7 @@ public class ImageGeneratedPage extends Basepage {
         }
         return false; // Return false if browser is not Chrome or on timeout
     }
-
+    
     // Helper method to delete any existing files with the specified extension
     private void deleteExistingFilesWithExtension(String dirPath, String fileExtension) {
         System.out.println("Checking and deleting existing files with extension: ." + fileExtension);

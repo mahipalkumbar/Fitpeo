@@ -11,7 +11,7 @@
     <classes>
       <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
         <methods>
-          <include name="ImageGenerationTest"/>
+          <include name="ImageGenerationTest" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="launchingApplication"/>
         </methods>

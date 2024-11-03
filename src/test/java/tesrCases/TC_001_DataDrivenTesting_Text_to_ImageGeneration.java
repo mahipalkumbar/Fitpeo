@@ -23,31 +23,31 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
                                     String productdescription, String productlogo, String campaignname, String objective,
                                     String socialmedia, String size, String imagecontext, String focuselements,
                                     String imagestyle, String imageprompt) throws IOException, InterruptedException, AWTException {
-
+    	
         logger.info("**** Starting Image Generation Test for brand: " + brandname + " ****");
-
+        
         MenuPage menu = new MenuPage(driver);
-
+        
         try {
             navigateThroughImageGenerationFlow(brandname, category, abouturbrand, tgname, gender, agegroup, region, brandlogo, productname, 
                                                 productdescription, productlogo, campaignname, objective, socialmedia, size, 
                                                 imagecontext, focuselements, imagestyle, imageprompt);
-
+            
             // Wait for the image generation and validate its visibility
             waitForImageGeneration();
-
+            
             // Execute post-image generation tests
             runPostImageGenerationTests();
-
+            
             //menu.clickHomeButton();
             logger.info("**** Finished Image Generation Test for brand: " + brandname + " ****");
-
+            
         } catch (Exception e) {
             // Handle image generation failure
             handleImageGenerationFailure(menu, brandname, e);
         }
     }
-
+    
     /**
      * Navigate through the steps to generate the image.
      */
@@ -75,7 +75,7 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
         WebElement generatedImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='slick-list']//img")));
         Assert.assertNotNull(generatedImage, "Image was not generated within 3 minutes.");
     }
-
+    
     /**
      * Run all post-image generation tests.
      * @throws Exception 
@@ -84,23 +84,23 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
         TC_008_PostImageGenerationTest test = new TC_008_PostImageGenerationTest();
         //test.dislikeGeneratedImageFunctionalityTest();
         //test.likeGeneratedImageFunctionalityTest();
-        //test.saveGeneratedImageFunctionalityTest();
-        //test.verifyImageRegeneration();
-        //test.ImageDownloading();
+        test.saveGeneratedImageFunctionalityTest();
+        test.verifyImageRegeneration();
+        test.ImageDownloading();
         //test.testRevealPromptButtonFunctionality();
-        //test.testOpenWithBrandCanvasFunctionality();
+        test.testOpenWithBrandCanvasFunctionality();
     }
-
+    
     /**
      * Handle the failure during image generation, check credit availability, and take appropriate actions.
      */
     private void handleImageGenerationFailure(MenuPage menu, String brandname, Exception e) throws IOException {
         logger.error("Image generation failed for brand: " + brandname, e);
-
+        
         // Capture a screenshot
        // String screenshotPath = captureScreen("ImageGenerationFailed_Iteration_" + brandname);
         //logger.info("Screenshot captured: " + screenshotPath);
-
+        
         // Check if credits are available
         try {
             boolean isCreditSufficient = menu.SlideBar();
