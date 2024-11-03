@@ -86,7 +86,7 @@ public class BaseClass {
 
         switch (os.toLowerCase()) {
             case "windows":
-                capabilities.setPlatform(Platform.WIN11);
+                capabilities.setPlatform(Platform.WINDOWS);
                 break;
             case "linux":
                 capabilities.setPlatform(Platform.LINUX);
