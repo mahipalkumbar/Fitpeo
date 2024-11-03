@@ -118,7 +118,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Starting LikeGeneratedImageFunctionalityTest ***************");
 
         try {
-            boolean isLikeButtonClicked = postImagePage.downloadCheckWithBrowserCondition("png", 30);
+            boolean isLikeButtonClicked = postImagePage.DownloadCheckWithBrowserCondition("png", 30);
             Assert.assertTrue(isLikeButtonClicked, "Like button action failed to perform.");
             logger.info("Test Passed: Like button action performed successfully.");
         } catch (AssertionError e) {

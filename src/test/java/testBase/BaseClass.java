@@ -13,7 +13,6 @@ import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -22,7 +21,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -35,18 +33,16 @@ public class BaseClass {
     public Logger logger;
     public Properties properties;
 
+    // Constructor
     public BaseClass() {
         logger = LogManager.getLogger(this.getClass());
     }
 
+    // Before Suite - Application Launch
     @BeforeSuite
     @Parameters({"os", "browser"})
     public void launchingApplication(String os, String browser) throws IOException {
-        properties = new Properties();
-        try (FileReader fileReader = new FileReader("./src/test/resources/config.properties")) {
-            properties.load(fileReader);
-        }
-
+        loadProperties();
         if (driver == null) {
             initializeDriver(os, browser);
             configureDriver();
@@ -54,15 +50,25 @@ public class BaseClass {
         }
     }
 
+    // Load properties from config file
+    private void loadProperties() throws IOException {
+        properties = new Properties();
+        try (FileReader fileReader = new FileReader("./src/test/resources/config.properties")) {
+            properties.load(fileReader);
+        }
+    }
+
+    // Driver Initialization based on environment
     private void initializeDriver(String os, String browser) throws IOException {
         if (properties.getProperty("execution_env").equalsIgnoreCase("remote")) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
-            driver = new RemoteWebDriver(new URL("http://34.131.38.165:4444/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("http://34.100.251.62/wd/hub"), capabilities);
         } else {
             driver = getLocalDriver(browser);
         }
     }
 
+    // Set Desired Capabilities for Remote WebDriver
     public DesiredCapabilities getDesiredCapabilities(String os, String browser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
@@ -86,15 +92,13 @@ public class BaseClass {
         return capabilities;
     }
 
+    // Configure Browser Options
     private ChromeOptions configureBrowserOptions(String browser) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Enable headless mode
-        //options.addArguments("--no-sandbox");//This option is particularly useful in environments where Chrome runs inside a container (like Docker) or in continuous integration (CI) systems (like Jenkins). The sandbox is designed to restrict processes to improve security, but it can sometimes cause issues in these environments. Disabling it can help avoid permission-related errors.
-       //options.addArguments("--disable-dev-shm-usage");// On some systems, especially in Docker containers, the /dev/shm (shared memory) may not be large enough to handle the required memory allocation for the browser. By using /tmp, which is often not limited in the same way, you can avoid crashes or failures related to memory limits.
-        options.addArguments("--window-size=1024,768");
+        options.addArguments("--headless"); // Run in headless mode
+        options.addArguments("--window-size=1920,1080"); 
         options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
 
-        // Specify binary location if using Brave browser
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             options.addArguments("--disable-blink-features=AutomationControlled");
@@ -104,27 +108,28 @@ public class BaseClass {
         return options;
     }
 
+    // Local WebDriver setup
     public WebDriver getLocalDriver(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
             case "brave":
                 ChromeOptions options = configureBrowserOptions(browser);
                 return new ChromeDriver(options);
-            // Implement other browsers if needed
             default:
                 logger.error("Invalid browser name: " + browser);
                 throw new IllegalArgumentException("Invalid browser: " + browser);
         }
     }
 
+    // Configure driver settings
     private void configureDriver() {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(properties.getProperty("appURL"));
-        // Remove maximize for headless mode; window size is already set
         //driver.manage().window().maximize(); // Not needed in headless
     }
 
+    // Perform login
     private void performLogin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         Loginpage loginPage = new Loginpage(driver);
@@ -140,7 +145,7 @@ public class BaseClass {
         }
     }
 
-    // Method to capture screenshot
+    // Capture Screenshot
     public String captureScreen(String testName) throws IOException {
         if (driver == null) {
             logger.error("WebDriver is not initialized. Cannot capture screenshot.");
@@ -151,7 +156,6 @@ public class BaseClass {
         TakesScreenshot ts = (TakesScreenshot) driver;
         String targetFilePath = Paths.get(System.getProperty("user.dir"), "Screenshots", testName + "_" + timestamp + ".png").toString();
 
-        // Ensure the screenshots directory exists
         new File(Paths.get(System.getProperty("user.dir"), "Screenshots").toString()).mkdirs();
 
         try {
@@ -165,18 +169,20 @@ public class BaseClass {
         }
     }
 
-    // Helper method to set download preferences for Chrome and Brave
+    // Set Download Preferences for Chrome and Brave
     private void setChromeDownloadPreferences(ChromeOptions options) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
+        chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         options.setExperimentalOption("prefs", chromePrefs);
     }
 
+    // After Suite - Clean up
     @AfterSuite
     public void tearDown() {
         if (driver != null) {
-            //driver.quit();
+            driver.quit();
             logger.info("WebDriver quit successfully.");
         }
     }
