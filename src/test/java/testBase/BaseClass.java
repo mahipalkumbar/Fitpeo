@@ -3,6 +3,7 @@ package testBase;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -60,9 +61,17 @@ public class BaseClass {
 
     // Driver Initialization based on environment
     private void initializeDriver(String os, String browser) throws IOException {
-        if (properties.getProperty("execution_env").equalsIgnoreCase("remote")) {
+        logger.info("Initializing driver with OS: " + os + ", Browser: " + browser + ", Environment: " + properties.getProperty("execution_env"));
+        if ("remote".equalsIgnoreCase(properties.getProperty("execution_env"))) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
-            driver = new RemoteWebDriver(new URL("http://34.100.251.62/wd/hub"), capabilities);
+            try {
+                driver = new RemoteWebDriver(new URL("http://34.100.251.62/wd/hub"), capabilities);
+                logger.info("Remote WebDriver session started successfully.");
+            } catch (MalformedURLException e) {
+                logger.error("Invalid remote WebDriver URL. Check the remote server address.", e);
+            } catch (Exception e) {
+                logger.error("Failed to create remote WebDriver session. Possible causes: server down, invalid capabilities, or network issues.", e);
+            }
         } else {
             driver = getLocalDriver(browser);
         }
@@ -96,7 +105,7 @@ public class BaseClass {
     private ChromeOptions configureBrowserOptions(String browser) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Run in headless mode
-        options.addArguments("--window-size=1920,1080"); 
+        options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-gpu"); // Disable GPU acceleration for headless mode
 
         if (browser.equalsIgnoreCase("brave")) {
@@ -126,7 +135,7 @@ public class BaseClass {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(properties.getProperty("appURL"));
-        //driver.manage().window().maximize(); // Not needed in headless
+        // driver.manage().window().maximize(); // Not needed in headless
     }
 
     // Perform login
@@ -174,7 +183,7 @@ public class BaseClass {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
-        chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
+        //chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         options.setExperimentalOption("prefs", chromePrefs);
     }
 
