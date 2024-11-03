@@ -65,7 +65,7 @@ public class BaseClass {
         if ("remote".equalsIgnoreCase(properties.getProperty("execution_env"))) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
             try {
-                driver = new RemoteWebDriver(new URL("http://34.100.251.62/wd/hub"), capabilities);
+                driver = new RemoteWebDriver(new URL("http://34.131.38.165:4444/wd/hub"), capabilities);
                 logger.info("Remote WebDriver session started successfully.");
             } catch (MalformedURLException e) {
                 logger.error("Invalid remote WebDriver URL. Check the remote server address.", e);
