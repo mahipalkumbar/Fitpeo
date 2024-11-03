@@ -65,6 +65,7 @@ public class BaseClass {
         if ("remote".equalsIgnoreCase(properties.getProperty("execution_env"))) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
             try {
+                logger.info("Attempting to connect to Remote WebDriver.");
                 driver = new RemoteWebDriver(new URL("http://34.131.38.165:4444/wd/hub"), capabilities);
                 logger.info("Remote WebDriver session started successfully.");
             } catch (MalformedURLException e) {
@@ -76,6 +77,7 @@ public class BaseClass {
             driver = getLocalDriver(browser);
         }
     }
+
 
     // Set Desired Capabilities for Remote WebDriver
     public DesiredCapabilities getDesiredCapabilities(String os, String browser) {
