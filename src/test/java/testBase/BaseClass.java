@@ -66,7 +66,7 @@ public class BaseClass {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
             try {
                 logger.info("Attempting to connect to Remote WebDriver.");
-                driver = new RemoteWebDriver(new URL("http://34.131.38.165:4444/wd/hub"), capabilities);
+                driver = new RemoteWebDriver(new URL("http://34.100.251.62:4444/wd/hub"), capabilities);
                 logger.info("Remote WebDriver session started successfully.");
             } catch (MalformedURLException e) {
                 logger.error("Invalid remote WebDriver URL. Check the remote server address.", e);
@@ -108,7 +108,7 @@ public class BaseClass {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Run in headless mode
         options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-gpu");
+       // options.addArguments("--disable-gpu");
 
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
@@ -138,6 +138,7 @@ public class BaseClass {
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
             driver.get(properties.getProperty("appURL"));
+           // driver.manage().window().maximize();
         } else {
             logger.error("WebDriver is not initialized. Cannot configure driver.");
         }
@@ -192,6 +193,7 @@ public class BaseClass {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
+        //chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         options.setExperimentalOption("prefs", chromePrefs);
     }
 
