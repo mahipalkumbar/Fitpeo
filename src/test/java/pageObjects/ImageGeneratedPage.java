@@ -1,20 +1,19 @@
 package pageObjects;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.Arrays;
 
-import java.awt.Toolkit;
+
+
+
+//import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
@@ -29,10 +28,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.io.File;
 
 public class ImageGeneratedPage extends Basepage {
     public ImageGeneratedPage(WebDriver driver) {
@@ -176,9 +171,9 @@ public class ImageGeneratedPage extends Basepage {
     
     
     public boolean DownloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
-    	
-    	String projectDownloadDir = System.getProperty("user.home") + File.separator + "Automation_Testing" + File.separator + "PostImagesDownload";
-       // String projectDownloadDir = "D:\\Mahipal\\NYX.today\\New folder";
+    	String projectDownloadDir = "C:\\Users\\Public\\JenkinsDownloads";
+    	//String projectDownloadDir = System.getProperty("user.home") + File.separator + "Automation_Testing" + File.separator + "PostImagesDownload";
+        //String projectDownloadDir = "D:\\Mahipal\\NYX.today\\New folder";
         System.out.println("Download directory set to: " + projectDownloadDir);
 
         // Ensure the download directory exists
@@ -400,7 +395,7 @@ public class ImageGeneratedPage extends Basepage {
    // @FindBy(xpath="//div[text()='Copied!']") 
    // private WebElement copyforimagesavedconfirm;
     String clipboardText;
-    public String[] clickOnRevealPromptButton() {
+   /* public String[] clickOnRevealPromptButton() {
         //String clipboardText;
         String textString1 = "";
 
@@ -447,15 +442,15 @@ public class ImageGeneratedPage extends Basepage {
         }
 
         return new String[] {clipboardText, textString1};
-    }
+    }*/
 
-    private String getClipboardText() throws UnsupportedFlavorException, IOException {
+   /* private String getClipboardText() throws UnsupportedFlavorException, IOException {
         // Access the system clipboard
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+       // Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         // Check if clipboard content is a string and return it
-        return (String) clipboard.getData(DataFlavor.stringFlavor);
-    }
+        //return (String) clipboard.getData(DataFlavor.stringFlavor);
+    }*/
 
 
     public boolean clickOnRegenerateButton() {
