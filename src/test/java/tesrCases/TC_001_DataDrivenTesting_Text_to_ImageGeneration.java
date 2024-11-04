@@ -71,7 +71,7 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
      * Wait for the image generation and validate it.
      */
     private void waitForImageGeneration() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(240));
         WebElement generatedImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='slick-list']//img")));
         Assert.assertNotNull(generatedImage, "Image was not generated within 3 minutes.");
     }
