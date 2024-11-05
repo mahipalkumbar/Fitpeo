@@ -162,6 +162,9 @@ public class ImageCraftImageToImage extends Basepage{
 	            // Increment the image index for the next iteration
 	            imageIndex++;
 	            System.out.println("Incremented image index to: " + imageIndex);
+	            uploadimgUseAnAssetButton.click();
+	            System.out.println("Clicked on Use An Assset Button");;
+	            
 	        } else {
 	        	// wait.until(ExpectedConditions.visibilityOfAllElements(selectimgfromasset));
 	            // Handle file upload logic for "Browse from System" option
@@ -234,42 +237,34 @@ public class ImageCraftImageToImage extends Basepage{
 
 	
 	
-	public boolean ClickOnuploadimgUseAnAssetNextButton() {
-	    System.out.println("ClickOnuploadimgUseAnAssetNextButton");
+	public void clickOnUploadImgUseAnAssetNextButton() {
+	    System.out.println("Clicking on 'Use an Asset' Next button");
 
 	    try {
-	        // Wait until the 'Next' button is clickable
-	        wait.until(ExpectedConditions.elementToBeClickable(uploadimgUseAnAssetNextButton));
-
-	        // Additional check to ensure the button is visible and enabled
+	        // Check if the 'Next' button is visible and enabled
 	        if (uploadimgUseAnAssetNextButton.isDisplayed() && uploadimgUseAnAssetNextButton.isEnabled()) {
 	            System.out.println("'Use an Asset' Next button is displayed and enabled.");
 
 	            try {
-	            	// Wait for any loader or overlay to disappear
-	            	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loading-overlay")));
-	                // Scroll into view
+	                // Scroll into view and click the button
 	                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", uploadimgUseAnAssetNextButton);
-
-	                // Attempt to click the button
 	                uploadimgUseAnAssetNextButton.click();
 	                System.out.println("'Use an Asset' Next button clicked.");
-
 	            } catch (ElementClickInterceptedException e) {
 	                System.out.println("'Use an Asset' Next button was obstructed. Attempting to click via JavaScript.");
-	                // If the button is obstructed, click via JavaScript
 	                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", uploadimgUseAnAssetNextButton);
 	                System.out.println("'Use an Asset' Next button clicked via JavaScript.");
 	            }
 
-	            // Wait for the PromptButton to appear
+	            // Wait until the PromptButton is displayed
+	           // wait.until(ExpectedConditions.visibilityOf(PromptButton));
+	           // System.out.println("Prompt button is displayed.");
+
+	            // Wait until the specified image is visible
+	            By imageXpath = By.xpath("//div[@class='relative w-[60%] bg-[#3B236F]']//img[@src]");
+	            wait.until(ExpectedConditions.visibilityOfElementLocated(imageXpath));
+	            System.out.println("Image is displayed.");
 	            wait.until(ExpectedConditions.visibilityOf(PromptButton));
-
-	            boolean isDisplayed = PromptButton.isDisplayed();
-	            System.out.println("Prompt button displayed: " + isDisplayed);
-
-	            System.out.println("Ending");
-	            return isDisplayed;
 
 	        } else {
 	            throw new RuntimeException("The 'Use an Asset' Next button is either not displayed or not enabled.");
@@ -279,8 +274,6 @@ public class ImageCraftImageToImage extends Basepage{
 	        throw new RuntimeException("The 'Use an Asset' Next button is not found.", e);
 	    } catch (StaleElementReferenceException e) {
 	        throw new RuntimeException("The 'Use an Asset' Next button reference became stale.", e);
-	    } catch (ElementClickInterceptedException e) {
-	        throw new RuntimeException("The 'Use an Asset' Next button was obstructed and could not be clicked.", e);
 	    } catch (Exception e) {
 	        throw new RuntimeException("An unexpected error occurred while clicking the 'Use an Asset' Next button.", e);
 	    }
@@ -338,7 +331,7 @@ public class ImageCraftImageToImage extends Basepage{
 	                } else {
 	                    System.out.println("No images available to select.");
 	                }
-	                break;  // Exit loop after processing
+	               // break;  // Exit loop after processing
 	            }
 	        }
 	    } catch (NoSuchElementException e) {
@@ -373,15 +366,20 @@ public class ImageCraftImageToImage extends Basepage{
 	
 	public void ClickOnImageToImageGenerateButton() {
 	    try {
+	        // Wait until the button is clickable
+	        wait.until(ExpectedConditions.elementToBeClickable(ImageToImageGenereteButton));
+
 	        // Scroll to the button and click it
 	        js.executeScript("arguments[0].scrollIntoView(true);", ImageToImageGenereteButton);
 	        js.executeScript("arguments[0].click();", ImageToImageGenereteButton);
+	        System.out.println("ImageToImageGenerateButton clicked.");
 	    } catch (NoSuchElementException e) {
 	        throw new RuntimeException("ImageToImageGenerateButton not found on the page.", e);
 	    } catch (Exception e) {
 	        throw new RuntimeException("An unexpected error occurred while clicking the ImageToImageGenerateButton.", e);
 	    }
 	}
+
 
 	
     

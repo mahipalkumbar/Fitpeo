@@ -16,6 +16,13 @@
           <include name="launchingApplication"/>
         </methods>
       </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
+      <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration">
+        <methods>
+          <include name="tearDown"/>
+          <include name="launchingApplication"/>
+          <include name="ImageGenerationTestImageToImage" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration -->
     </classes>
   </test> <!-- Gen Test - Row 1(failed) -->
 </suite> <!-- Failed suite [Suite] -->

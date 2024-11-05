@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="4" passed="0" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-04T19:05:37 IST" name="Suite" finished-at="2024-11-04T19:06:56 IST" duration-ms="78745">
+  <suite started-at="2024-11-05T19:55:20 IST" name="Suite" finished-at="2024-11-05T19:57:41 IST" duration-ms="141069">
     <groups>
     </groups>
-    <test started-at="2024-11-04T19:05:37 IST" name="Gen Test - Row 1" finished-at="2024-11-04T19:06:56 IST" duration-ms="78745">
+    <test started-at="2024-11-05T19:55:20 IST" name="Gen Test - Row 1" finished-at="2024-11-05T19:57:41 IST" duration-ms="141069">
       <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
-        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@7de0c6ae]" started-at="2024-11-04T19:05:02 IST" name="launchingApplication" finished-at="2024-11-04T19:05:37 IST" duration-ms="34675" status="PASS">
+        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@372ea2bc]" started-at="2024-11-05T19:54:55 IST" name="launchingApplication" finished-at="2024-11-05T19:55:20 IST" duration-ms="24917" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,7 +23,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchingApplication -->
-        <test-method signature="ImageGenerationTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@7de0c6ae]" started-at="2024-11-04T19:05:50 IST" name="ImageGenerationTest" data-provider="imageGenerationData" finished-at="2024-11-04T19:06:56 IST" duration-ms="66320" status="PASS">
+        <test-method signature="ImageGenerationTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@372ea2bc]" started-at="2024-11-05T19:55:24 IST" name="ImageGenerationTest" data-provider="imageGenerationData" finished-at="2024-11-05T19:56:55 IST" duration-ms="90466" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -121,14 +121,139 @@
               </value>
             </param>
           </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Like button action failed to perform. expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Like button action failed to perform. expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertTrue(Assert.java:45)
+at tesrCases.TC_008_PostImageGenerationTest.ImageDownloading(TC_008_PostImageGenerationTest.java:123)
+at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.runPostImageGenerationTests(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:90)
+at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:40)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ImageGenerationTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@7de0c6ae]" started-at="2024-11-04T19:06:56 IST" name="tearDown" finished-at="2024-11-04T19:06:57 IST" duration-ms="1293" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@372ea2bc]" started-at="2024-11-05T19:57:41 IST" name="tearDown" finished-at="2024-11-05T19:57:41 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
+      <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration">
+        <test-method signature="ImageGenerationTestImageToImage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration@4c36250e]" started-at="2024-11-05T19:56:55 IST" name="ImageGenerationTestImageToImage" data-provider="ImageToImageGenerationData" finished-at="2024-11-05T19:57:41 IST" duration-ms="45409" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Solar Water Heater]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Use an Asset]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Auto Generate]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Modern rooftop solar water heater with sleek design, sunlit environment]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Like button action failed to perform. expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Like button action failed to perform. expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertTrue(Assert.java:45)
+at tesrCases.TC_008_PostImageGenerationTest.ImageDownloading(TC_008_PostImageGenerationTest.java:123)
+at tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration.runPostImageGenerationTests(TC_002_DataDrivenTesting_Image_to_ImageGeneration.java:80)
+at tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration.ImageGenerationTestImageToImage(TC_002_DataDrivenTesting_Image_to_ImageGeneration.java:42)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ImageGenerationTestImageToImage -->
+      </class> <!-- tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration -->
     </test> <!-- Gen Test - Row 1 -->
   </suite> <!-- Suite -->
 </testng-results>

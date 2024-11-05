@@ -13,6 +13,8 @@
     <parameter name="index" value="0"/>
     <classes>
      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+     <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration"/>
+     
     </classes>
   </test>
 </suite>  

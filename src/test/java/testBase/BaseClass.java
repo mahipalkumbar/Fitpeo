@@ -192,7 +192,6 @@ public class BaseClass {
     private void setChromeDownloadPreferences(ChromeOptions options) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-       // chromePrefs.put("download.default_directory", System.getProperty("user.home") + "/Automation_Testing/PostImagesDownload");
         //chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         chromePrefs.put("download.default_directory", "C:\\Users\\Public\\JenkinsDownloads");
         options.setExperimentalOption("prefs", chromePrefs);

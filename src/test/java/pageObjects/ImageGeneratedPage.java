@@ -49,8 +49,10 @@ public class ImageGeneratedPage extends Basepage {
     @FindBy(xpath="//div[@class=' css-19bb58m']") 
     private WebElement openWithBrandCanvas;
 
-    @FindBy(xpath="//span[text()='Campaign :']")   
+    @FindBy(xpath="//div[@class='slick-list']//img")   
     private WebElement campaignname;    
+    
+    
 
     @FindBy(xpath="//button[@class='text-[#FFFFFF] border rounded-full p-2 focus:outline-none hover:bg-nyx-sky hover:border-nyx-sky active:bg-nyx-sky active:border-nyx-sky']") 
     private WebElement download;
@@ -145,6 +147,7 @@ public class ImageGeneratedPage extends Basepage {
     public boolean clickOnSaveButton() throws Exception {
         try {
             // Ensure the save button is clickable and then click it
+        	wait.until(ExpectedConditions.visibilityOf(campaignname));
         	act.moveToElement(campaignname).perform();
             wait.until(ExpectedConditions.elementToBeClickable(savebut)).click();
             
@@ -196,7 +199,7 @@ public class ImageGeneratedPage extends Basepage {
         if ("chrome".equals(browserType)) {
             try {
                 System.out.println("Browser is Chrome. Proceeding with download.");
-
+                //wait.until(ExpectedConditions.visibilityOf(campaignname));
                 act.moveToElement(campaignname).perform();
                 System.out.println("Moved to campaign name element.");
 
@@ -280,6 +283,7 @@ public class ImageGeneratedPage extends Basepage {
     
     public boolean clickOnLikeButtonAfterImageGenerated() {
         // Move the cursor to the campaign name
+    	wait.until(ExpectedConditions.visibilityOf(campaignname));
        // act.moveToElement(campaignname).perform();
         
         try {
@@ -303,6 +307,7 @@ public class ImageGeneratedPage extends Basepage {
     }
 
     public boolean clickOnDisLikeButtonAfterImageGenerated() {
+    	wait.until(ExpectedConditions.visibilityOf(campaignname));
         // Move the cursor to the campaign name
         act.moveToElement(campaignname).perform();
         
@@ -370,6 +375,7 @@ public class ImageGeneratedPage extends Basepage {
             // Switch back to the original tab
             driver.switchTo().window(originalTab);
             System.out.println("Switched back to the original tab.");
+            wait.until(ExpectedConditions.visibilityOf(campaignname));
 
         } catch (NoSuchElementException e) {
             System.err.println("Element not found: " + e.getMessage());
@@ -459,6 +465,7 @@ public class ImageGeneratedPage extends Basepage {
         
         try {
             // Move to the campaign name and record image count before regeneration
+        	wait.until(ExpectedConditions.visibilityOf(campaignname));
             act.moveToElement(campaignname).perform();
             int beforeClickingOnButton = noofimage.size();
             System.out.println("Before regenerate, number of images: " + beforeClickingOnButton);

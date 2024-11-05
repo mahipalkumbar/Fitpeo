@@ -29,6 +29,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
     @Test(priority=2)
     public void dislikeGeneratedImageFunctionalityTest() throws IOException {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
+    	System.out.println("DisLikeGeneratedImageFunctionalityTest");
         logger.info("*************** Starting DisLikeGeneratedImageFunctionalityTest ***************");
 
         try {
@@ -115,17 +116,17 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
     @Test(priority=7)
     public void ImageDownloading() throws IOException {
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
-        logger.info("*************** Starting LikeGeneratedImageFunctionalityTest ***************");
+        logger.info("*************** Starting ImageDownloadingFunctionalityTest ***************");
 
         try {
             boolean isLikeButtonClicked = postImagePage.DownloadCheckWithBrowserCondition("png", 30);
             Assert.assertTrue(isLikeButtonClicked, "Like button action failed to perform.");
-            logger.info("Test Passed: Like button action performed successfully.");
+            logger.info("Test Passed: Downloaded Image successfully.");
         } catch (AssertionError e) {
-            handleErrorWithScreenshot(e, "likeGeneratedImageFunctionalityTest");
+            handleErrorWithScreenshot(e, "ImageDownloadingFunctionalityTest");
         }
 
-        logger.info("*************** Ending LikeGeneratedImageFunctionalityTest ***************");
+        logger.info("*************** Ending ImageDownloadingFunctionalityTest ***************");
     }
 
 
