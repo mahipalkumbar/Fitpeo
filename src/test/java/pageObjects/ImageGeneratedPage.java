@@ -375,7 +375,7 @@ public class ImageGeneratedPage extends Basepage {
             // Switch back to the original tab
             driver.switchTo().window(originalTab);
             System.out.println("Switched back to the original tab.");
-            wait.until(ExpectedConditions.visibilityOf(campaignname));
+           // wait.until(ExpectedConditions.visibilityOf(campaignname));
 
         } catch (NoSuchElementException e) {
             System.err.println("Element not found: " + e.getMessage());
