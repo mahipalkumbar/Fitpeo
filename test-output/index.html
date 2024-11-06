@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -93,7 +93,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 2 failed,   </span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -104,12 +104,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration" class="method navigator-link" hash-for-method="ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration" class="method navigator-link" hash-for-method="ImageGenerationTestImageToImage(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Moder...)">ImageGenerationTestImageToImage(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Moder...)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration" class="method navigator-link" hash-for-method="ImageToVideoGeneration(Upload from Drive, , Vertical, 50.0, 4.0)">ImageToVideoGeneration(Upload from Drive, , Vertical, 50.0, 4.0)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -127,44 +122,27 @@
           <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</span>
+              <span class="class-name">tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)">
-                  </a> <!-- ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...) -->
-                  <span class="method-name">ImageGenerationTest</span>
-                  <span class="parameters">(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with sustainability., Eco-Conscious, Female, All Ages, All India, D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png, EcoBlend Bamboo, Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living., D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png, Green Living Revolution, Increase brand awareness and highlight eco-friendly features., facebook, (1080*1080), Indian, Object, 3D Model, A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.)</span>
-                  <div class="stack-trace">java.lang.AssertionError: Like button action failed to perform. expected [true] but found [false]
-	at tesrCases.TC_008_PostImageGenerationTest.ImageDownloading(TC_008_PostImageGenerationTest.java:123)
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.runPostImageGenerationTests(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:90)
-	at tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration.ImageGenerationTest(TC_001_DataDrivenTesting_Text_to_ImageGeneration.java:40)
+                  <a name="ImageToVideoGeneration(Upload from Drive, , Vertical, 50.0, 4.0)">
+                  </a> <!-- ImageToVideoGeneration(Upload from Drive, , Vertical, 50.0, 4.0) -->
+                  <span class="method-name">ImageToVideoGeneration</span>
+                  <span class="parameters">(Upload from Drive, , Vertical, 50.0, 4.0)</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.cssSelector: .rs-slider-handle (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.24.0&apos;, revision: &apos;748ffc9bc3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.4&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.92, chrome: {chromedriverVersion: 130.0.6723.93 (dbcf0550c05e..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65168}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65168/devtoo..., se:cdpVersion: 130.0.6723.92, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 0feee78d1479ce8393593eb6ccf1c57b
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at pageObjects.VideoVistaImageToImage.AdjustAnimationDurationSlider(VideoVistaImageToImage.java:251)
+	at tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration.ImageToVideoGeneration(TC_011_DataDrivenTesting_Image_to_VideoGeneration.java:36)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-failed -->
-          <div class="suite-Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ImageGenerationTestImageToImage(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Moder...)">
-                  </a> <!-- ImageGenerationTestImageToImage(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Moder...) -->
-                  <span class="method-name">ImageGenerationTestImageToImage</span>
-                  <span class="parameters">(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Modern rooftop solar water heater with sleek design, sunlit environment, , )</span>
-                  <div class="stack-trace">java.lang.AssertionError: Like button action failed to perform. expected [true] but found [false]
-	at tesrCases.TC_008_PostImageGenerationTest.ImageDownloading(TC_008_PostImageGenerationTest.java:123)
-	at tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration.runPostImageGenerationTests(TC_002_DataDrivenTesting_Image_to_ImageGeneration.java:80)
-	at tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration.ImageGenerationTestImageToImage(TC_002_DataDrivenTesting_Image_to_ImageGeneration.java:42)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 28 stack frames
+... Removed 25 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -188,8 +166,7 @@
   &lt;test thread-count=&quot;1&quot; name=&quot;Gen Test - Row 1&quot;&gt;
     &lt;parameter name=&quot;index&quot; value=&quot;0&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration&quot;/&gt;
-      &lt;class name=&quot;tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration&quot;/&gt;
+      &lt;class name=&quot;tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Gen Test - Row 1 --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -203,7 +180,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Gen Test - Row 1 (2 classes)</span>
+                <span class="test-name">Gen Test - Row 1 (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -229,20 +206,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ImageGenerationTest')
-data.setCell(0, 2, 'tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration')
-data.setCell(0, 3, 90466);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'ImageGenerationTestImageToImage')
-data.setCell(1, 2, 'tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration')
-data.setCell(1, 3, 45409);
+data.setCell(0, 1, 'ImageToVideoGeneration')
+data.setCell(0, 2, 'tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration')
+data.setCell(0, 3, 70160);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -257,18 +230,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">tearDown</span>
-                <br/>
-                <span class="ignored-method-name">launchingApplication</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Suite" class="panel">
@@ -277,7 +241,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">launchingApplication(windows, chrome)</span>
                 <span class="method-start">0 ms</span>
@@ -285,24 +249,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">ImageGenerationTest(EcoBlend, Fashion and Apparel, We specialize in eco-friendly home products that combine style with s...)</span>
-                <span class="method-start">28962 ms</span>
+                <span class="method-name">ImageToVideoGeneration(Upload from Drive, , Vertical, 50.0, 4.0)</span>
+                <span class="method-start">197101 ms</span>
               </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">ImageGenerationTestImageToImage(Solar Water Heater, Use an Asset, D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg, Auto Generate, Moder...)</span>
-                <span class="method-start">120258 ms</span>
-              </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">166032 ms</span>
+                <span class="method-start">293371 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

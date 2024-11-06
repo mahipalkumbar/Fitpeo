@@ -230,6 +230,9 @@ public class ScriptPageInTextToVideo extends Basepage {
 	        throw new RuntimeException("Unexpected error: " + e.getMessage());
 	    }
 	}
+	public void ClickOnAnimationStyleNextButton() {
+		
+	}
 	
 	
 	

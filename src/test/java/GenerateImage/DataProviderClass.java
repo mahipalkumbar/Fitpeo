@@ -105,7 +105,7 @@ public class DataProviderClass {
 
 	    // We need to fetch exactly row 1 (the second row in the sheet)
 	    int rowCount = 1; // We're fetching data only from row 1 (second row of the Excel)
-	    int columnCount = 4; // Ensure you're fetching exactly 7 columns
+	    int columnCount = 5; // Ensure you're fetching exactly 7 columns
 
 	    Object[][] data = new Object[rowCount][columnCount]; // Only one row of data
 

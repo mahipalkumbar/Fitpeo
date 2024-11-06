@@ -11,9 +11,11 @@
   <!-- First Test Block - For Row 1 -->
   <test name="Gen Test - Row 1" parallel="none" thread-count="1">
     <parameter name="index" value="0"/>
-    <classes>
+    <classes> 
      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
      <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration"/>
+     <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration"/>
+    <!-- <class name="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration"/>-->
      
     </classes>
   </test>

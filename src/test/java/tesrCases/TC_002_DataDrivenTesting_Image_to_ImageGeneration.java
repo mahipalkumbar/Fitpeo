@@ -19,12 +19,12 @@ import pageObjects.MenuPage;
 import testBase.BaseClass;
 
 public class TC_002_DataDrivenTesting_Image_to_ImageGeneration extends BaseClass{
-	private ImageGeneratedPage postimage;
+	//private ImageGeneratedPage postimage;
 	
 	 @Test(dataProvider = "ImageToImageGenerationData", dataProviderClass = DataProviderClass.class)
 	    public void ImageGenerationTestImageToImage(String ProductName, String selectionofproductimgoption, String UlpoadImageFromSys, String SelectingImageBackdrops,String Prompt, String ReferenceImageSelection,String ReferenceImageFromSys) throws IOException, InterruptedException, AWTException {
 		 
-
+		 
 	        logger.info("**** Starting TC_002_DataDrivenTesting_Image_to_ImageGeneration Image Generation Test with Image to Image  for Product: " + ProductName + " ****");
 	        //MenuPage menu = new MenuPage(driver);
 	        

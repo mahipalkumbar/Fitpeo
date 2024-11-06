@@ -138,7 +138,7 @@ public class BaseClass {
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
             driver.get(properties.getProperty("appURL"));
-           //driver.manage().window().maximize();
+           driver.manage().window().maximize();
         } else {
             logger.error("WebDriver is not initialized. Cannot configure driver.");
         }
@@ -192,7 +192,7 @@ public class BaseClass {
     private void setChromeDownloadPreferences(ChromeOptions options) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-        //chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
+       // chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
         chromePrefs.put("download.default_directory", "C:\\Users\\Public\\JenkinsDownloads");
         options.setExperimentalOption("prefs", chromePrefs);
     }
@@ -201,7 +201,7 @@ public class BaseClass {
     @AfterSuite
     public void tearDown() {
         if (driver != null) {
-            driver.quit(); // Uncomment this line to quit the driver properly
+           // driver.quit(); // Uncomment this line to quit the driver properly
             logger.info("WebDriver quit successfully.");
         } else {
             logger.warn("WebDriver was not initialized. No action taken on quit.");
