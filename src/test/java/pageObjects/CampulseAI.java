@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import testBase.BaseClass;
 
 public class CampulseAI extends Basepage {
-	public CampulseAI(WebDriver driver) {
+	public CampulseAI(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));

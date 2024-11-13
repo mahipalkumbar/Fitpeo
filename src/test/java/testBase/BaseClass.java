@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,31 +24,40 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import pageObjects.Loginpage;
 
 public class BaseClass {
-    public static WebDriver driver;
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public ThreadLocal<String> downloadDir = new ThreadLocal<>(); // Unique download directory per thread
     public Logger logger;
     public Properties properties;
-
+    public String downloadDirectory;
     // Constructor
     public BaseClass() {
         logger = LogManager.getLogger(this.getClass());
     }
 
-    // Before Suite - Application Launch
-    @BeforeSuite
+    // Before Test - Setup
+    @BeforeTest
     @Parameters({"os", "browser"})
     public void launchingApplication(String os, String browser) throws IOException {
         loadProperties();
-        if (driver == null) {
-            initializeDriver(os, browser);
+        
+        // Generate a unique download directory for each test run
+        
+        //String uniqueDownloadDir = "D:\\Mahipal\\NYX.today\\Downloads\\" + UUID.randomUUID().toString();
+        String uniqueDownloadDir = "C:\\Users\\Public\\JenkinsDownloads" + UUID.randomUUID().toString();
+        downloadDir.set(uniqueDownloadDir);
+        new File(uniqueDownloadDir).mkdirs();  // Ensure the directory is created
+
+        if (driver.get() == null) {
+            initializeDriver(os, browser, uniqueDownloadDir);
         }
-        configureDriver(); // Ensure driver is configured after initialization
+        configureDriver();
         performLogin();
     }
 
@@ -59,28 +69,23 @@ public class BaseClass {
         }
     }
 
-    // Driver Initialization based on environment
-    private void initializeDriver(String os, String browser) throws IOException {
-        logger.info("Initializing driver with OS: " + os + ", Browser: " + browser + ", Environment: " + properties.getProperty("execution_env"));
+    // Driver Initialization
+    private void initializeDriver(String os, String browser, String uniqueDownloadDir) throws IOException {
+        logger.info("Initializing driver with OS: " + os + ", Browser: " + browser);
         if ("remote".equalsIgnoreCase(properties.getProperty("execution_env"))) {
-            DesiredCapabilities capabilities = getDesiredCapabilities(os, browser);
+            DesiredCapabilities capabilities = getDesiredCapabilities(os, browser, uniqueDownloadDir);
             try {
-                logger.info("Attempting to connect to Remote WebDriver.");
-                driver = new RemoteWebDriver(new URL("http://34.100.251.62:4444/wd/hub"), capabilities);
-                logger.info("Remote WebDriver session started successfully.");
+                driver.set(new RemoteWebDriver(new URL("http://34.100.251.62:4444/wd/hub"), capabilities));
             } catch (MalformedURLException e) {
-                logger.error("Invalid remote WebDriver URL. Check the remote server address.", e);
-            } catch (Exception e) {
-                logger.error("Failed to create remote WebDriver session.", e);
+                logger.error("Invalid remote WebDriver URL.", e);
             }
         } else {
-            driver = getLocalDriver(browser);
+            driver.set(getLocalDriver(browser, uniqueDownloadDir));
         }
     }
 
-
-    // Set Desired Capabilities for Remote WebDriver
-    public DesiredCapabilities getDesiredCapabilities(String os, String browser) {
+    // Desired Capabilities with Download Preferences
+    public DesiredCapabilities getDesiredCapabilities(String os, String browser, String uniqueDownloadDir) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
 
@@ -97,34 +102,33 @@ public class BaseClass {
         }
 
         if (browser.equalsIgnoreCase("chrome") || browser.equalsIgnoreCase("brave")) {
-            ChromeOptions chromeOptions = configureBrowserOptions(browser);
+            ChromeOptions chromeOptions = configureBrowserOptions(browser, uniqueDownloadDir);
             capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
         return capabilities;
     }
 
     // Configure Browser Options
-    private ChromeOptions configureBrowserOptions(String browser) {
+    private ChromeOptions configureBrowserOptions(String browser, String uniqueDownloadDir) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Run in headless mode
-        options.addArguments("--window-size=1920,1080");
-       // options.addArguments("--disable-gpu");
-
+        // Add headless mode option for running in headless environment
+        options.addArguments("--headless");
+        // Set window size to avoid issues in headless mode
+        options.addArguments("--window-size=1920x1080");
         if (browser.equalsIgnoreCase("brave")) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             options.addArguments("--disable-blink-features=AutomationControlled");
         }
-
-        setChromeDownloadPreferences(options);
+        setChromeDownloadPreferences(options, uniqueDownloadDir);
         return options;
     }
 
     // Local WebDriver setup
-    public WebDriver getLocalDriver(String browser) {
+    public WebDriver getLocalDriver(String browser, String uniqueDownloadDir) {
         switch (browser.toLowerCase()) {
             case "chrome":
             case "brave":
-                ChromeOptions options = configureBrowserOptions(browser);
+                ChromeOptions options = configureBrowserOptions(browser, uniqueDownloadDir);
                 return new ChromeDriver(options);
             default:
                 logger.error("Invalid browser name: " + browser);
@@ -134,20 +138,20 @@ public class BaseClass {
 
     // Configure driver settings
     private void configureDriver() {
-        if (driver != null) { // Check if driver is initialized
-            driver.manage().deleteAllCookies();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-            driver.get(properties.getProperty("appURL"));
-           driver.manage().window().maximize();
+        if (driver.get() != null) {
+            driver.get().manage().deleteAllCookies();
+            driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+            driver.get().get(properties.getProperty("appURL"));
+           // driver.get().manage().window().maximize();
         } else {
-            logger.error("WebDriver is not initialized. Cannot configure driver.");
+            logger.error("WebDriver is not initialized.");
         }
     }
 
     // Perform login
     private void performLogin() {
-        if (driver != null) { // Check if driver is initialized
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        if (driver.get() != null) {
+            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
             Loginpage loginPage = new Loginpage(driver);
             loginPage.sendPhone(properties.getProperty("phone_no"));
             loginPage.sendPassword(properties.getProperty("password"));
@@ -160,19 +164,19 @@ public class BaseClass {
                 logger.error("Login failed due to timeout.");
             }
         } else {
-            logger.error("WebDriver is not initialized. Cannot perform login.");
+            logger.error("WebDriver is not initialized.");
         }
     }
 
     // Capture Screenshot
     public String captureScreen(String testName) throws IOException {
-        if (driver == null) {
-            logger.error("WebDriver is not initialized. Cannot capture screenshot.");
+        if (driver.get() == null) {
+            logger.error("WebDriver is not initialized.");
             return null;
         }
 
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        TakesScreenshot ts = (TakesScreenshot) driver;
+        TakesScreenshot ts = (TakesScreenshot) driver.get();
         String targetFilePath = Paths.get(System.getProperty("user.dir"), "Screenshots", testName + "_" + timestamp + ".png").toString();
 
         new File(Paths.get(System.getProperty("user.dir"), "Screenshots").toString()).mkdirs();
@@ -188,23 +192,46 @@ public class BaseClass {
         }
     }
 
-    // Set Download Preferences for Chrome and Brave
-    private void setChromeDownloadPreferences(ChromeOptions options) {
+    // Set Chrome Download Preferences
+    private void setChromeDownloadPreferences(ChromeOptions options, String uniqueDownloadDir) {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-       // chromePrefs.put("download.default_directory", "D:\\Mahipal\\NYX.today\\New folder");
-        chromePrefs.put("download.default_directory", "C:\\Users\\Public\\JenkinsDownloads");
+        chromePrefs.put("download.default_directory", uniqueDownloadDir);
         options.setExperimentalOption("prefs", chromePrefs);
     }
 
-    // After Suite - Clean up
-    @AfterSuite
+    // After Test - Clean up
+ // After Test - Clean up
+    @AfterTest
     public void tearDown() {
-        if (driver != null) {
-           // driver.quit(); // Uncomment this line to quit the driver properly
+        if (driver.get() != null) {
+           // driver.get().quit();
             logger.info("WebDriver quit successfully.");
-        } else {
-            logger.warn("WebDriver was not initialized. No action taken on quit.");
+        }
+
+        // Deleting the unique download directory after test completion
+        String uniqueDownloadDir = downloadDir.get(); // Retrieve the unique download directory
+        if (uniqueDownloadDir != null) {
+            deleteDirectory(new File(uniqueDownloadDir)); // Delete the directory and its contents
+            logger.info("Download directory deleted: " + uniqueDownloadDir);
         }
     }
+
+    // Helper method to delete a directory and its contents
+    private void deleteDirectory(File directory) {
+        if (directory != null && directory.exists()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        deleteDirectory(file); // Recursively delete subdirectories
+                    } else {
+                        file.delete(); // Delete individual file
+                    }
+                }
+            }
+            directory.delete(); // Delete the directory itself
+        }
+    }
+
 }

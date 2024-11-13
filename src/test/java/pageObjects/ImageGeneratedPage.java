@@ -3,7 +3,6 @@ package pageObjects;
 
 
 
-
 //import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -30,7 +29,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ImageGeneratedPage extends Basepage {
-    public ImageGeneratedPage(WebDriver driver) {
+    public ImageGeneratedPage(ThreadLocal<WebDriver> driver) {
         super(driver);
     }
      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -52,6 +51,9 @@ public class ImageGeneratedPage extends Basepage {
     @FindBy(xpath="//div[@class='slick-list']//img")   
     private WebElement campaignname;    
     
+    
+    @FindBy(xpath="//div[@class='flex flex-col items-center justify-center']/following::video")   
+    private WebElement video; 
     
 
     @FindBy(xpath="//button[@class='text-[#FFFFFF] border rounded-full p-2 focus:outline-none hover:bg-nyx-sky hover:border-nyx-sky active:bg-nyx-sky active:border-nyx-sky']") 
@@ -143,8 +145,34 @@ public class ImageGeneratedPage extends Basepage {
 
     
  
-
+  //div[@class='flex flex-col items-center justify-center']/following::video
     public boolean clickOnSaveButton() throws Exception {
+        try {
+            // Ensure the save button is clickable and then click it
+        	wait.until(ExpectedConditions.visibilityOf(campaignname));
+        	act.moveToElement(campaignname).perform();
+            wait.until(ExpectedConditions.elementToBeClickable(savebut)).click();
+            
+            // Wait for the confirmation dialog to be visible
+            WebElement popup = wait.until(ExpectedConditions.visibilityOf(imageSavedImageHasBeenSave));
+
+            // If the dialog is displayed, click OK and return true
+            if (popup.isDisplayed()) {
+                okforimagesaved.click(); // Click OK on the dialog
+                return true; // Confirmation is successful
+            } else {
+                throw new Exception("Confirmation dialog not displayed after clicking the Save button.");
+            }
+        } catch (NoSuchElementException e) {
+            throw new Exception("Save button or confirmation dialog not found: " + e.getMessage(), e);
+        } catch (TimeoutException e) {
+            throw new Exception("Timeout waiting for the confirmation dialog: " + e.getMessage(), e);
+        } catch (Exception e) {
+            throw new Exception("An unexpected error occurred while clicking on the save button: " + e.getMessage(), e);
+        }
+    }
+    
+    public boolean clickOnSaveButtonImageToVideo() throws Exception {
         try {
             // Ensure the save button is clickable and then click it
         	wait.until(ExpectedConditions.visibilityOf(campaignname));
@@ -173,8 +201,8 @@ public class ImageGeneratedPage extends Basepage {
     
     
     
-    public boolean DownloadCheckWithBrowserCondition(String fileExtension, int timeoutSeconds) {
-    	String projectDownloadDir = "C:\\Users\\Public\\JenkinsDownloads";
+    public boolean DownloadCheckWithBrowserCondition(String projectDownloadDir,String fileExtension, int timeoutSeconds) {
+    	//String projectDownloadDir = "C:\\Users\\Public\\JenkinsDownloads";
     	//String projectDownloadDir = System.getProperty("user.home") + File.separator + "Automation_Testing" + File.separator + "PostImagesDownload";
         //String projectDownloadDir = "D:\\Mahipal\\NYX.today\\New folder";
         System.out.println("Download directory set to: " + projectDownloadDir);
@@ -189,7 +217,8 @@ public class ImageGeneratedPage extends Basepage {
         }
 
         // Delete any existing files with the specified extension in the directory
-        deleteExistingFilesWithExtension(projectDownloadDir, fileExtension);
+        deleteExistingFilesWithExtension( projectDownloadDir,  fileExtension);
+       // deleteExistingFilesWithExtension(projectDownloadDir, fileExtension);
 
         // Check the browser type using the WebDriver instance
         String browserType = ((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
@@ -238,6 +267,7 @@ public class ImageGeneratedPage extends Basepage {
     }
 
     // Helper method to delete any existing files with the specified extension
+    // Helper method to delete any existing files with the specified extension
     private void deleteExistingFilesWithExtension(String dirPath, String fileExtension) {
         System.out.println("Checking and deleting existing files with extension: ." + fileExtension + " in directory: " + dirPath);
         File dir = new File(dirPath);
@@ -255,6 +285,7 @@ public class ImageGeneratedPage extends Basepage {
             System.out.println("No existing files found with the specified extension.");
         }
     }
+
 
     // Helper method to get the latest file with the specified extension
     private File getLatestFileFromDir(String dirPath, String fileExtension) {
@@ -368,6 +399,7 @@ public class ImageGeneratedPage extends Basepage {
             // Print confirmation message if the Brand Canvas image is displayed
             if (isBrandCanvasDisplayed) {
                 System.out.println("Brand Canvas page successfully loaded, and the image is displayed.");
+                driver.close();
             } else {
                 System.out.println("Brand Canvas image is not displayed.");
             }

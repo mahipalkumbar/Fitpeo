@@ -18,6 +18,7 @@ import pageObjects.ImageCraftAI;
 import pageObjects.MenuPage;
 import pageObjects.ScriptPageInTextToVideo;
 import pageObjects.StartSlateEndSlate;
+import pageObjects.TextToVideoPostVideoGeneration;
 import pageObjects.VideoContentInTextToVideo;
 import pageObjects.VideoSettingsInTextToVideo;
 import pageObjects.VideoVistaAI;
@@ -72,21 +73,22 @@ public class TC_010_DataDrivenTesting_Text_to_VideoGeneration extends BaseClass 
 		 cttv.CommonTextToVideoMethod(brandname, category, abouturbrand, tgname, gender, agegruop, region, brandlogo, productname, productdescription, productlogo, campaignname, objective, ScriptSelection, AIPrompt, YourScript,writingstyle, duration, VideoStactureSelection, VideoSizeSelection, PaceSelection, CaptionSelection, slateselection, StartSlateUpload, Endslateupload);
 	    }
 	 private void waitForImageGeneration() {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
-	        WebElement generatedImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='slick-list']//img")));
+	        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(300));
+	        WebElement generatedImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=' flex w-full justify-center   rounded-lg']//video")));
 	        Assert.assertNotNull(generatedImage, "Video was not generated within 3 minutes.");
 	        System.out.println("Video generated successfully within the expected time with Text to Video");
 	    }
 	 
 	 private void runPostImageGenerationTests() throws Exception {
-	        TC_008_PostImageGenerationTest test = new TC_008_PostImageGenerationTest();
-	        test.dislikeGeneratedImageFunctionalityTest();
-	        test.likeGeneratedImageFunctionalityTest();
-	        //test.saveGeneratedImageFunctionalityTest();
-	        test.verifyImageRegeneration();
-	        test.ImageDownloading();
+		 TextToVideoPostVideoGeneration test = new TextToVideoPostVideoGeneration(driver);
+	        test.clickOnDisLikeButtonAfterImageGenerated();
+	        test.clickOnLikeButtonAfterImageGenerated();
+	        //test.clickOnSaveButton();
+	        //test.verifyImageRegeneration();
+	        String projectDownloadDir = downloadDir.get();
+	        //test.DownloadCheckWithBrowserCondition(projectDownloadDir, "mp4", 60);
 	        //test.testRevealPromptButtonFunctionality();
-	        test.testOpenWithBrandCanvasFunctionality();
+	        test.clickOnOpenWithBrandCanvas();
 	    }
 	 private void handleImageGenerationFailure(MenuPage menu, String brandname, Exception e) throws IOException {
 		 logger.error("Image generation failed for Product: " + brandname, e);

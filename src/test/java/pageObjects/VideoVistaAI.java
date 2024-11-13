@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class VideoVistaAI extends Basepage{
-	public VideoVistaAI(WebDriver driver) {
+	public VideoVistaAI(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

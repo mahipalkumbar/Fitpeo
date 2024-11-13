@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ScriptPageInTextToVideo extends Basepage {
-	public ScriptPageInTextToVideo(WebDriver driver) {
+	public ScriptPageInTextToVideo(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -95,8 +95,8 @@ public class ScriptPageInTextToVideo extends Basepage {
 	            
 	            try {
 	                // Locate the slider handle and track
-	                WebElement sliderHandle = driver.findElement(By.cssSelector(".rs-slider-handle"));
-	                WebElement sliderTrack = driver.findElement(By.cssSelector(".rs-slider-bar"));
+	                WebElement sliderHandle = driver.findElement(By.cssSelector(".rs-slider-handle"));//full dot
+	                WebElement sliderTrack = driver.findElement(By.cssSelector(".rs-slider-bar"));//full bar or slider
 	                
 	                // Get the dimensions of the slider
 	                int sliderWidth = sliderTrack.getSize().getWidth(); // Full width of the slider track
@@ -107,7 +107,7 @@ public class ScriptPageInTextToVideo extends Basepage {
 	                int currentOffset = (int) ((currentPercentage / 100) * (sliderWidth - handleWidth)); // Offset for 5 sec
 	                int zeroOffset = -(currentOffset); // Offset to move back to 0 sec (negative of the current offset)
 	                
-	                System.out.println("Moving slider to 0 seconds.");
+	                System.out.println("Moving slider to 0 seconds."+" current offest is :"+zeroOffset);
 	                
 	                // Move slider to 0 seconds
 	                Actions actions = new Actions(driver);

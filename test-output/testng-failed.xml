@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+<suite thread-count="4" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <parameter name="os" value="windows"/>
   <parameter name="browser" value="chrome"/>
-  <listeners>
-    <listener class-name="utilities.ExtentReportManager"/>
-  </listeners>
-  <test thread-count="5" name="Gen Test - Row 1(failed)">
-    <parameter name="index" value="0"/>
+  <test thread-count="4" name="Test 1 - Text to Image Generation(failed)">
     <classes>
+      <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration">
+        <methods>
+          <include name="tearDown"/>
+          <include name="launchingApplication"/>
+          <include name="TextToVideoGeneration" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration -->
       <class name="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration">
         <methods>
           <include name="tearDown"/>
           <include name="launchingApplication"/>
-          <include name="ImageToVideoGeneration" invocation-numbers="0"/>
+          <include name="ImageGenerationTestImageToVideo" invocation-numbers="0"/>
         </methods>
       </class> <!-- tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration -->
     </classes>
-  </test> <!-- Gen Test - Row 1(failed) -->
+  </test> <!-- Test 1 - Text to Image Generation(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -115,12 +115,13 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
     
     @Test(priority=7)
     public void ImageDownloading() throws IOException {
+    	String projectDownloadDir = downloadDir.get();
     	ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("*************** Starting ImageDownloadingFunctionalityTest ***************");
 
         try {
-            boolean isLikeButtonClicked = postImagePage.DownloadCheckWithBrowserCondition("png", 30);
-            Assert.assertTrue(isLikeButtonClicked, "Like button action failed to perform.");
+        	boolean isDownloadSuccessful = postImagePage.DownloadCheckWithBrowserCondition(projectDownloadDir, "png", 30);
+            Assert.assertTrue(isDownloadSuccessful, "Download button action failed to perform.");
             logger.info("Test Passed: Downloaded Image successfully.");
         } catch (AssertionError e) {
             handleErrorWithScreenshot(e, "ImageDownloadingFunctionalityTest");

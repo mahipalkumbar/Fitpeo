@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CampaignName extends Basepage{
-	public CampaignName(WebDriver driver) {
+	public CampaignName(ThreadLocal<WebDriver> driver) {
 			super(driver);
 		}
 

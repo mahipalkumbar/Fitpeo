@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class VideoVistaImageToImage extends Basepage{
-	public VideoVistaImageToImage(WebDriver driver) {
+	public VideoVistaImageToImage(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -30,6 +31,15 @@ public class VideoVistaImageToImage extends Basepage{
 	
 	@FindBy(xpath="//button[text()='Upload']") 
 	WebElement uploadbutton;
+	
+	
+	
+	@FindBy(xpath="//div[@class='py-3 md:px-7 sm:px-4 amountOfMotionn']//div[@class='rs-slider-handle']") 
+	WebElement sliderHandleamountofmotion; // slider dot
+	
+	
+	@FindBy(xpath="//div[@class='py-3 md:px-7 sm:px-4 amountOfMotionn']//div[@class='rs-slider-bar']") 
+	WebElement sliderBaramountofmotion; // slider bar or full lider length
 	
 	@FindBy(xpath="//div[@class=' flex flex-wrap gap-3 my-3 overflow-y-auto overflow-x-hidden h-[280px]']//div//img")
 	List<WebElement> selectimgfromasset;
@@ -46,6 +56,36 @@ public class VideoVistaImageToImage extends Basepage{
 	
 	@FindBy(xpath="//div[text()='Amount of motion']/following::button[1]") 
 	WebElement amountofmotionnextbutton;
+	
+	@FindBy(xpath="//div[text()='Animation Duration']/following::button[1]") 
+	WebElement animationdurationnextbutton;
+	
+	public void ClickOnNextButtonOnAnimationDuration() {
+	    try {
+	        // Attempting to click on the 'Next' button
+	        System.out.println("Attempting to click on the 'Next' button...");
+	        animationdurationnextbutton.click();
+	        System.out.println("Successfully clicked on the 'Next' button.");
+	    } catch (Exception e) {
+	        // Print the exception message and throw a custom error message
+	        System.out.println("Failed to click on the 'Next' button: " + e.getMessage());
+	        throw new RuntimeException("Error: Could not click on the 'Next' button due to an unexpected issue.");
+	    }
+	}
+	
+	
+	public void ClickOnNextButtonOnAmountOfMotion() {
+	    try {
+	        // Attempting to click on the 'Next' button
+	        System.out.println("Attempting to click on the 'Next' button...");
+	        amountofmotionnextbutton.click();
+	        System.out.println("Successfully clicked on the 'Next' button.");
+	    } catch (Exception e) {
+	        // Print the exception message and throw a custom error message
+	        System.out.println("Failed to click on the 'Next' button: " + e.getMessage());
+	        throw new RuntimeException("Error: Could not click on the 'Next' button due to an unexpected issue.");
+	    }
+	}
 	
 	
 	public void clickOnUploadButton() {
@@ -178,69 +218,217 @@ public class VideoVistaImageToImage extends Basepage{
 	    }
 	}
 	
-	
-	public void AdjustingAmountofMotionSlider(String targetPosition) {
-	    int targetValue;
+	public void moveSliderToValue(int targetValue) {
+	    // Get the width of the slider bar and the handle
+	    int maxSliderWidth = sliderBaramountofmotion.getSize().getWidth();
+	    int handleWidth = sliderHandleamountofmotion.getSize().getWidth();
 
-	    // Parse the target position, default to 20% if invalid
+	    // Calculate the current position of the slider handle as a percentage (assuming it's at 20% initially)
+	    String styleAttribute = sliderHandleamountofmotion.getAttribute("style");
+	    String leftValueStr = styleAttribute.substring(styleAttribute.indexOf("left:") + 5, styleAttribute.indexOf("%"));
+	    double currentPercentage = Double.parseDouble(leftValueStr.trim());
+
+	    // Calculate the current offset of the handle based on its percentage
+	    int currentOffset = (int) ((currentPercentage / 100) * (maxSliderWidth - handleWidth));
+
+	    // Calculate the offset to move the handle to the zero position
+	    int zeroOffset = -currentOffset;
+
+	    // Move the handle to the zero position (0%)
+	    Actions actions = new Actions(driver);
+	    actions.clickAndHold(sliderHandleamountofmotion)
+	           .moveByOffset(zeroOffset, 0)  // Move the handle to the 0% position
+	           .release()
+	           .perform();
+	    System.out.println("Slider moved to 0%.");
+
+	    // Wait for the slider to be fully at 0% (optional, you can adjust the delay)
 	    try {
-	        targetValue = Integer.parseInt(targetPosition);
-	    } catch (NumberFormatException e) {
-	        System.err.println("Invalid target position provided. Defaulting to 20.");
-	        targetValue = 20;
+	        Thread.sleep(500);  // Adjust the delay as needed for the slider to settle at 0%
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
 	    }
 
-	    // Ensure target value is within 0-100%
-	    if (targetValue < 0 || targetValue > 100) {
-	        throw new IllegalArgumentException("Target position must be between 0 and 100.");
+	    // After moving to 0, move the slider to the target value (incrementing by 10 each time)
+	    int targetOffset = (int) ((targetValue / 100.0) * (maxSliderWidth - handleWidth));
+
+	    // Move the handle to the target position
+	    int increment = 10; // Increment by 10 as per the requirement
+	    while (currentPercentage < targetValue) {
+	        currentPercentage += increment;
+
+	        // Calculate the offset for the next position
+	        int moveOffset = (int) ((currentPercentage / 100.0) * (maxSliderWidth - handleWidth));
+
+	        // Perform the action to move the slider by the calculated offset
+	        actions.clickAndHold(sliderHandleamountofmotion)
+	               .moveByOffset(moveOffset - currentOffset, 0) // Move the handle horizontally
+	               .release()
+	               .perform();
+	        
+	        // Update the current offset to the new position
+	        currentOffset = moveOffset;
+
+	        System.out.println("Slider moved to: " + currentPercentage + "%");
+
+	        // Optional: You can add a delay here if needed to allow the slider to move smoothly
+	        try {
+	            Thread.sleep(100);  // Adjust the delay as needed
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
 	    }
+	    System.out.println("Slider reached target value: " + targetValue + "%.");
+	}
 
-	    // Locate elements
-	    WebElement sliderHandle = driver.findElement(By.cssSelector(".rs-slider-handle"));
-	    WebElement sliderBar = driver.findElement(By.cssSelector(".rs-slider-bar"));
+        
+        
+        
+        
+		
+    
 
-	    // Get the width of the slider bar for accurate movement
-	    int sliderWidth = sliderBar.getSize().getWidth();
-	    if (sliderWidth == 0) {
-	        throw new IllegalStateException("Slider bar width is zero. Cannot move slider.");
-	    }
+	   /* //int target = Integer.parseInt(targetPercentage); // Target position in percentage (e.g., 30%)
+	    System.out.println("Target slider position: " + target + "%");
 
-	    // Calculate the target position in pixels (based on target value as percentage)
-	    int targetLocation = (int) ((targetValue / 100.0) * sliderWidth);
+	    // Get the full width of the slider and handle
+	    int maxSliderWidth = sliderBaramountofmotion.getSize().getWidth();
+	    int handleWidth = sliderHandleamountofmotion.getSize().getWidth();
+	    int targetOffset = (int) ((target / 100.0) * (maxSliderWidth - handleWidth));
+
+	    Actions actions = new Actions(driver);
 	    
-	    // Log the calculated positions and target for debugging
-	    System.out.println("Slider bar width (in pixels): " + sliderWidth);
-	    System.out.println("Calculated target position (in pixels): " + targetLocation);
+	    double currentPercentage = (20.0 /100) * 100;
+        int currentOffset1 = (int) ((currentPercentage / 100) * (maxSliderWidth - handleWidth)); // Offset for 5 sec
+        int zeroOffset = -(currentOffset1);
+        actions.clickAndHold(sliderHandleamountofmotion)
+        .moveByOffset(zeroOffset, 0) // Move back to the zero position
+        .release()
+        .perform();
+        Thread.sleep(2000);
+	    
+	    try {
+	        // Click and hold the slider handle
+	        actions.clickAndHold(sliderHandleamountofmotion).perform();
+	        Thread.sleep(500); // Pause to ensure click and hold registers
+	        
+	        // Start with the current offset of the slider
+	        int currentOffset = getCurrentSliderOffset();
+	        System.out.println("Initial slider offset: " + currentOffset + " pixels");
 
-	    // Get the initial position of the slider handle before moving
-	    int initialSliderPosition = sliderHandle.getLocation().getX();
-	    System.out.println("Initial slider handle position: " + initialSliderPosition + "px");
+	        // Increment size to move the slider gradually
+	        int increment = 2; // Increment value (in pixels)
+	        while (currentOffset < targetOffset) {
+	            actions.moveByOffset(increment, 0).perform();
+	            Thread.sleep(100); // Pause to ensure the move is registered
+	            
+	            currentOffset = getCurrentSliderOffset();
+	            System.out.println("Current slider offset after increment: " + currentOffset + " pixels");
 
-	    // Calculate the required drag offset from the current position to the target position
-	    int dragOffset = targetLocation - initialSliderPosition;
-	    System.out.println("Drag offset (pixels) to move slider: " + dragOffset);
+	            // Check if the current offset is close to the target position
+	            if (Math.abs(currentOffset - targetOffset) <= increment) {
+	                break; // Stop if the current position is close enough to the target
+	            }
+	        }
+	        
+	        // Release the slider handle once the target is reached or exceeded
+	        actions.release().perform();
+	        System.out.println("Slider moved to the target position: " + target + "%");
 
-	    // Perform the drag action
-	    act.clickAndHold(sliderHandle)
-	       .moveByOffset(dragOffset, 0)  // Move by the calculated offset
-	       .release()
-	       .perform();
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }*/
+	
 
-	    // Verify that the slider moved to the expected position
-	    String progressBarWidth = sliderBar.getAttribute("style");
-	    System.out.println("Slider progress after move: " + progressBarWidth);
+	/*Helper method to get the current offset in pixels from the style attribute
+	private int getCurrentSliderOffset() {
+	    String styleValue = sliderHandleamountofmotion.getAttribute("style");
+	    String pixelStr = styleValue.replaceAll("[^\\d]", ""); // Extract numeric part from "left: XXpx"
+	    return Integer.parseInt(pixelStr);
+	}*/
 
-	    // Log the final position of the slider handle for debugging
-	    int finalSliderPosition = sliderHandle.getLocation().getX();
-	    System.out.println("Slider handle position after move: " + finalSliderPosition + "px");
+	/**/
+		   // Thread.sleep(5000);
+	    // Step 2: Move to the target percentage
+	   /* int targetOffset = (int) ((targetPercentage / 100.0) * (sliderWidth - handleWidth));
+	    actions.clickAndHold(sliderHandleamountofmotion)
+	           .moveByOffset(targetOffset, 0)
+	           .release()
+	           .perform();
 
-	    // Check if the slider moved to the expected value
-	    if (finalSliderPosition == targetLocation) {
-	        System.out.println("Slider successfully moved to: " + targetValue + "%");
+	    // Verify the slider moved to the expected position
+	    String finalValue = sliderHandle.findElement(By.tagName("input")).getAttribute("value");
+	    System.out.println("Slider moved to position: " + finalValue + "%");
+
+	    if (Integer.parseInt(finalValue) == targetPercentage) {
+	        System.out.println("Slider successfully moved to " + targetPercentage + "%.");
 	    } else {
-	        System.out.println("Slider move failed. Current position: " + finalSliderPosition + " (Expected: " + targetLocation + ")");
+	        System.out.println("Slider move failed. Expected: " + targetPercentage + "%, but got: " + finalValue + "%.");
+	    }
+	}*/
+
+         //System.out.println("Slider moved to 0 seconds.");
+	    // Locate the slider handle and the input range element
+	   /* WebElement sliderHandle = driver.findElement(By.cssSelector(".rs-slider-handle"));
+	    WebElement sliderInput = driver.findElement(By.cssSelector(".rs-slider-handle input[type='range']"));
+	    
+	    // Execute JavaScript to move slider to 0%
+	    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+	    
+	    // Set slider handle style to 0% and update the input's value to 0
+	    jsExecutor.executeScript(
+	        "arguments[0].style.left = '0%'; arguments[1].value = '0';", 
+	        sliderHandle, sliderInput
+	    );
+
+	    // Optionally trigger a change event to ensure the UI updates
+	    jsExecutor.executeScript("arguments[0].dispatchEvent(new Event('change'));", sliderInput);
+
+	    // Verify the slider moved to the 0% position
+	    String sliderHandlePosition = sliderHandle.getAttribute("style");
+	    System.out.println("Slider handle position after JavaScript move: " + sliderHandlePosition);
+
+	    // Confirm the value set in the input field
+	    String inputValue = sliderInput.getAttribute("value");
+	    System.out.println("Slider input value: " + inputValue);
+	    
+	    if ("0".equals(inputValue)) {
+	        System.out.println("Slider successfully moved to 0%.");
+	    } else {
+	        System.out.println("Slider move failed. Current input value: " + inputValue + " (Expected: 0)");
 	    }
 	}
+
+	
+	
+	 public void AdjustingAmountofMotionSlider(String targetValue1) {
+	        // Convert targetValue from String to int
+	        int targetValue = Integer.parseInt(targetValue1);
+	        
+	        WebElement sliderHandle = driver.findElement(By.cssSelector(".rs-slider-handle"));
+	        WebElement sliderTooltip = driver.findElement(By.cssSelector(".rs-slider-tooltip"));
+	        
+	        // Parse the current slider value from the tooltip text
+	        int currentValue = Integer.parseInt(sliderTooltip.getText());
+
+	        // Initialize the Actions class to perform drag-and-drop
+	        Actions actions = new Actions(driver);
+
+	        // Move slider handle until the target value is reached
+	        while (currentValue != targetValue) {
+	            // Determine whether to move forward or backward
+	            if (currentValue < targetValue) {
+	                actions.dragAndDropBy(sliderHandle, 5, 0).perform();  // Move to the right
+	            } else {
+	                actions.dragAndDropBy(sliderHandle, -5, 0).perform();  // Move to the left
+	            }
+
+	            // Re-check the current value after moving
+	            currentValue = Integer.parseInt(sliderTooltip.getText());
+	        }*/
+	    
+
+	
 
 
 

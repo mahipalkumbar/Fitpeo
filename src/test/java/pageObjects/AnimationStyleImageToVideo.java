@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AnimationStyleImageToVideo extends Basepage{
-	public AnimationStyleImageToVideo(WebDriver driver) {
+	public AnimationStyleImageToVideo(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	JavascriptExecutor js = (JavascriptExecutor) driver;

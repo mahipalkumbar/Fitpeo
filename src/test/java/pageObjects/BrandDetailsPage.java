@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrandDetailsPage extends Basepage {
-	public BrandDetailsPage(WebDriver driver) {
+	public BrandDetailsPage(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));

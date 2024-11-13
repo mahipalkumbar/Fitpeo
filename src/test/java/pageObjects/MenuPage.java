@@ -14,10 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MenuPage extends Basepage{
-		public MenuPage(WebDriver driver) {
-			super(driver);
-		}
-		Actions act=new Actions(driver);
+	public MenuPage(ThreadLocal<WebDriver> driver) {
+        super(driver);
+    }		Actions act=new Actions(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
@@ -174,7 +173,8 @@ public class MenuPage extends Basepage{
 
 		public void clickVideoVistaAIButton() {
 		    try {
-		        VideoVistaAIButton.click();
+		    	js.executeScript("arguments[0].click();", VideoVistaAIButton);
+		        //VideoVistaAIButton.click();
 		    } catch (NoSuchElementException e) {
 		        throw new NoSuchElementException("Video Vista AI Button not found: " + e.getMessage());
 		    } catch (Exception e) {

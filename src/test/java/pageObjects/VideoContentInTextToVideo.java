@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class VideoContentInTextToVideo extends Basepage {
-	public VideoContentInTextToVideo(WebDriver driver) {
+	public VideoContentInTextToVideo(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

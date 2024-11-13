@@ -22,7 +22,7 @@ import org.testng.Assert;
 
 
 public class Creativedesign extends Basepage{
-	public Creativedesign(WebDriver driver) {
+	public Creativedesign(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));

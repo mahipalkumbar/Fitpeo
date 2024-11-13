@@ -1,4 +1,7 @@
 package pageObjects;
+
+
+
 import java.awt.AWTException;
 import java.time.Duration;
 import java.util.Collections;
@@ -18,7 +21,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Addbrandinfo extends Basepage{
-		public Addbrandinfo(WebDriver driver) {
+		public Addbrandinfo(ThreadLocal<WebDriver> driver) {
 			super(driver);
 		}
 		
@@ -182,7 +185,7 @@ public class Addbrandinfo extends Basepage{
 		  private int listSize;
 
 		  public void addNewBrandButton() {
-			  WebDriverWait wait1=new WebDriverWait(driver,Duration.ofSeconds(4));
+			  WebDriverWait wait1=new WebDriverWait(driver,Duration.ofSeconds(30));
 			  wait.until(ExpectedConditions.visibilityOfAllElements(AddNewbrandbutton));
 		      try {
 		          // Wait for brand list visibility and handle TimeoutException

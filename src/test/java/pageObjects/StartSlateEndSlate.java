@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StartSlateEndSlate extends Basepage {
-	public StartSlateEndSlate(WebDriver driver) {
+	public StartSlateEndSlate(ThreadLocal<WebDriver> driver) {
 		super(driver);
 	}
 	

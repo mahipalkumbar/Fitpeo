@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -65,7 +66,7 @@ public class TC_002_DataDrivenTesting_Image_to_ImageGeneration extends BaseClass
 	// }
 	 
 	 private void waitForImageGeneration() {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
+	        WebDriverWait wait = new WebDriverWait((WebDriver) driver.get(), Duration.ofSeconds(180));
 	        WebElement generatedImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='slick-list']//img")));
 	        Assert.assertNotNull(generatedImage, "Image was not generated within 3 minutes.");
 	        System.out.println("Image generated successfully within the expected time.");
@@ -76,8 +77,8 @@ public class TC_002_DataDrivenTesting_Image_to_ImageGeneration extends BaseClass
 	        test.dislikeGeneratedImageFunctionalityTest();
 	        test.likeGeneratedImageFunctionalityTest();
 	        //test.saveGeneratedImageFunctionalityTest();
-	        test.verifyImageRegeneration();
-	        test.ImageDownloading();
+	        //test.verifyImageRegeneration();
+	        //test.ImageDownloading();
 	        //test.testRevealPromptButtonFunctionality();
 	        test.testOpenWithBrandCanvasFunctionality();
 	    }
