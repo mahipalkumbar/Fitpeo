@@ -26,8 +26,9 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     public ExtentSparkReporter sparkReporter;
     public ExtentSparkReporter fixedNameReporter;  // Add another reporter for the fixed name report
     public static ExtentReports extent;  // Ensure the extent object is static
-    public static ExtentTest test;
 
+    private static ThreadLocal<ExtentTest> testThreadLocal = new ThreadLocal<>();
+    
     String repName;
 
     // Create and configure Extent report when the entire suite starts
@@ -61,13 +62,15 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     }
 
     public void onTestSuccess(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        testThreadLocal.set(test);  // Set the current thread's test
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS, result.getName() + " executed successfully");
     }
 
     public void onTestFailure(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        testThreadLocal.set(test);  // Set the current thread's test
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.FAIL, result.getName() + " failed");
         test.log(Status.INFO, result.getThrowable().getMessage());
@@ -81,7 +84,8 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     }
 
     public void onTestSkipped(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        testThreadLocal.set(test);  // Set the current thread's test
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.SKIP, result.getName() + " was skipped");
         test.log(Status.INFO, result.getThrowable().getMessage());
@@ -116,8 +120,6 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
             e.printStackTrace();
         }
     }
-
-
 
     private void sendEmailWithAttachment(String reportPath) throws Exception {
         EmailAttachment attachment = new EmailAttachment();
