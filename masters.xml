@@ -6,13 +6,18 @@
   <parameter name="os" value="windows"/>
   <parameter name="browser" value="chrome"/>
 
+  <!-- Listeners -->
+  <listeners>
+    <!-- Add the full path to your listener class -->
+    <listener class-name="utilities.ExtentReportManager"/>
+  </listeners>
   <!-- Test 1: Data-Driven Testing for Text to Image Generation -->
   <test name="Test 1 - Text to Image Generation" thread-count="2">
     
     <classes> 
-      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
-      <!-- <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration"/>
-        <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration"/>-->
+        <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration"/>
+       <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration"/>
+        <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration"/>
          <class name="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration"/>
     </classes>
   </test>

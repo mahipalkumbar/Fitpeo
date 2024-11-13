@@ -142,7 +142,7 @@ public class BaseClass {
             driver.get().manage().deleteAllCookies();
             driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
             driver.get().get(properties.getProperty("appURL"));
-           // driver.get().manage().window().maximize();
+            //driver.get().manage().window().maximize();
         } else {
             logger.error("WebDriver is not initialized.");
         }

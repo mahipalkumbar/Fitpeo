@@ -1,9 +1,12 @@
 package utilities;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailAttachment;
@@ -23,99 +26,83 @@ import testBase.BaseClass;
 
 public class ExtentReportManager implements ITestListener, IExecutionListener {
 
-    public ExtentSparkReporter sparkReporter;
-    public ExtentSparkReporter fixedNameReporter;  // Add another reporter for the fixed name report
-    public static ExtentReports extent;  // Ensure the extent object is static
+    private static ExtentSparkReporter sparkReporter;
+    private static ExtentSparkReporter fixedNameReporter;
+    private static ExtentReports extent;
+    private static ThreadLocal<ExtentTest> threadLocalTest = new ThreadLocal<>();
 
-    private static ThreadLocal<ExtentTest> testThreadLocal = new ThreadLocal<>();
-    
-    String repName;
+    private String repName;
 
-    // Create and configure Extent report when the entire suite starts
     @Override
     public void onExecutionStart() {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         repName = "Test-Report-" + timeStamp + ".html";
 
-        // Reporter for the dynamic name (Test-Report + timestamp)
+        // Dynamic and Fixed Reporter
         sparkReporter = new ExtentSparkReporter("." + File.separator + "reports" + File.separator + repName);
         sparkReporter.config().setDocumentTitle("NYX Automation Report");
         sparkReporter.config().setReportName("NYX Functional Testing");
         sparkReporter.config().setTheme(Theme.DARK);
 
-        // Reporter for the fixed name (Extent_Test_Report.html)
         String reportPath = "." + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
         fixedNameReporter = new ExtentSparkReporter(reportPath);
         fixedNameReporter.config().setDocumentTitle("NYX Automation Report");
         fixedNameReporter.config().setReportName("NYX Functional Testing");
         fixedNameReporter.config().setTheme(Theme.DARK);
 
-        // Create a new ExtentReports object and attach both reporters
         extent = new ExtentReports();
-        extent.attachReporter(sparkReporter, fixedNameReporter);  // Attach both reporters
+        extent.attachReporter(sparkReporter, fixedNameReporter);
         extent.setSystemInfo("Application", "NYX.today");
         extent.setSystemInfo("Module", "ImageCraft AI");
-        extent.setSystemInfo("Sub Module", "ImageCraft Text-to-Image");
-
         extent.setSystemInfo("User Name", System.getProperty("user.name"));
-        extent.setSystemInfo("Environment", "Dev");
+    }
+
+    public void onTestStart(ITestResult result) {
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        threadLocalTest.set(test);
     }
 
     public void onTestSuccess(ITestResult result) {
-        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-        testThreadLocal.set(test);  // Set the current thread's test
-        test.assignCategory(result.getMethod().getGroups());
-        test.log(Status.PASS, result.getName() + " executed successfully");
+        threadLocalTest.get().log(Status.PASS, result.getName() + " executed successfully");
     }
 
     public void onTestFailure(ITestResult result) {
-        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-        testThreadLocal.set(test);  // Set the current thread's test
-        test.assignCategory(result.getMethod().getGroups());
+        ExtentTest test = threadLocalTest.get();
         test.log(Status.FAIL, result.getName() + " failed");
         test.log(Status.INFO, result.getThrowable().getMessage());
-
         try {
             String imgPath = new BaseClass().captureScreen(result.getName());
             test.addScreenCaptureFromPath(imgPath);
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void onTestSkipped(ITestResult result) {
-        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-        testThreadLocal.set(test);  // Set the current thread's test
-        test.assignCategory(result.getMethod().getGroups());
-        test.log(Status.SKIP, result.getName() + " was skipped");
-        test.log(Status.INFO, result.getThrowable().getMessage());
+        threadLocalTest.get().log(Status.SKIP, result.getName() + " was skipped");
     }
 
     public void onFinish(ITestContext testContext) {
-        // Optionally flush here if needed per test context
+        // No flush here, flush at the end of execution
     }
 
     @Override
     public void onExecutionFinish() {
         try {
-            extent.flush();  // Ensure everything is written before proceeding
-            
-            // Path for the dynamic report
+            extent.flush();
+
             String pathOfDynamicReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
-            
-            // Path for the fixed report
             String pathOfFixedReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
-            
-            // Log the report paths
-            System.out.println("Dynamic report generated at: " + pathOfDynamicReport);
-            System.out.println("Fixed report generated at: " + pathOfFixedReport);
-            
-            // Send the email with the dynamic report
+
             sendEmailWithAttachment(pathOfDynamicReport);
-            
-            // Send the email with the fixed report
             sendEmailWithAttachment(pathOfFixedReport);
 
+            File htmlFile = new File(pathOfDynamicReport);
+            if (htmlFile.exists() && Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(htmlFile.toURI());
+            } else {
+                System.out.println("Report file does not exist or Desktop is not supported.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,9 +126,7 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         email.addTo("mahipal.k@nyx.today");
 
         email.attach(attachment);
-
         email.send();
-
         System.out.println("Email sent successfully with the report attached.");
     }
 }

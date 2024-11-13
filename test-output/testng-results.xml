@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="6" total="10" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-13T19:15:40 IST" name="Suite" finished-at="2024-11-13T19:22:43 IST" duration-ms="422396">
+  <suite started-at="2024-11-13T22:01:10 IST" name="Suite" finished-at="2024-11-13T22:02:16 IST" duration-ms="65662">
     <groups>
     </groups>
-    <test started-at="2024-11-13T19:15:40 IST" name="Test 1 - Text to Image Generation" finished-at="2024-11-13T19:22:43 IST" duration-ms="422396">
+    <test started-at="2024-11-13T22:01:10 IST" name="Test 1 - Text to Image Generation" finished-at="2024-11-13T22:02:16 IST" duration-ms="65662">
       <class name="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration">
-        <test-method signature="ImageGenerationTestImageToVideo(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration@4218500f]" started-at="2024-11-13T19:22:20 IST" name="ImageGenerationTestImageToVideo" data-provider="ImageToVideoGenerationData" finished-at="2024-11-13T19:22:43 IST" duration-ms="22892" status="PASS">
+        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration@4a067c25]" started-at="2024-11-13T22:01:10 IST" name="launchingApplication" finished-at="2024-11-13T22:01:33 IST" duration-ms="22996" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[windows]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchingApplication -->
+        <test-method signature="ImageGenerationTestImageToVideo(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration@4a067c25]" started-at="2024-11-13T22:01:35 IST" name="ImageGenerationTestImageToVideo" data-provider="ImageToVideoGenerationData" finished-at="2024-11-13T22:02:15 IST" duration-ms="40201" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -38,306 +54,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ImageGenerationTestImageToVideo -->
-      </class> <!-- tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration -->
-      <class name="tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration">
-        <test-method signature="TextToVideoGeneration(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration@5829e4f4]" started-at="2024-11-13T19:17:45 IST" name="TextToVideoGeneration" data-provider="TextToVideoGenerationData" finished-at="2024-11-13T19:22:20 IST" duration-ms="274489" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[EcoBlend]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Fashion and Apparel]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[We specialize in eco-friendly home products that combine style with sustainability.]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Eco-Conscious]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[All Ages]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[All India]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[EcoBlend Bamboo]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Green Living Revolution]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Increase brand awareness and highlight eco-friendly features.]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[AI Prompt]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[Playing Cricket]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Playing Cricket]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[Casual]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[20.0]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[AI Images (Photorealistic)]]>
-              </value>
-            </param>
-            <param index="19">
-              <value>
-                <![CDATA[Square]]>
-              </value>
-            </param>
-            <param index="20">
-              <value>
-                <![CDATA[Fast]]>
-              </value>
-            </param>
-            <param index="21">
-              <value>
-                <![CDATA[Hide Captions]]>
-              </value>
-            </param>
-            <param index="22">
-              <value>
-                <![CDATA[Start Slate]]>
-              </value>
-            </param>
-            <param index="23">
-              <value>
-                <![CDATA[D:\Mahipal\NYX.today\BrandLogos\EcoBlend.png]]>
-              </value>
-            </param>
-            <param index="24">
-              <value>
-                <![CDATA[D:\Mahipal\NYX.today\BrandLogos\EcoBlend.png]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TextToVideoGeneration -->
-      </class> <!-- tesrCases.TC_010_DataDrivenTesting_Text_to_VideoGeneration -->
-      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
-        <test-method is-config="true" signature="launchingApplication(java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@2c7b5824]" started-at="2024-11-13T19:15:40 IST" name="launchingApplication" finished-at="2024-11-13T19:16:17 IST" duration-ms="36707" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[windows]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchingApplication -->
-        <test-method signature="ImageGenerationTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@2c7b5824]" started-at="2024-11-13T19:16:23 IST" name="ImageGenerationTest" data-provider="imageGenerationData" finished-at="2024-11-13T19:17:25 IST" duration-ms="62099" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[EcoBlend]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Fashion and Apparel]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[We specialize in eco-friendly home products that combine style with sustainability.]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Eco-Conscious]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[All Ages]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[All India]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\BrandLogos\\EcoBlend.png]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[EcoBlend Bamboo]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Stylish, durable, and made from 100% sustainable bamboo for eco-conscious living.]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[D:\\Mahipal\\NYX.today\\ProductLogo\\Bamboo.png]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Green Living Revolution]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Increase brand awareness and highlight eco-friendly features.]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[facebook]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[(1080*1080)]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Indian]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[Object]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[3D Model]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[A set of bamboo utensils laid out on a minimalist kitchen counter, showcasing their natural texture and eco-friendly appeal.]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ImageGenerationTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration@2c7b5824]" started-at="2024-11-13T19:22:43 IST" name="tearDown" finished-at="2024-11-13T19:22:43 IST" duration-ms="5" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration@4a067c25]" started-at="2024-11-13T22:02:16 IST" name="tearDown" finished-at="2024-11-13T22:02:16 IST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
-      <class name="tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration">
-        <test-method signature="ImageGenerationTestImageToImage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration@708400f6]" started-at="2024-11-13T19:17:26 IST" name="ImageGenerationTestImageToImage" data-provider="ImageToImageGenerationData" finished-at="2024-11-13T19:17:44 IST" duration-ms="17674" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Solar Water Heater]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Use an Asset]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[D:\Mahipal\NYX.today\BrandLogos\Gas bill.jpg]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Auto Generate]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Modern rooftop solar water heater with sleek design, sunlit environment]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ImageGenerationTestImageToImage -->
-      </class> <!-- tesrCases.TC_002_DataDrivenTesting_Image_to_ImageGeneration -->
+      </class> <!-- tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration -->
     </test> <!-- Test 1 - Text to Image Generation -->
   </suite> <!-- Suite -->
 </testng-results>
