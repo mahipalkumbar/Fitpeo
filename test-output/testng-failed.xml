@@ -3,18 +3,15 @@
 <suite thread-count="4" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <parameter name="os" value="windows"/>
   <parameter name="browser" value="chrome"/>
-  <listeners>
-    <listener class-name="utilities.ExtentReportManager"/>
-  </listeners>
   <test thread-count="4" name="Test 1 - Text to Image Generation(failed)">
     <classes>
-      <class name="tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration">
+      <class name="tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration">
         <methods>
+          <include name="ImageGenerationTest" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="launchingApplication"/>
-          <include name="ImageGenerationTestImageToVideo"/>
         </methods>
-      </class> <!-- tesrCases.TC_011_DataDrivenTesting_Image_to_VideoGeneration -->
+      </class> <!-- tesrCases.TC_001_DataDrivenTesting_Text_to_ImageGeneration -->
     </classes>
   </test> <!-- Test 1 - Text to Image Generation(failed) -->
 </suite> <!-- Failed suite [Suite] -->

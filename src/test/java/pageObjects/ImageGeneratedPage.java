@@ -3,6 +3,7 @@ package pageObjects;
 
 
 
+import java.awt.Toolkit;
 //import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -433,7 +434,7 @@ public class ImageGeneratedPage extends Basepage {
    // @FindBy(xpath="//div[text()='Copied!']") 
    // private WebElement copyforimagesavedconfirm;
     String clipboardText;
-   /* public String[] clickOnRevealPromptButton() {
+    public String[] clickOnRevealPromptButton() {
         //String clipboardText;
         String textString1 = "";
 
@@ -480,15 +481,15 @@ public class ImageGeneratedPage extends Basepage {
         }
 
         return new String[] {clipboardText, textString1};
-    }*/
+    }
 
-   /* private String getClipboardText() throws UnsupportedFlavorException, IOException {
+    private String getClipboardText() throws UnsupportedFlavorException, IOException {
         // Access the system clipboard
-       // Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         // Check if clipboard content is a string and return it
-        //return (String) clipboard.getData(DataFlavor.stringFlavor);
-    }*/
+        return (String) clipboard.getData(DataFlavor.stringFlavor);
+    }
 
 
     public boolean clickOnRegenerateButton() {

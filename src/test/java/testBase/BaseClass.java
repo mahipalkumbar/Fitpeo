@@ -28,14 +28,17 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import io.github.bonigarcia.wdm.WebDriverManager;  // WebDriverManager import
 import pageObjects.Loginpage;
 
 public class BaseClass {
+    
+    // ThreadLocal to ensure WebDriver is thread-safe
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public ThreadLocal<String> downloadDir = new ThreadLocal<>(); // Unique download directory per thread
     public Logger logger;
     public Properties properties;
-    public String downloadDirectory;
+
     // Constructor
     public BaseClass() {
         logger = LogManager.getLogger(this.getClass());
@@ -48,15 +51,19 @@ public class BaseClass {
         loadProperties();
         
         // Generate a unique download directory for each test run
-        
-        //String uniqueDownloadDir = "D:\\Mahipal\\NYX.today\\Downloads\\" + UUID.randomUUID().toString();
         String uniqueDownloadDir = "C:\\Users\\Public\\JenkinsDownloads" + UUID.randomUUID().toString();
         downloadDir.set(uniqueDownloadDir);
         new File(uniqueDownloadDir).mkdirs();  // Ensure the directory is created
 
+        // Ensure WebDriver initialization is thread-safe using double-checked locking
         if (driver.get() == null) {
-            initializeDriver(os, browser, uniqueDownloadDir);
+            synchronized (BaseClass.class) {
+                if (driver.get() == null) {
+                    initializeDriver(os, browser, uniqueDownloadDir);
+                }
+            }
         }
+
         configureDriver();
         performLogin();
     }
@@ -72,10 +79,15 @@ public class BaseClass {
     // Driver Initialization
     private void initializeDriver(String os, String browser, String uniqueDownloadDir) throws IOException {
         logger.info("Initializing driver with OS: " + os + ", Browser: " + browser);
+        
+        // WebDriverManager automatically downloads and sets up the correct version of chromedriver
+       // WebDriverManager.chromedriver().setup();
+        
+        // Remote WebDriver setup or Local WebDriver setup
         if ("remote".equalsIgnoreCase(properties.getProperty("execution_env"))) {
             DesiredCapabilities capabilities = getDesiredCapabilities(os, browser, uniqueDownloadDir);
             try {
-                driver.set(new RemoteWebDriver(new URL("http://34.100.251.62:4444/wd/hub"), capabilities));
+                driver.set(new RemoteWebDriver(new URL("http://34.47.205.0:4444/wd/hub"), capabilities));
             } catch (MalformedURLException e) {
                 logger.error("Invalid remote WebDriver URL.", e);
             }
@@ -85,7 +97,7 @@ public class BaseClass {
     }
 
     // Desired Capabilities with Download Preferences
-    public DesiredCapabilities getDesiredCapabilities(String os, String browser, String uniqueDownloadDir) {
+    private DesiredCapabilities getDesiredCapabilities(String os, String browser, String uniqueDownloadDir) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser.equalsIgnoreCase("brave") ? "chrome" : browser);
 
@@ -101,7 +113,7 @@ public class BaseClass {
                 throw new IllegalArgumentException("Invalid OS: " + os);
         }
 
-        if (browser.equalsIgnoreCase("chrome") || browser.equalsIgnoreCase("brave")) {
+        if ("chrome".equalsIgnoreCase(browser) || "brave".equalsIgnoreCase(browser)) {
             ChromeOptions chromeOptions = configureBrowserOptions(browser, uniqueDownloadDir);
             capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
@@ -111,20 +123,22 @@ public class BaseClass {
     // Configure Browser Options
     private ChromeOptions configureBrowserOptions(String browser, String uniqueDownloadDir) {
         ChromeOptions options = new ChromeOptions();
-        // Add headless mode option for running in headless environment
+        // Set headless mode for running in headless environment (uncomment if needed)
         options.addArguments("--headless");
         // Set window size to avoid issues in headless mode
         options.addArguments("--window-size=1920x1080");
-        if (browser.equalsIgnoreCase("brave")) {
+
+        if ("brave".equalsIgnoreCase(browser)) {
             options.setBinary("D:\\Mahipal\\NYX.today\\BraveBrowser\\Application\\brave.exe");
             options.addArguments("--disable-blink-features=AutomationControlled");
         }
+
         setChromeDownloadPreferences(options, uniqueDownloadDir);
         return options;
     }
 
     // Local WebDriver setup
-    public WebDriver getLocalDriver(String browser, String uniqueDownloadDir) {
+    private WebDriver getLocalDriver(String browser, String uniqueDownloadDir) {
         switch (browser.toLowerCase()) {
             case "chrome":
             case "brave":
@@ -136,13 +150,14 @@ public class BaseClass {
         }
     }
 
-    // Configure driver settings
+    // Configure WebDriver settings
     private void configureDriver() {
         if (driver.get() != null) {
             driver.get().manage().deleteAllCookies();
             driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
             driver.get().get(properties.getProperty("appURL"));
-            //driver.get().manage().window().maximize();
+            // Optionally, maximize the window
+            // driver.get().manage().window().maximize();
         } else {
             logger.error("WebDriver is not initialized.");
         }
@@ -159,7 +174,7 @@ public class BaseClass {
 
             if (loginPage.isHomePageDisplayed()) {
                 logger.info("Login successful.");
-                loginPage.ClickonSkipButton();
+                loginPage.clickOnSkipButton();
             } else {
                 logger.error("Login failed due to timeout.");
             }
@@ -201,11 +216,10 @@ public class BaseClass {
     }
 
     // After Test - Clean up
- // After Test - Clean up
     @AfterTest
     public void tearDown() {
         if (driver.get() != null) {
-           // driver.get().quit();
+            driver.get().quit(); // Quit WebDriver after test completion
             logger.info("WebDriver quit successfully.");
         }
 
@@ -233,5 +247,4 @@ public class BaseClass {
             directory.delete(); // Delete the directory itself
         }
     }
-
 }

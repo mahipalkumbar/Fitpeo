@@ -37,6 +37,7 @@ public class ImageCraftAI extends Basepage{
 
 		public void clickOnTryItOutImagetoImagebutton() {
 		    try {
+		    	wait.until(ExpectedConditions.elementToBeClickable(TryItOutImagetoImagebutton));
 		        // Click the Try It Out Image to Image button
 		        TryItOutImagetoImagebutton.click(); // Implicit wait will handle visibility and clickability
 		        System.out.println("Clicked on Try It Out Image to Image button successfully.");

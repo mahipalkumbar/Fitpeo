@@ -87,9 +87,11 @@ public class TC_001_DataDrivenTesting_Text_to_ImageGeneration extends BaseClass 
         test.dislikeGeneratedImageFunctionalityTest();
         test.likeGeneratedImageFunctionalityTest();
         test.saveGeneratedImageFunctionalityTest();
-        //test.verifyImageRegeneration();
-        //test.ImageDownloading();
-        //test.testRevealPromptButtonFunctionality();
+        test.verifyImageRegeneration();
+        String projectDownloadDir = downloadDir.get();
+        System.out.println("DownloadDirectory: "+projectDownloadDir);
+        test.ImageDownloading();
+        test.testRevealPromptButtonFunctionality();
         test.testOpenWithBrandCanvasFunctionality();
     }
     

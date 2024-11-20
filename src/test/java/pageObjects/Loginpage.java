@@ -101,21 +101,20 @@ public void clickLogin() {
     }
 }
 
-public void ClickonSkipButton() {
-	//WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
-	try {
-        //WebElement skipButton = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));*/
+public void clickOnSkipButton() {
+    try {
+        // Wait up to 5 seconds for the skip button to be visible
+        WebDriverWait waitskipp = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement skipButton = waitskipp.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Skip']")));
         
-        	skippbutton.click();
-           System.out.println("Popup skipped successfully.");
-   
-	}
-    
-    	catch (TimeoutException e) {
-    
-    	System.out.println("Popup not found within the specified timeout. Skipping click.");
-    
-}}
+        // If the skip button is found, click it
+        skipButton.click();
+        System.out.println("Popup skipped successfully.");
+    } catch (TimeoutException e) {
+        // If the skip button is not found within 5 seconds, continue without clicking
+        System.out.println("Popup not found within the specified timeout. Skipping click.");
+    }
+}
 
 public boolean isHomePageDisplayed() {
     try {

@@ -75,7 +75,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         logger.info("*************** Ending verifyImageRegeneration Method ***************");
     }
     
-   /* @Test(priority=5)
+    @Test(priority=5)
     public void testRevealPromptButtonFunctionality() throws IOException {
         ImageGeneratedPage postImagePage = new ImageGeneratedPage(driver);
         logger.info("**********Starting testRevealPromptButtonFunctionality Method**********");
@@ -95,7 +95,7 @@ public class TC_008_PostImageGenerationTest extends BaseClass {
         }
 
         logger.info("Ending testRevealPromptButtonFunctionality Method");
-    }*/
+    }
     
     @Test(priority=6)
     public void testOpenWithBrandCanvasFunctionality() throws IOException {
