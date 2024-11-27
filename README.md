@@ -1,10 +1,5 @@
-# Project Title: **NYX.today**
 
-**NYX.today** is a leading twin AI platform designed for rapid, high-converting content generation and distribution. It is driven by advanced conversion-focused AI models powered by content performance analysis and regional data, catering to digital brands and content creators. Our extensive suite of AI tools provides end-to-end solutions for all your conversion optimization needs, from high-converting content generation to AI-driven automatic campaign management.
-
----
-
-## GitHub Repository: [NYX QA Automation](https://github.com/tech-nyx/qa-automation)
+## GitHub Repository: [Fitpeo][(https://github.com/mahipalkumbar/Fitpeo))]
 
 ---
 
