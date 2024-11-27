@@ -1,5 +1,5 @@
 
-## Fitpeo Assignment: [GitHub Repository][(https://github.com/mahipalkumbar/Fitpeo)]
+## Fitpeo Assignment: [GitHub Repository](https://github.com/mahipalkumbar/Fitpeo)
 
 ---
 
