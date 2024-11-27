@@ -4,11 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class Basepage {
-    WebDriver driver;
+    
+    protected WebDriver driver;
 
-    // Constructor that accepts ThreadLocal<WebDriver>
-    public Basepage(ThreadLocal<WebDriver> driver) {
-        this.driver = driver.get();  // Get WebDriver from the ThreadLocal instance
-        PageFactory.initElements(driver.get(), this);  // Initialize elements
+    // Constructor that accepts WebDriver directly
+    public Basepage(WebDriver driver) {
+        this.driver = driver;  // Directly assign the WebDriver instance
+        PageFactory.initElements(driver, this);  // Initialize page elements
     }
 }

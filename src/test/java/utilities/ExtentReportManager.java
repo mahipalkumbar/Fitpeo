@@ -5,12 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.MultiPartEmail;
 import org.testng.IExecutionListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -29,8 +24,7 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
     private static ExtentSparkReporter sparkReporter;
     private static ExtentSparkReporter fixedNameReporter;
     private static ExtentReports extent;
-    private static ThreadLocal<ExtentTest> threadLocalTest = new ThreadLocal<>();
-
+    private ExtentTest test;
     private String repName;
 
     @Override
@@ -38,95 +32,110 @@ public class ExtentReportManager implements ITestListener, IExecutionListener {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         repName = "Test-Report-" + timeStamp + ".html";
 
-        // Dynamic and Fixed Reporter
-        sparkReporter = new ExtentSparkReporter("." + File.separator + "reports" + File.separator + repName);
-        sparkReporter.config().setDocumentTitle("NYX Automation Report");
-        sparkReporter.config().setReportName("NYX Functional Testing");
+        // Ensure the reports directory exists
+        String reportsDirPath = "." + File.separator + "reports";
+        File reportsDir = new File(reportsDirPath);
+        if (!reportsDir.exists()) {
+            boolean dirCreated = reportsDir.mkdirs();
+            if (dirCreated) {
+                System.out.println("Created reports directory: " + reportsDirPath);
+            } else {
+                System.out.println("Failed to create reports directory: " + reportsDirPath);
+            }
+        }
+
+        // Initialize ExtentSparkReporter with dynamic report name
+        sparkReporter = new ExtentSparkReporter(reportsDirPath + File.separator + repName);
+        sparkReporter.config().setDocumentTitle("Fitpeo Automation Report");
+        sparkReporter.config().setReportName("Fitpeo Assignment Test");
         sparkReporter.config().setTheme(Theme.DARK);
 
-        String reportPath = "." + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
+        // Initialize fixed report with fixed name
+        String reportPath = reportsDirPath + File.separator + "Extent_Test_Report.html";
         fixedNameReporter = new ExtentSparkReporter(reportPath);
-        fixedNameReporter.config().setDocumentTitle("NYX Automation Report");
-        fixedNameReporter.config().setReportName("NYX Functional Testing");
+        fixedNameReporter.config().setDocumentTitle("Fitpeo Automation Report");
+        fixedNameReporter.config().setReportName("Fitpeo Assignment Test");
         fixedNameReporter.config().setTheme(Theme.DARK);
 
+        // Initialize ExtentReports and attach both reporters
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter, fixedNameReporter);
-        extent.setSystemInfo("Application", "NYX.today");
-        extent.setSystemInfo("Module", "ImageCraft AI");
+        extent.setSystemInfo("Application", "Fitpeo");
+        extent.setSystemInfo("Module", "Revenue Calculator");
         extent.setSystemInfo("User Name", System.getProperty("user.name"));
     }
 
+    @Override
     public void onTestStart(ITestResult result) {
-        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-        threadLocalTest.set(test);
+        test = extent.createTest(result.getMethod().getMethodName());
     }
 
+    @Override
     public void onTestSuccess(ITestResult result) {
-        threadLocalTest.get().log(Status.PASS, result.getName() + " executed successfully");
+        test.log(Status.PASS, result.getName() + " executed successfully");
     }
 
+    @Override
     public void onTestFailure(ITestResult result) {
-        ExtentTest test = threadLocalTest.get();
         test.log(Status.FAIL, result.getName() + " failed");
         test.log(Status.INFO, result.getThrowable().getMessage());
+
         try {
+            // Capture screenshot and get the relative path
             String imgPath = new BaseClass().captureScreen(result.getName());
-            test.addScreenCaptureFromPath(imgPath);
+
+            // Add the screenshot to the Extent report using the relative path
+            if (imgPath != null) {
+                test.addScreenCaptureFromPath(imgPath); // Image added in Extent Report
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
     public void onTestSkipped(ITestResult result) {
-        threadLocalTest.get().log(Status.SKIP, result.getName() + " was skipped");
+        test.log(Status.SKIP, result.getName() + " was skipped");
     }
 
+    @Override
     public void onFinish(ITestContext testContext) {
-        // No flush here, flush at the end of execution
+        // Do nothing here; flush in onExecutionFinish
     }
 
     @Override
     public void onExecutionFinish() {
         try {
+            // Flush the Extent Reports instance to save the generated report
             extent.flush();
 
+            // Define the paths for the dynamic and fixed reports
             String pathOfDynamicReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
             String pathOfFixedReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + "Extent_Test_Report.html";
 
-            sendEmailWithAttachment(pathOfDynamicReport);
-            sendEmailWithAttachment(pathOfFixedReport);
+            // Open the dynamic report in the default browser
+            openReportInBrowser(pathOfDynamicReport);
+            
+            // Optionally, you can open the fixed report as well (if required)
+            // openReportInBrowser(pathOfFixedReport);
 
-            File htmlFile = new File(pathOfDynamicReport);
-            if (htmlFile.exists() && Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().browse(htmlFile.toURI());
-            } else {
-                System.out.println("Report file does not exist or Desktop is not supported.");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void sendEmailWithAttachment(String reportPath) throws Exception {
-        EmailAttachment attachment = new EmailAttachment();
-        attachment.setPath(reportPath);
-        attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("Extent Report");
-        attachment.setName("TestReport.html");
-
-        MultiPartEmail email = new MultiPartEmail();
-        email.setHostName("smtp.gmail.com");
-        email.setSmtpPort(587);
-        email.setAuthenticator(new DefaultAuthenticator("nyx.alert@gmail.com", "fkcdbgjywlwnarot"));
-        email.setStartTLSEnabled(true);
-        email.setFrom("nyx.alert@gmail.com", "NYX Automation Report");
-        email.setSubject("Test Suite Execution Report");
-        email.setMsg("Please find the attached report for the test suite execution.");
-        email.addTo("mahipal.k@nyx.today");
-
-        email.attach(attachment);
-        email.send();
-        System.out.println("Email sent successfully with the report attached.");
+    // Helper method to open the report in the default browser
+    private void openReportInBrowser(String reportPath) {
+        File htmlFile = new File(reportPath);
+        if (htmlFile.exists() && Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(htmlFile.toURI());
+                System.out.println("Opened report: " + htmlFile.getAbsolutePath());
+            } catch (IOException e) {
+                System.out.println("Error opening the report: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Report file does not exist or Desktop is not supported.");
+        }
     }
 }
